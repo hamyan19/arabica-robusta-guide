@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Thanh toán — ANARO Coffee</title>
+  <style>
+    :root{--bg:#f6efe9;--text:#2a221d;--card:#fff;--border:#e9d7c5}
+    *{box-sizing:border-box}
+    body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;background:linear-gradient(180deg,#fff,var(--bg) 50%,#f0e2d6);color:var(--text)}
+    .wrap{max-width:900px;margin:24px auto;padding:0 16px}
+    h1{margin:0 0 12px 0;font-size:22px;text-align:center}
+    .grid{display:grid;grid-template-columns:1.2fr .8fr;gap:16px}
+    @media(max-width:860px){.grid{grid-template-columns:1fr}}
+    .card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:16px}
+    label{font-weight:700}
+    input,textarea,select{width:100%;padding:10px 12px;border:1px solid #0002;border-radius:10px;font:inherit}
+    .row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    .actions{display:flex;gap:10px}
+    .btn{flex:1;display:inline-flex;align-items:center;justify-content:center;padding:10px 12px;border-radius:10px;border:1px solid #0001;background:#0001;color:#6b3f25;font-weight:800;text-decoration:none;cursor:pointer}
+    .primary{background:#F8EBDD;border-color:transparent}
+    .ok{color:#0a7b30}.err{color:#b00020}.hint{opacity:.75}
+    table{width:100%;border-collapse:collapse}
+    th,td{padding:8px 10px;border-bottom:1px solid #0001;text-align:left}
+    tfoot td{font-weight:900}
+
+    /* Owner config panel (ẩn, chỉ hiện khi #owner) */
+    .owner{display:none;position:sticky;top:0;z-index:20;background:#fff4ec;border:1px dashed #d8b79e;padding:10px 12px;border-radius:10px;margin-bottom:12px}
+    .owner.show{display:block}
+    .owner input{width:100%;max-width:620px}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>Thanh toán</h1>
+
+    <!-- Bảng cấu hình ẩn cho chủ shop: chỉ hiện khi vào checkout.html#owner -->
+    <div id="ownerPanel" class="owner">
+      <strong>🔒 Chủ shop cấu hình (chỉ bạn thấy):</strong>
+      <div style="display:flex;gap:8px;align-items:center;margin-top:8px;flex-wrap:wrap">
+        <label for="sheetsUrl">Google Apps Script Web App URL</label>
+        <input id="sheetsUrl" type="url" placeholder="https://script.google.com/macros/s/....../exec" />
+        <button id="saveUrl" class="btn">Lưu vào trình duyệt</button>
+        <span class="hint">(URL này chỉ lưu ở <em>localStorage</em> trên máy bạn, không hiển thị cho khách)</span>
+      </div>
+    </div>
+
+    <div class="grid">
+      <div class="card">
+        <form id="checkoutForm">
+          <div class="row">
+            <div>
+              <label>Email</label>
+              <input name="email" type="email" placeholder="name@example.com" required />
+            </div>
+            <div>
+              <label>Số điện thoại</label>
+              <input name="phone" type="tel" placeholder="0918 337 071" required />
+            </div>
+          </div>
+          <div>
+            <label>Địa chỉ</label>
+            <input name="address" type="text" placeholder="Số nhà, đường, phường/xã, quận/huyện, tỉnh/thành" required />
+          </div>
+          <div>
+            <label>Ghi chú</label>
+            <input name="note" type="text" placeholder="Giờ liên hệ / yêu cầu khác (nếu có)" />
+          </div>
+
+          <div class="actions">
+            <button type="submit" class="btn primary">Gửi đơn</button>
+            <a class="btn" href="index-cart.html">← Quay lại giỏ hàng</a>
+          </div>
+          <p id="msg" class="hint"></p>
+        </form>
+      </div>
+
+      <div class="card">
+        <h3>Đơn hàng của bạn</h3>
+        <table id="summary"><thead><tr><th>Sản phẩm</th><th>SL</th><th>Giá</th><th>Tạm tính</th></tr></thead><tbody></tbody><tfoot><tr><td colspan="3">Tổng cộng</td><td id="grand">0đ</td></tr></tfoot></table>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // ===== CẤU HÌNH ẨN (chủ shop chọn đích nhận, KHÔNG hiển thị cho khách) =====
+    // Gửi về Google Sheets (an toàn, không lộ secret)
+    const DESTINATION = 'sheets';
+
+    // Nếu muốn hardcode trực tiếp URL của Apps Script, dán vào đây:
+    const SHEETS_WEB_APP_URL = ""; // ví dụ: https://script.google.com/macros/s/AKfycb.../exec
+
+    // Hoặc dán tạm qua URL (?script=...) hoặc lưu vào localStorage (panel #owner)
+    const STORAGE_KEY = 'anaro_sheets_url';
+
+    const fmt = n=> (n||0).toLocaleString('vi-VN')+"đ";
+
+    // ===== NHẬN GIỎ HÀNG TỪ localStorage =====
+    let cart = [];
+    try{ cart = JSON.parse(localStorage.getItem('anaro_cart')||'[]') }catch(e){ cart=[] }
+
+    const tbody = document.querySelector('#summary tbody');
+    const grand = document.getElementById('grand');
+
+    function renderSummary(){
+      if(!cart.length){ tbody.innerHTML = '<tr><td colspan="4">Giỏ hàng trống.</td></tr>'; grand.textContent = '0đ'; return; }
+      let total = 0;
+      tbody.innerHTML = cart.map(it=>{
+        const sub = it.price * it.qty; total += sub;
+        return `<tr><td>${it.name} — ${it.size}</td><td>${it.qty}</td><td>${fmt(it.price)}</td><td>${fmt(sub)}</td></tr>`
+      }).join('');
+      grand.textContent = fmt(total);
+    }
+    renderSummary();
+
+    // ===== CHỦ SHOP: cấu hình nhanh bằng hash #owner =====
+    const ownerPanel = document.getElementById('ownerPanel');
+    const inputUrl   = document.getElementById('sheetsUrl');
+    const saveBtn    = document.getElementById('saveUrl');
+
+    function resolveSheetsUrl(){
+      if (SHEETS_WEB_APP_URL) return SHEETS_WEB_APP_URL;
+      const fromStorage = localStorage.getItem(STORAGE_KEY);
+      if (fromStorage) return fromStorage;
+      const q = new URLSearchParams(location.search).get('script');
+      if (q) { localStorage.setItem(STORAGE_KEY, q); return q; }
+      return '';
+    }
+
+    function initOwnerPanel(){
+      if (location.hash === '#owner'){
+        ownerPanel.classList.add('show');
+        inputUrl.value = resolveSheetsUrl();
+        saveBtn.addEventListener('click', ()=>{
+          if(!inputUrl.value) return alert('Hãy dán Web App URL');
+          localStorage.setItem(STORAGE_KEY, inputUrl.value);
+          alert('Đã lưu URL vào trình duyệt. Bạn có thể đóng bảng và gửi thử đơn.');
+        });
+      }
+    }
+    initOwnerPanel();
+
+    // ===== SUBMIT FORM =====
+    const form = document.getElementById('checkoutForm');
+    const msg  = document.getElementById('msg');
+
+    form.addEventListener('submit', async (e)=>{
+      e.preventDefault();
+      msg.className='hint'; msg.textContent='Đang gửi...';
+      const data = Object.fromEntries(new FormData(form).entries());
+      // Gộp giỏ hàng thành text
+      const lines = cart.map(it=>`${it.name} — ${it.size} x${it.qty} = ${fmt(it.price*it.qty)}`);
+      const total = cart.reduce((s,i)=>s+i.price*i.qty,0);
+      data.product = lines.join('\n');
+      data.total = total;
+
+      try{
+        if(DESTINATION !== 'sheets') throw new Error('DESTINATION hiện chỉ hỗ trợ sheets trong file này');
+        const url = resolveSheetsUrl();
+        if(!url) throw new Error('Chưa cấu hình SHEETS_WEB_APP_URL (vào checkout.html#owner để dán URL, hoặc thêm ?script=...)');
+        const r = await fetch(url,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)});
+        const j = await r.json();
+        if(j.ok){ msg.className='ok'; msg.textContent='Đã gửi đơn — chúng tôi sẽ liên hệ sớm!'; localStorage.removeItem('anaro_cart'); }
+        else throw new Error('Sheets trả về lỗi');
+      }catch(err){ msg.className='err'; msg.textContent='Gửi thất bại: '+(err.message||err); }
+    });
+  </script>
+</body>
+</html>
