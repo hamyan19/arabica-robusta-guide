@@ -76,7 +76,7 @@
     <div class="cartfoot">
       <div id="total" class="total"><span>Tổng</span><span>0đ</span></div>
       <button id="clear" class="ghost">Xoá giỏ</button>
-      <a id="checkout" class="btn primary" href="checkout.html">Tiến hành thanh toán</a>
+      <button id="checkout" class="btn primary">Tiến hành thanh toán</button>
     </div>
   </aside>
 
@@ -139,25 +139,15 @@
     const cartList = $('#cartList');
     const totalEl = $('#total span:last-child');
 
-    function syncBadge(){
-      const n = cart.reduce((s,i)=>s+i.qty,0); count.textContent = n; saveCart(cart);
-    }
+    function syncBadge(){ const n = cart.reduce((s,i)=>s+i.qty,0); count.textContent = n; saveCart(cart); }
     function calcTotal(){ return cart.reduce((s,i)=>s + i.price*i.qty,0); }
 
     function renderCart(){
       if(cart.length===0){ cartList.innerHTML = '<p>Giỏ trống. Hãy thêm vài món nhé!</p>'; totalEl.textContent = fmt(0); return; }
-      cartList.innerHTML = cart.map((it,idx)=>{
-        return `<div class="cartrow" data-idx="${idx}">
-          <div>
-            <div class="meta">${it.name} — ${it.size}</div>
-            <div class="hint">${fmt(it.price)} × ${it.qty}</div>
-          </div>
-          <div class="qty">
-            <input type="number" min="1" value="${it.qty}" class="qedit" />
-            <button class="btn del">Xoá</button>
-          </div>
-        </div>`
-      }).join('');
+      cartList.innerHTML = cart.map((it,idx)=>`<div class="cartrow" data-idx="${idx}">
+          <div><div class="meta">${it.name} — ${it.size}</div><div class="hint">${fmt(it.price)} × ${it.qty}</div></div>
+          <div class="qty"><input type="number" min="1" value="${it.qty}" class="qedit" /><button class="btn del">Xoá</button></div>
+        </div>`).join('');
       totalEl.textContent = fmt(calcTotal());
     }
 
@@ -169,45 +159,47 @@
     backdrop.addEventListener('click', closeCart);
 
     catalog.addEventListener('click', (e)=>{
-      const addBtn = e.target.closest('.add');
-      if(!addBtn) return;
+      const addBtn = e.target.closest('.add'); if(!addBtn) return;
       const card = e.target.closest('.card');
       const id = card.dataset.id;
       const p = products.find(x=>x.id===id);
       const size = card.querySelector('.size').value;
       const qty = Math.max(1, parseInt(card.querySelector('.qtyin').value||'1',10));
       const price = p.price[size];
-
       const key = id+'_'+size;
       const i = cart.findIndex(x=>x.key===key);
-      if(i>-1){ cart[i].qty += qty; }
-      else { cart.push({ key, id, name:p.name, size, price, qty }); }
-      syncBadge();
-      openCart();
+      if(i>-1){ cart[i].qty += qty; } else { cart.push({ key, id, name:p.name, size, price, qty }); }
+      syncBadge(); openCart();
     });
 
     cartList.addEventListener('input', (e)=>{
-      const row = e.target.closest('.cartrow');
-      if(!row) return;
+      const row = e.target.closest('.cartrow'); if(!row) return;
       const idx = +row.dataset.idx;
       if(e.target.classList.contains('qedit')){
-        const v = Math.max(1, parseInt(e.target.value||'1',10));
-        cart[idx].qty = v; syncBadge(); renderCart();
+        const v = Math.max(1, parseInt(e.target.value||'1',10)); cart[idx].qty = v; syncBadge(); renderCart();
       }
     });
     cartList.addEventListener('click', (e)=>{
-      const row = e.target.closest('.cartrow');
-      if(!row) return;
+      const row = e.target.closest('.cartrow'); if(!row) return;
       const idx = +row.dataset.idx;
-      if(e.target.classList.contains('del')){
-        cart.splice(idx,1); syncBadge(); renderCart();
-      }
+      if(e.target.classList.contains('del')){ cart.splice(idx,1); syncBadge(); renderCart(); }
     });
 
     $('#clear').addEventListener('click', ()=>{ cart=[]; syncBadge(); renderCart(); });
-    $('#checkout').addEventListener('click', ()=>{
-      localStorage.setItem('anaro_cart', JSON.stringify(cart));
-    });
+
+    // === CHECKOUT: mở tab mới + gắn cart vào URL hash ===
+    function openCheckoutWithCart(){
+      const payload = { items: cart, total: calcTotal() };
+      const encoded = btoa(unescape(encodeURIComponent(JSON.stringify(payload))));
+      const url = 'checkout.html#p=' + encoded;
+      window.open(url, '_blank', 'noopener');
+      // vẫn lưu localStorage để dự phòng/fallback
+      saveCart(cart);
+    }
+    $('#checkout').addEventListener('click', openCheckoutWithCart);
+
+    // Auto scroll tới sản phẩm nếu có anchor #id từ index.html
+    if(location.hash){ const id = location.hash.slice(1); const el = document.querySelector('[data-id="'+id+'"]'); if(el) el.scrollIntoView({behavior:'smooth',block:'center'}); }
 
     syncBadge();
   </script>
