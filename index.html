@@ -3,44 +3,34 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>ANARO Coffee Collection — data-driven</title>
+  <title>ANARO Coffee Collection — Danh mục & Bảng giá</title>
   <style>
-    /* =========================
-       1) DESIGN TOKENS (giữ nguyên màu brand)
-       ========================= */
     :root{
-      --bg:#f6efe9;          /* nền trang */
-      --text:#2a221d;        /* màu chữ chính */
-      --panel:#a47148;       /* nền chip/badge */
-      --ink:#F8EBDD;         /* chữ trên panel */
-      --dot:#6b3f25;         /* nâu đậm cho chấm rating */
-      --card-border:#e9d7c5; /* viền card */
-      --radius:16px;
+      --bg:#f6efe9; --text:#2a221d; --panel:#a47148; --ink:#F8EBDD;
+      --dot:#6b3f25; --card-border:#e9d7c5; --radius:16px;
     }
-
-    /* =========================
-       2) LAYOUT CHUNG
-       ========================= */
     *{box-sizing:border-box}
     body{
       margin:0; font-family:system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
       background:linear-gradient(180deg,#fff,var(--bg) 50%,#f0e2d6);
       color:var(--text);
     }
-    .container{max-width:1200px;margin:24px auto;padding:0 16px}
-    header.page{ text-align:center; margin: 10px 0 12px }
-    header.page h1{ margin:0 0 6px 0; font-size:24px }
-    header.page p{ opacity:.8; margin:0 0 8px }
-
-    /* ===== Filters ===== */
-    .filters{ display:flex; flex-wrap:wrap; gap:8px; justify-content:center; margin: 4px 0 18px }
+    .container{max-width:1200px;margin:0 auto;padding:0 16px}
+    header.page{ position:sticky; top:0; z-index:10;
+      background:#ffffffcc; backdrop-filter:saturate(180%) blur(8px);
+      border-bottom:1px solid var(--card-border); padding:10px 0 12px; margin-bottom:10px }
+    header .toprow{display:flex;gap:12px;align-items:center;justify-content:space-between}
+    header h1{margin:0;font-size:22px}
+    .nav{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+    .nav a.btn{padding:8px 12px;border-radius:999px;border:1px solid #0001;background:#0001;text-decoration:none;color:#6b3f25;font-weight:700}
+    .social{display:flex;gap:8px}
+    .social a{display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:999px;border:1px solid #0001;background:#0001;text-decoration:none}
+    .social a span{font-size:18px}
+    .filters{ display:flex; flex-wrap:wrap; gap:8px; justify-content:center; margin: 10px 0 0 }
     .fbtn{ border:1px solid #0000001a; background:#0000000e; color:#6b3f25; padding:8px 12px; border-radius:999px; font-weight:700; cursor:pointer }
     .fbtn[aria-pressed="true"]{ background:#a47148; color:var(--ink); border-color:transparent }
 
-    /* =========================
-       3) CATEGORY SECTION
-       ========================= */
-    .category{ margin: 26px 0 34px }
+    .category{ margin: 20px 0 30px }
     .category-title{
       color: var(--ink);
       background: #a47148cc;
@@ -49,9 +39,6 @@
     }
     .grid{ display:grid; grid-template-columns: repeat(auto-fit,minmax(260px,1fr)); gap:16px; align-items: start }
 
-    /* =========================
-       4) PRODUCT CARD (theo mẫu của bạn, bỏ Giải đáp nhanh)
-       ========================= */
     .card{ background: radial-gradient(120% 140% at 10% 0%, #fff 0 40%, #fff6ee 60%, #ffeede 100%);
            border: 1px solid var(--card-border); border-radius: var(--radius);
            display:flex; flex-direction:column; overflow:hidden; }
@@ -60,49 +47,51 @@
     .best-for{ margin:8px 16px; background:var(--panel); color:var(--ink);
                padding:8px 12px; border-radius:12px; font-size:14px }
 
-    /* ===== Stats (5 chấm nâu) ===== */
     .stats{ display:grid; grid-template-columns:1fr; gap:8px; padding:0 16px 8px 16px; font-size:14px }
     .rating{ display:inline-grid; grid-auto-flow:column; gap:4px; color: var(--dot) }
     .dot{ width:10px; height:10px; border-radius:50%; border:1px solid currentColor }
-    .dot.f{ background: currentColor } /* số chấm tô phụ thuộc dữ liệu */
+    .dot.f{ background: currentColor }
 
-    /* ===== Methods ===== */
     .methods{ padding:8px 16px; display:grid; grid-template-columns:1fr 1fr; gap:8px }
     .method{ padding:8px 10px; border:1px solid #0000001a; border-radius:8px; background:#0000000e;
              text-align:center; font-weight:600; font-size:14px; display:flex; flex-direction:column; align-items:center; gap:4px }
 
-    /* ===== Packaging & Price ===== */
     .pack{ padding:0 16px 12px 16px; font-size:14px }
     .chips{ display:flex; flex-wrap: wrap; gap:8px; margin-top:6px }
     .chip{ display:inline-flex; align-items:center; gap:8px; padding:6px 10px; border-radius:8px; background:#0000000e; border:1px solid #0000001a; font-weight:600 }
     .chip small{ opacity:.7; font-weight:700 }
 
-    /* ===== CTA & Footer ===== */
     .actions{ display:grid; grid-template-columns:1fr 1fr; gap:8px; padding:12px 16px }
     .btn{ display:inline-flex; justify-content:center; align-items:center; padding:8px 10px; border-radius:10px; font-weight:700; text-decoration:none; cursor:pointer; border:1px solid #0000001a; color:#6b3f25; background:#0000000e }
     .btn-primary{ background:#F8EBDD; color:#6b3f25; border-color:transparent }
     .footer{ margin-top:auto; padding:10px 12px; border-top:1px solid var(--card-border); text-align:center; color:#806a5b; font-size:12px; background:#ffffffaa }
 
-    /* =========================
-       5) PRICE TABLE + COMBOS (dưới cùng)
-       ========================= */
     .prices{ margin: 26px 0 }
     table{ width:100%; border-collapse: collapse; font-size:14px; background:#fff; border:1px solid #00000014 }
     th, td{ padding:10px 12px; border:1px solid #00000014; text-align:left }
     thead th{ background:#f2e6db }
     .section-hd{ background:#ead4c5; font-weight:800 }
-    .strike{ text-decoration: line-through; opacity:.55 }
   </style>
 </head>
 <body>
   <div class="container">
     <header class="page">
-      <h1>☕ ANARO COFFEE COLLECTION</h1>
-      
+      <div class="toprow">
+        <h1>☕ ANARO COFFEE COLLECTION</h1>
+        <nav class="nav" aria-label="Menu">
+          <a class="btn" href="faq.html">❓ Câu hỏi thường gặp</a>
+          <div class="social" aria-label="Kết nối">
+            <!-- Thay các href bằng link thật của bạn -->
+            <a href="https://facebook.com/yourpage" target="_blank" rel="noopener" title="Fanpage"><span>📘</span></a>
+            <a href="https://m.me/yourpage" target="_blank" rel="noopener" title="Messenger"><span>💬</span></a>
+            <a href="https://zalo.me/yourid" target="_blank" rel="noopener" title="Zalo"><span>🟦</span></a>
+          </div>
+        </nav>
+      </div>
       <nav id="filters" class="filters" aria-label="Lọc danh mục"></nav>
     </header>
 
-    <!-- Nơi render danh mục + thẻ sản phẩm -->
+    <!-- Catalog sẽ render ở đây -->
     <div id="catalog"></div>
 
     <!-- BẢNG GIÁ & COMBO -->
@@ -116,10 +105,7 @@
 
   <script>
     // =========================
-    // 6) DỮ LIỆU SẢN PHẨM (có thể chỉnh ở đây)
-    //    Quy ước rating: strength/caffeine/roast = 0..5 chấm.
-    //    methods = số sao (0..3). Với dòng tẩm bơ: chỉ hiển thị 'phin'.
-    //    price hiển thị theo định dạng "đ" như yêu cầu.
+    // DỮ LIỆU SẢN PHẨM
     // =========================
     const products = [
       // ===== ÊM NHẸ – THANH =====
@@ -207,7 +193,6 @@
       },
     ];
 
-    // COMBOS (giá đã giảm ~5%)
     const combos = [
       { name:"Combo Êm Nhẹ", items:["Arabica Cầu Đất","Blend Số 3","Blend Số 9"], price:"~261.000đ" },
       { name:"Combo Cân Bằng", items:["Blend Số 2","Robusta Honey","Arabica Đà Lạt"], price:"~242.000đ" },
@@ -217,53 +202,51 @@
     ];
 
     // =========================
-    // 7) HÀM RENDER + BỘ LỌC
+    // HÀM RENDER + BỘ LỌC
     // =========================
     const $ = (sel, ctx=document) => ctx.querySelector(sel);
     const $$ = (sel, ctx=document) => Array.from(ctx.querySelectorAll(sel));
 
     function dotRow(v, max=5){
-      return `<span class=\"rating\">${Array.from({length:max}).map((_,i)=>`<span class=\"dot ${i<v? 'f':''}\"></span>`).join('')}</span>`;
+      return `<span class="rating">${Array.from({length:max}).map((_,i)=>`<span class="dot ${i<v? 'f':''}"></span>`).join('')}</span>`;
     }
 
     function methodBlock(methods){
       const map = [
-        methods.phin ? `<div class=\"method\">🫖<span>Phin</span><span>${'★'.repeat(methods.phin)}${'☆'.repeat(3 - (methods.phin||0))}</span></div>`: '' ,
-        methods.espresso ? `<div class=\"method\">☕<span>Espresso</span><span>${'★'.repeat(methods.espresso)}${'☆'.repeat(3 - (methods.espresso||0))}</span></div>`: '' ,
-        methods.pour ? `<div class=\"method\">🌊<span>Pour Over</span><span>${'★'.repeat(methods.pour)}${'☆'.repeat(3 - (methods.pour||0))}</span></div>`: '' ,
-        // Cold Brew đã bỏ theo yêu cầu
-        methods.milk ? `<div class=\"method\">🥛<span>Cà phê sữa</span><span>${'★'.repeat(methods.milk)}${'☆'.repeat(3 - (methods.milk||0))}</span></div>`: '' ,
+        methods.phin ? `<div class="method">🫖<span>Phin</span><span>${'★'.repeat(methods.phin)}${'☆'.repeat(3 - (methods.phin||0))}</span></div>`: '' ,
+        methods.espresso ? `<div class="method">☕<span>Espresso</span><span>${'★'.repeat(methods.espresso)}${'☆'.repeat(3 - (methods.espresso||0))}</span></div>`: '' ,
+        methods.pour ? `<div class="method">🌊<span>Pour Over</span><span>${'★'.repeat(methods.pour)}${'☆'.repeat(3 - (methods.pour||0))}</span></div>`: '' ,
       ].filter(Boolean).join('');
-      return `<div class=\"methods\">${map}</div>`;
+      return `<div class="methods">${map}</div>`;
     }
 
     function productCard(p){
-      return `<article class=\"card\" aria-labelledby=\"${p.id}-t\">
-        <header class=\"card-header\"><h3 id=\"${p.id}-t\" class=\"card-title\">${p.name}</h3></header>
-        <p class=\"best-for\">🎯 Thích hợp nhất cho: ${p.bestFor}</p>
-        <div class=\"stats\">
+      return `<article class="card" id="${p.id}" aria-labelledby="${p.id}-t">
+        <header class="card-header"><h3 id="${p.id}-t" class="card-title">${p.name}</h3></header>
+        <p class="best-for">🎯 Thích hợp nhất cho: ${p.bestFor}</p>
+        <div class="stats">
           <div>☕ Độ đậm: ${dotRow(p.stats.strength)}</div>
           <div>⏰ Caffeine: ${dotRow(p.stats.caffeine)}</div>
           <div>🔥 Mức rang: ${dotRow(p.stats.roast)}</div>
         </div>
         ${methodBlock(p.methods)}
-        <div class=\"pack\"><strong>📦 Đóng gói & giá:</strong>
-          <div class=\"chips\">
-            ${Object.entries(p.price).map(([size,price])=>`<span class=\"chip\"><span>${size}</span><small>${price}</small></span>`).join('')}
+        <div class="pack"><strong>📦 Đóng gói & giá:</strong>
+          <div class="chips">
+            ${Object.entries(p.price).map(([size,price])=>`<span class="chip"><span>${size}</span><small>${price}</small></span>`).join('')}
           </div>
         </div>
-        <div class=\"actions\">
-          <a class=\"btn btn-primary\" href=\"#buy-${p.id}\">Mua ngay</a>
-          <a class=\"btn\" href=\"#faq-${p.id}\">Câu hỏi thường gặp</a>
+        <div class="actions">
+          <a class="btn btn-primary" href="#buy-${p.id}">Mua ngay</a>
+          <a class="btn" href="faq.html">Câu hỏi thường gặp</a>
         </div>
-        <div class=\"footer\">ANARO Coffee Guide · © 2025</div>
+        <div class="footer">ANARO Coffee Guide · © 2025</div>
       </article>`;
     }
 
     function renderFilters(categories){
       const root = document.getElementById('filters');
-      const allBtn = `<button class=\"fbtn\" data-cat=\"__all\" aria-pressed=\"true\">Tất cả</button>`;
-      const catBtns = categories.map(c=>`<button class=\"fbtn\" data-cat=\"${c}\" aria-pressed=\"false\">${c}</button>`).join('');
+      const allBtn = `<button class="fbtn" data-cat="__all" aria-pressed="true">Tất cả</button>`;
+      const catBtns = categories.map(c=>`<button class="fbtn" data-cat="${c}" aria-pressed="false">${c}</button>`).join('');
       root.innerHTML = allBtn + catBtns;
       root.addEventListener('click', (e)=>{
         const btn = e.target.closest('button.fbtn');
@@ -282,7 +265,7 @@
       const html = cats.map(cat=>{
         if(filterCat && cat !== filterCat) return '';
         const cards = byCat[cat].map(productCard).join('');
-        return `<section class=\"category\"><h2 class=\"category-title\">${cat}</h2><div class=\"grid\">${cards}</div></section>`;
+        return `<section class="category"><h2 class="category-title">${cat}</h2><div class="grid">${cards}</div></section>`;
       }).join('');
       root.innerHTML = html || '<p>Không có sản phẩm trong danh mục này.</p>';
     }
@@ -292,8 +275,8 @@
       const priceRoot = document.getElementById('priceTables');
       priceRoot.innerHTML = Object.entries(byCat).map(([cat,items])=>{
         const rows = items.map(p=>`<tr><td>${p.name}</td><td>${p.price['250g']||''}</td><td>${p.price['500g']||''}</td><td>${p.price['1kg']||''}</td></tr>`).join('');
-        return `<h4 style=\"margin:12px 0 6px\" class=\"section-hd\">${cat}</h4>
-          <table aria-label=\"${cat}\">
+        return `<h4 style="margin:12px 0 6px" class="section-hd">${cat}</h4>
+          <table aria-label="${cat}">
             <thead><tr><th>Sản phẩm</th><th>250g</th><th>500g</th><th>1kg</th></tr></thead>
             <tbody>${rows}</tbody>
           </table>`;
