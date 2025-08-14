@@ -1,118 +1,428 @@
+
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>FAQ — Câu hỏi thường gặp | ANARO Coffee</title>
-  <style>
-    :root{
-      --bg:#f6efe9; --text:#2a221d; --panel:#a47148; --ink:#F8EBDD;
-      --card:#ffffff; --border:#e9d7c5;
-    }
-    *{box-sizing:border-box}
-    body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;
-         background:linear-gradient(180deg,#fff,#f6efe9 50%,#f0e2d6);color:var(--text)}
-    .wrap{max-width:900px;margin:24px auto;padding:0 16px}
-    header.page{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;margin-bottom:8px}
-    header h1{margin:0;font-size:24px}
-    .home{color:#6b3f25;text-decoration:none;border:1px solid #0001;padding:8px 10px;border-radius:10px;background:#0001;font-weight:700}
-    .intro{margin:6px 0 14px;color:#6a5c54}
-    .search{display:flex;gap:8px}
-    .search input{flex:1;padding:10px 12px;border-radius:10px;border:1px solid var(--border)}
-    .badge{display:inline-flex;align-items:center;gap:6px;background:#a47148;color:var(--ink);padding:6px 10px;border-radius:10px;font-weight:700}
-    .sec{margin:16px 0 24px}
-    .sec h2{font-size:18px;margin:0 0 10px;background:#a47148cc;color:var(--ink);padding:10px 14px;border-radius:12px}
-    /* Accordion */
-    .qa{background:var(--card);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin:8px 0}
-    .qa summary{list-style:none;cursor:pointer;padding:14px 16px;font-weight:700}
-    .qa summary::marker{display:none}
-    .qa[open] summary{background:#00000007}
-    .qa .a{padding:0 16px 14px 16px;color:#5b4a40}
-    .highlight{background:#fff6ee;border:1px dashed var(--border);border-radius:10px;padding:10px 12px;margin:8px 0}
-    .muted{opacity:.8}
-    .footer{margin:24px 0 12px;text-align:center;color:#806a5b}
-    .chipnav{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}
-    .chipnav a{display:inline-block;padding:6px 10px;border-radius:999px;border:1px solid #0001;background:#0001;color:#6b3f25;text-decoration:none;font-weight:700}
-  </style>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>FAQ Cà Phê — Full (Tabs + Search + Anchors)</title>
+<style>
+  :root{
+    --bg:#fffdf9; --panel:#ffffff; --ink:#2a221d; --muted:#6e625a;
+    --brand:#7a4b2b; --line:#efe7de; --chip:#f5eee8; --focus:#1a73e8;
+  }
+  html,body{background:var(--bg); color:var(--ink); font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif; line-height:1.6; margin:0; padding:0;}
+  .wrap{max-width:1100px; margin:36px auto; padding:0 16px;}
+  h1{font-size:28px; margin:0 0 6px; letter-spacing:.2px;}
+  .sub{margin:0 0 20px; color:var(--muted);}
+
+  .tabs{display:flex; gap:10px; margin:16px 0 14px; flex-wrap:wrap;}
+  .tab{
+    cursor:pointer; user-select:none; padding:10px 14px; border-radius:999px;
+    background:var(--chip); border:1px solid var(--line); color:var(--ink);
+    font-weight:600; letter-spacing:.2px; transition:all .15s ease;
+  }
+  .tab[aria-selected="true"]{ background:var(--brand); color:#fff; border-color:var(--brand); }
+  .tab:focus-visible{ outline:2px solid var(--focus); outline-offset:2px; }
+
+  .toolbar{display:flex; align-items:center; gap:10px; margin:10px 0 18px; flex-wrap:wrap;}
+  .search{
+    flex:1 1 260px; display:flex; align-items:center; gap:8px;
+    background:var(--panel); border:1px solid var(--line); border-radius:12px; padding:10px 12px;
+  }
+  .search input{border:none; outline:none; width:100%; background:transparent; font-size:14px; color:var(--ink);}
+  .count{font-size:13px; color:var(--muted);}
+
+  .group{ display:none; }
+  .group[aria-hidden="false"]{ display:block; }
+  .faq-list{ display:grid; grid-template-columns:1fr; gap:10px; }
+  .faq-item{ background:var(--panel); border:1px solid var(--line); border-radius:14px; overflow:hidden; }
+  details{ background:transparent; }
+  summary{ list-style:none; padding:12px 14px; cursor:pointer; display:flex; align-items:center; gap:10px; }
+  summary::-webkit-details-marker { display:none; }
+  .q{ font-weight:600; }
+  .chev{ width:18px; height:18px; transform:rotate(-90deg); transition:transform .15s ease; }
+  details[open] .chev{ transform:rotate(0deg); }
+
+  .answer{
+    border-top:1px solid var(--line); padding:12px 14px;
+    display:grid; grid-template-columns:1fr 220px; gap:12px;
+  }
+  .imgbox{display:flex; align-items:center; justify-content:center;}
+  .imgph{width:100%; aspect-ratio:4/3; border:1px solid #dcc7b7; border-radius:10px; display:block; background:#fff;}
+  .note{ font-size:12px; color:var(--muted); }
+  @media (max-width: 760px){ .answer{ grid-template-columns:1fr; } }
+
+  .hint{background:var(--chip); border:1px solid var(--line); padding:12px 14px; border-radius:10px; font-size:13px; margin:10px 0 20px;}
+  code{background:#f6efe9; padding:2px 6px; border-radius:6px; border:1px solid var(--line);}
+</style>
 </head>
 <body>
-  <div class="wrap">
-    <header class="page">
-      <h1>❓ Câu hỏi thường gặp</h1>
-      <a class="home" href="index.html">← Về danh mục</a>
-    </header>
+<div class="wrap">
+  <h1>FAQ Cà Phê — Bản đầy đủ</h1>
+ 
 
-    <p class="intro">Tổng hợp những thắc mắc phổ biến về chọn gu, cách pha và bảo quản. Bạn có thể gõ từ khoá để lọc nhanh hoặc nhảy đến mục theo dòng sản phẩm.</p>
+ 
+  <div class="tabs" role="tablist" aria-label="Nhóm FAQ" id="tabs"></div>
 
-    <div class="search">
-      <input id="q" type="search" placeholder="Tìm: phin, espresso, tẩm bơ, caffeine, bảo quản…">
-      <span class="badge" id="scope">Phạm vi: Tất cả</span>
+  <div class="toolbar">
+    <div class="search" role="search">
+      <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 21l-4.35-4.35m1.35-5.65a7 7 0 11-14 0 7 7 0 0114 0z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      <input id="search" type="search" placeholder="Tìm trong nhóm hiện tại..." aria-label="Tìm kiếm câu hỏi trong nhóm">
     </div>
-
-    <nav class="chipnav" aria-label="Đi đến theo dòng">
-      <a href="#arabica-cau-dat">Arabica Cầu Đất</a>
-      <a href="#arabica-da-lat">Arabica Đà Lạt</a>
-      <a href="#blend-3">Blend Số 3</a>
-      <a href="#blend-9">Blend Số 9</a>
-      <a href="#blend-2">Blend Số 2</a>
-      <a href="#blend-10">Blend Số 10</a>
-      <a href="#tam-bo-6">Tẩm bơ Số 6</a>
-      <a href="#tam-bo-7">Tẩm bơ Số 7</a>
-      <a href="#robusta-honey">Robusta Honey</a>
-      <a href="#robusta-moc">Robusta Mộc</a>
-      <a href="#culi-moc">Culi Mộc</a>
-    </nav>
-
-    <!-- Một số mục FAQ mẫu -->
-    <section class="sec" id="chung">
-      <h2>Chung</h2>
-      <details class="qa"><summary>Arabica và Robusta khác gì?</summary>
-        <div class="a">
-          Arabica hương đa dạng (trái cây, hoa), vị chua thanh; Robusta body dày, đắng rõ, caffeine cao. Blend kết hợp để cân bằng mùi và lực.
-        </div>
-      </details>
-      <details class="qa"><summary>Chọn gu thế nào cho người mới?</summary>
-        <div class="a">
-          <div class="highlight">Gợi ý nhanh: <b>Êm nhẹ – Thanh</b> nếu thích mùi hương và uống nhẹ; <b>Cân bằng – Tròn vị</b> nếu hay uống sữa; <b>Đậm mạnh – Hậu dài</b> nếu thích lực mạnh.</div>
-        </div>
-      </details>
-    </section>
-
-    <section class="sec" id="arabica-cau-dat">
-      <h2>Arabica Cầu Đất</h2>
-      <details class="qa"><summary>Gu phù hợp và thời điểm uống?</summary><div class="a">Hương trái cây tự nhiên, nhẹ nhàng. Hợp uống sáng/đầu chiều.</div></details>
-      <details class="qa"><summary>Pha thế nào cho thơm?</summary><div class="a">Phin hoặc Pour Over 1:12–1:15; nước 92–95°C. Espresso 1:2 trong ~28–32s.</div></details>
-    </section>
-
-    <!-- ... các mục khác tương tự ... -->
-
-    <div class="footer">ANARO Coffee Guide · © 2025</div>
+    <div class="count" id="count">0 mục</div>
   </div>
 
-  <script>
-    // Lọc theo từ khoá
-    const input = document.getElementById('q');
-    input.addEventListener('input', () => {
-      const q = input.value.toLowerCase().trim();
-      document.querySelectorAll('.qa').forEach(d => {
-        const text = d.textContent.toLowerCase();
-        d.style.display = q ? (text.includes(q) ? '' : 'none') : '';
-      });
-    });
+  <div id="panels"></div>
+</div>
 
-    // Nhảy đến mục theo ?id= trên URL
-    const params = new URLSearchParams(location.search);
-    const target = params.get('id');
-    if (target) {
-      const el = document.getElementById(target);
-      if (el) {
-        el.scrollIntoView({behavior:'smooth', block:'start'});
-        const first = el.querySelector('details.qa');
-        if (first) first.open = true;
-        const scope = document.getElementById('scope');
-        if (scope) scope.textContent = 'Phạm vi: ' + el.querySelector('h2').textContent;
-      }
+<script>
+// === GROUPS: chuẩn hoá không dấu để khớp từ khoá/tags chính xác ===
+const GROUPS = [
+  { key: "basic",    label: "Kiến thức cơ bản", keywords: ["kien thuc","arabica","robusta","nguyen chat","decaf","rang","giong","phuong phap"] },
+  { key: "storage",  label: "Bảo quản",          keywords: ["bao quan","tu lanh","hop kin","han dung","shelf","cold brew","dong lanh"] },
+  { key: "brew",     label: "Pha chế",           keywords: ["pha che","phin","pour-over","espresso","ty le","ti le","nhiet do","dang","chua","chiet xuat"] },
+  { key: "health",   label: "Sức khỏe",          keywords: ["suc khoe","mat ngu","huyet ap","tim mach","thai phu","loang xuong","ibs","an toan","ngu"] },
+  { key: "benefits", label: "Lợi ích",           keywords: ["loi ich","nang luong","dot mo","trao doi chat","tiu duong","tieu duong","alz","alzheimer","parkinson","dot quy","tuoi tho","gan","xo gan"] },
+  { key: "beauty",   label: "Làm đẹp",           keywords: ["lam dep","da","dang","tap luyen","antioxidant","calo","tam trang"] },
+  { key: "grounds",  label: "Bã cà phê",         keywords: ["ba","ba ca phe","khu mui","tay te bao chet","kien","phan bon","toc","nhuom","mat tham"] }
+];
+
+// === ẢNH DEMO (data URI SVG — dùng chung) ===
+const DEMO_IMG = 'data:image/svg+xml;utf8,' + encodeURIComponent(`
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 270">
+    <defs><linearGradient id="g" x1="0" x2="1" y1="0" y2="1"><stop offset="0" stop-color="#f3ede8"/><stop offset="1" stop-color="#e9dfd7"/></linearGradient></defs>
+    <rect width="360" height="270" fill="url(#g)"/>
+    <g fill="none" stroke="#7a4b2b" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M70 160h160a40 40 0 0 1-40 40H110a40 40 0 0 1-40-40z" fill="#fff"/>
+      <path d="M230 160h34a22 22 0 1 1-6 43" />
+      <path d="M120 80c-10 10-5 20 2 26M160 74c-10 10-5 20 2 26M200 68c-10 10-5 20 2 26"/>
+    </g>
+    <text x="20" y="35" font-family="system-ui,Segoe UI,Roboto" font-size="18" fill="#7a4b2b">Ảnh minh hoạ (demo)</text>
+  </svg>
+`);
+
+// === DATA: Toàn bộ câu hỏi (48 mục) — tags có chứa tên nhóm không dấu để phân loại chuẩn ===
+const DATA = [
+  // BẢO QUẢN (8)
+  { question: "Hạt cà phê giữ được bao lâu và bảo quản thế nào?",
+    answer: "Giữ trong hộp kín, nơi khô mát tránh ánh sáng; 6–12 tháng, ngon nhất 3–6 tháng sau rang.",
+    image: "demo.svg", tags: ["bao quan","hat","han dung","hop kin"] },
+  { question: "Cà phê xay sử dụng được bao lâu?",
+    answer: "3–6 tháng nếu kín khí; ngon nhất 1–2 tháng sau khi xay; tránh không khí, ánh sáng, ẩm.",
+    image: "demo.svg", tags: ["bao quan","xay","han dung"] },
+  { question: "Cà phê hoà tan có thể để lâu không?",
+    answer: "Có, thường 1–2 năm; giữ trong bao bì gốc/hộp kín, nơi khô mát.",
+    image: "demo.svg", tags: ["bao quan","hoa tan","han dung"] },
+  { question: "Cà phê pha phin hoặc espresso còn thừa nên làm gì?",
+    answer: "Lý tưởng uống ngay; nếu dư, cho vào hộp kín, dùng trong 1–2 tuần (tốt nhất là dùng sớm).",
+    image: "demo.svg", tags: ["bao quan","phin","espresso"] },
+  { question: "Cold brew giữ được bao lâu?",
+    answer: "Bảo quản lạnh dùng trong ~1 tuần; có thể đông lạnh trong hộp kín để giữ lâu hơn.",
+    image: "demo.svg", tags: ["bao quan","cold brew","dong lanh"] },
+  { question: "Có nên để cà phê trong tủ lạnh?",
+    answer: "Không; độ ẩm làm giảm hương. Hãy dùng hộp kín, tránh ẩm/nhiệt/ánh sáng.",
+    image: "demo.svg", tags: ["bao quan","tu lanh","hop kin"] },
+  { question: "Bảo quản cà phê sau khi mở gói thế nào?",
+    answer: "Dùng hộp kín/hút chân không, để nơi khô mát; xay tới đâu dùng tới đó; mua lượng nhỏ.",
+    image: "demo.svg", tags: ["bao quan","mo goi","hop kin"] },
+  { question: "Nên mua hạt hay cà phê xay sẵn?",
+    answer: "Hạt giữ hương lâu, nên xay trước khi pha; xay sẵn tiện nhưng nên dùng trong 1–2 tháng.",
+    image: "demo.svg", tags: ["bao quan","hat","xay"] },
+
+  // SỨC KHỎE (8)
+  { question: "Những ai nên hạn chế hoặc tránh uống cà phê?",
+    answer: "Người đau dạ dày, viêm tụy, tăng nhãn áp, rối loạn giấc ngủ/lo âu, bệnh tim, IBS; trẻ em, phụ nữ đang hành kinh nên thận trọng.",
+    image: "demo.svg", tags: ["suc khoe","canh bao","doi tuong"] },
+  { question: "Uống cà phê có tác dụng phụ gì?",
+    answer: "Có thể gây tiêu chảy, mất ngủ, tăng axit dạ dày; uống khi đói dễ kích thích ruột.",
+    image: "demo.svg", tags: ["suc khoe","tac dung phu","tieu hoa","mat ngu"] },
+  { question: "Bao nhiêu caffeine mỗi ngày là an toàn?",
+    answer: "Xấp xỉ tối đa ~400 mg/ngày ở người trưởng thành khoẻ mạnh (tuỳ nhạy cảm & bệnh nền).",
+    image: "demo.svg", tags: ["suc khoe","caffeine an toan","nguong"] },
+  { question: "Uống cà phê khi nào ảnh hưởng giấc ngủ?",
+    answer: "Tránh dùng caffeine trong vòng 6 giờ trước khi ngủ để hạn chế ảnh hưởng tới giấc ngủ.",
+    image: "demo.svg", tags: ["suc khoe","ngu","mat ngu"] },
+  { question: "Cà phê ảnh hưởng huyết áp và tim mạch ra sao?",
+    answer: "Có thể tăng huyết áp/nhịp tim tạm thời; người bệnh tim nên hỏi bác sĩ và hạn chế lượng dùng.",
+    image: "demo.svg", tags: ["suc khoe","huyet ap","tim mach"] },
+  { question: "Uống nhiều cà phê có gây loãng xương?",
+    answer: "Caffeine có thể tăng bài tiết canxi; dùng nhiều có nguy cơ mất xương — nên giới hạn và bổ sung canxi.",
+    image: "demo.svg", tags: ["suc khoe","loang xuong","canxi"] },
+  { question: "Có nên uống cà phê khi mang thai?",
+    answer: "Thai phụ nên giới hạn 1–2 ly nhỏ/ngày và tham khảo ý kiến bác sĩ.",
+    image: "demo.svg", tags: ["suc khoe","thai phu"] },
+  { question: "Uống cà phê có giúp giảm cân không?",
+    answer: "Caffeine tăng trao đổi chất/đốt mỡ; nên dùng cà phê đen, không đường để hỗ trợ mục tiêu cân nặng.",
+    image: "demo.svg", tags: ["suc khoe","giam can","caffeine"] },
+
+  // LỢI ÍCH (10)
+  { question: "Cà phê giúp tăng năng lượng và cải thiện trí óc ra sao?",
+    answer: "Caffeine ức chế adenosine, tăng norepinephrine/dopamine → cải thiện năng lượng, tâm trạng, phản ứng.",
+    image: "demo.svg", tags: ["loi ich","nang luong","tap trung"] },
+  { question: "Cà phê có tác dụng đốt mỡ không?",
+    answer: "Caffeine có thể tăng chuyển hoá 3–11% và tăng đốt mỡ (tuỳ cá thể và thói quen dùng).",
+    image: "demo.svg", tags: ["loi ich","dot mo","trao doi chat"] },
+  { question: "Một tách cà phê cung cấp dưỡng chất gì?",
+    answer: "B2, B5, mangan/kali, magie/B3 với tỷ lệ nhỏ; giàu chất chống oxy hoá.",
+    image: "demo.svg", tags: ["loi ich","duong chat","vitamin","antioxidant"] },
+  { question: "Cà phê có giảm nguy cơ tiểu đường tuýp 2?",
+    answer: "Nghiên cứu quan sát cho thấy người uống nhiều cà phê có nguy cơ T2D thấp hơn đáng kể.",
+    image: "demo.svg", tags: ["loi ich","tieu duong","t2d"] },
+  { question: "Cà phê giúp phòng Alzheimer và Parkinson?",
+    answer: "Uống điều độ liên hệ với giảm nguy cơ Alzheimer/Parkinson trong nhiều nghiên cứu quan sát.",
+    image: "demo.svg", tags: ["loi ich","alzheimer","parkinson"] },
+  { question: "Cà phê có lợi cho gan?",
+    answer: "Uống ~4 tách/ngày liên hệ với giảm nguy cơ xơ gan; cà phê bảo vệ gan trong nhiều nghiên cứu.",
+    image: "demo.svg", tags: ["loi ich","gan","xo gan"] },
+  { question: "Cà phê có giúp chống trầm cảm?",
+    answer: "Một số nghiên cứu cho thấy giảm nguy cơ trầm cảm khi dùng cà phê điều độ (ví dụ ở phụ nữ).",
+    image: "demo.svg", tags: ["loi ich","tam ly","tram cam"] },
+  { question: "Cà phê giảm nguy cơ ung thư nào?",
+    answer: "Liên hệ giảm nguy cơ ung thư gan và đại trực tràng trong nhiều nghiên cứu tổng hợp.",
+    image: "demo.svg", tags: ["loi ich","ung thu gan","ung thu dai truc trang"] },
+  { question: "Cà phê giúp tăng hiệu suất thể thao?",
+    answer: "Caffeine tăng adrenaline, huy động mỡ → có thể nâng hiệu suất luyện tập.",
+    image: "demo.svg", tags: ["loi ich","the thao","tap luyen"] },
+  { question: "Cà phê có giúp sống thọ hơn?",
+    answer: "Do liên hệ giảm nguy cơ nhiều bệnh, cà phê điều độ thường gắn với tăng tuổi thọ trong quan sát.",
+    image: "demo.svg", tags: ["loi ich","tuoi tho"] },
+
+  // KIẾN THỨC CƠ BẢN (4)
+  { question: "Cà phê Arabica và Robusta khác nhau thế nào?",
+    answer: "Arabica hương thanh, hậu ngọt; Robusta đậm đắng, nhiều caffeine; Arabica chiếm phần lớn sản lượng.",
+    image: "demo.svg", tags: ["kien thuc","arabica","robusta","giong"] },
+  { question: "Cà phê nguyên chất là gì?",
+    answer: "Không pha tạp, không hoá chất; bột tơi nhẹ, mùi tự nhiên, bọt mỏng tan nhanh khi pha.",
+    image: "demo.svg", tags: ["kien thuc","nguyen chat"] },
+  { question: "Cà phê decaf là gì và làm thế nào?",
+    answer: "Khử bớt caffeine từ hạt xanh bằng nước/dung môi; giữ phần lớn hương vị tự nhiên.",
+    image: "demo.svg", tags: ["kien thuc","decaf","khong cafein"] },
+  { question: "Có những phương pháp pha cà phê nào?",
+    answer: "Đun sôi (Turkish), ngâm (French press), áp suất (espresso), nhỏ giọt (drip/percolator).",
+    image: "demo.svg", tags: ["kien thuc","phuong phap","espresso","drip","press"] },
+
+  // PHA CHẾ (4)
+  { question: "Tỷ lệ pha chuẩn (phin / pour-over / espresso)?",
+    answer: "Phin: 18–22g/180–200ml • Pour-over: 1:15–17 • Espresso: 18g → 30–40ml.",
+    image: "demo.svg", tags: ["pha che","phin","pour-over","espresso","ty le"] },
+  { question: "Nhiệt độ nước lý tưởng để chiết xuất cà phê?",
+    answer: "Khoảng 91–96°C; quá sôi dễ đắng, quá nguội làm nhạt và thiếu hương.",
+    image: "demo.svg", tags: ["pha che","nhiet do","chiet xuat"] },
+  { question: "Khác biệt giữa phin, pour-over và espresso?",
+    answer: "Phin: đậm chậm; Pour-over: sáng thanh; Espresso: cô đặc — nền latte/cappuccino.",
+    image: "demo.svg", tags: ["pha che","phin","pour-over","espresso"] },
+  { question: "Giảm vị đắng hoặc chua như thế nào khi pha?",
+    answer: "Đắng: rang nhạt hơn, hạ nhiệt, rút ngắn thời gian. Chua: rang đậm hơn, tăng nhiệt, kéo dài thời gian.",
+    image: "demo.svg", tags: ["pha che","dang","chua","chinh bien"] },
+
+  // LÀM ĐẸP (4)
+  { question: "Uống cà phê đen có giúp giữ dáng?",
+    answer: "Một tách đen ~2 calo & giàu chất chống oxy hoá; dùng trước tập giúp bền sức và đốt calo tốt hơn.",
+    image: "demo.svg", tags: ["lam dep","giu dang","calo","antioxidant"] },
+  { question: "Cà phê có giúp phấn chấn khi làm việc?",
+    answer: "Có — hỗ trợ tâm trạng và tập trung nếu dùng hợp lý, tránh quá liều gây mất ngủ.",
+    image: "demo.svg", tags: ["lam dep","tam trang","tap trung"] },
+  { question: "Người có phình mạch não có nên dùng cà phê?",
+    answer: "Nếu có phình mạch não hãy tham khảo bác sĩ; một số nghiên cứu khuyến cáo tránh kích thích mạnh.",
+    image: "demo.svg", tags: ["lam dep","nguy co","mach mau"] },
+  { question: "Cà phê có làm da xấu đi?",
+    answer: "Dùng quá mức có thể khô da do lợi tiểu; uống đủ nước và hạn chế đường/sữa khi muốn giữ da đẹp.",
+    image: "demo.svg", tags: ["lam dep","da","duong nuoc"] },
+
+  // BÃ CÀ PHÊ (10)
+  { question: "Bã cà phê có khử mùi được không?",
+    answer: "Có — phơi khô và đặt tủ lạnh/giày/nhà vệ sinh; có thể chà tay khử mùi hành tỏi.",
+    image: "demo.svg", tags: ["ba","khu mui"] },
+  { question: "Bã cà phê dùng tẩy tế bào chết/mặt nạ da?",
+    answer: "Trộn bã với dầu ôliu/sữa chua, đắp 20–30 phút rồi rửa sạch; giúp da mịn và hồng hào hơn.",
+    image: "demo.svg", tags: ["ba","tay te bao chet","mat na","da"] },
+  { question: "Bã cà phê đuổi kiến/côn trùng được không?",
+    answer: "Rắc bã ở lối kiến vào nhà hoặc tổ kiến — nhiều người dùng vì kiến ngại bã cà phê.",
+    image: "demo.svg", tags: ["ba","kien","con trung"] },
+  { question: "Dùng bã cà phê chải lông cho thú cưng?",
+    answer: "Trộn bã với nước rồi xoa lên lông để làm mềm và bóng; có người dùng để hỗ trợ trị bọ chét.",
+    image: "demo.svg", tags: ["ba","thu cung","toc long"] },
+  { question: "Bã cà phê có làm sạch chai lọ miệng hẹp?",
+    answer: "Cho bã và nước vào chai, lắc mạnh để cọ rửa bên trong rồi tráng sạch.",
+    image: "demo.svg", tags: ["ba","lam sach","chai lo"] },
+  { question: "Bã cà phê có làm phân bón?",
+    answer: "Trộn bã vào đất giúp đất tơi xốp và hơi chua, cây hấp thụ dinh dưỡng tốt hơn.",
+    image: "demo.svg", tags: ["ba","phan bon","vuon"] },
+  { question: "Trộn bã với hạt giống có ích gì?",
+    answer: "Trộn bã phơi khô với hạt cà rốt/củ cải trước khi gieo để tăng tỉ lệ và năng suất thu hoạch.",
+    image: "demo.svg", tags: ["ba","hat giong","vuon"] },
+  { question: "Bã cà phê làm tóc bóng mượt?",
+    answer: "Xát bã lên tóc ướt vài phút rồi xả",
+    image: "demo.svg", tags: ["ba","toc","bong muot"] },
+  { question: "Có thể dùng bã cà phê làm thuốc nhuộm?",
+    answer: "Đổ nước sôi vào bã để tạo màu nâu dùng nhuộm vải hoặc cho các dự án thủ công.",
+    image: "demo.svg", tags: ["ba","nhuom","thu cong"] },
+  { question: "Bã cà phê giúp giảm thâm quầng mắt?",
+    answer: "Caffeine trong bã hỗ trợ tuần hoàn và chống viêm; dùng đều giúp giảm sưng/thâm quanh mắt.",
+    image: "demo.svg", tags: ["ba","mat tham","chong viem"] }
+];
+
+// === Utils ===
+const rm = (t) => t.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');
+const slugify = (s) => rm(s).replace(/[^a-z0-9\s-]/g,'').trim().replace(/\s+/g,'-').slice(0,80);
+
+// Phân loại: ưu tiên match theo tags; nếu không, match theo toàn văn
+const classify = (item) => {
+  const text = rm(item.question + " " + item.answer);
+  const tags = (item.tags||[]).map(rm);
+  // Ưu tiên: nếu tag nào trùng keywords nhóm -> gán nhóm đó
+  for (const g of GROUPS){
+    if (tags.some(t => g.keywords.some(k => t.includes(k) || t===g.key))) return g.key;
+  }
+  // Dự phòng: dò trong toàn văn
+  for (const g of GROUPS){
+    if (g.keywords.some(k => text.includes(k))) return g.key;
+  }
+  return "basic";
+};
+
+// Build DOM for tabs/panels
+const tabsEl = document.getElementById('tabs');
+const panelsEl = document.getElementById('panels');
+const lists = {};
+GROUPS.forEach((g, idx) => {
+  const btn = document.createElement('button');
+  btn.className = 'tab';
+  btn.id = `tab-${g.key}`;
+  btn.role = 'tab';
+  btn.setAttribute('aria-controls', `panel-${g.key}`);
+  btn.setAttribute('aria-selected', idx===0 ? 'true' : 'false');
+  btn.textContent = g.label;
+  tabsEl.appendChild(btn);
+
+  const sec = document.createElement('section');
+  sec.id = `panel-${g.key}`;
+  sec.className = 'group';
+  sec.role = 'tabpanel';
+  sec.setAttribute('aria-labelledby', `tab-${g.key}`);
+  sec.setAttribute('aria-hidden', idx===0 ? 'false' : 'true');
+  sec.innerHTML = `<div class="faq-list" id="list-${g.key}"></div>`;
+  panelsEl.appendChild(sec);
+
+  lists[g.key] = sec.querySelector('.faq-list');
+});
+
+// Prepare items with ids and groups
+const ITEMS = DATA.map((it,i)=>{
+  const group = classify(it);
+  const id = slugify(it.question) || `q${i}`;
+  return {...it, id, group};
+});
+
+function renderGroup(groupKey, query=""){
+  const container = lists[groupKey];
+  container.innerHTML = "";
+  const q = rm(query||"");
+  const filtered = ITEMS.filter(it => {
+    if (it.group!==groupKey) return false;
+    if (!q) return true;
+    const title = rm(it.question);
+    const tags = rm((it.tags||[]).join(" "));
+    return title.includes(q) || tags.includes(q);
+  });
+  for (const it of filtered){
+    const anchor = `faq/${groupKey}/${it.id}`;
+    const el = document.createElement('article');
+    el.className = "faq-item";
+    el.innerHTML = `
+      <details id="${it.id}" data-anchor="${anchor}">
+        <summary>
+          <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 10l4 4 4-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span class="q">${it.question}</span>
+        </summary>
+        <div class="answer">
+          <div>
+            <p>${it.answer}</p>
+            <p class="note">Ảnh minh hoạ (demo) nhúng sẵn. Tags: <code>${(it.tags||[]).join(", ")}</code></p>
+          </div>
+          <div class="imgbox">
+            <img class="imgph" src="${DEMO_IMG}" alt="Ảnh minh hoạ cà phê (demo)">
+          </div>
+        </div>
+      </details>
+    `;
+    container.appendChild(el);
+  }
+  updateCount(groupKey);
+}
+
+function updateCount(groupKey){
+  const total = ITEMS.filter(it=>it.group===groupKey).length;
+  const visible = lists[groupKey].querySelectorAll('.faq-item').length;
+  document.getElementById('count').textContent = visible===total ? `${total} mục` : `${visible}/${total} mục`;
+}
+
+// Tabs behavior
+const tabs = Array.from(document.querySelectorAll('.tab'));
+const panels = Array.from(document.querySelectorAll('.group'));
+let current = GROUPS[0].key;
+
+function switchTab(key){
+  current = key;
+  for (const t of tabs){
+    const selected = t.id.endsWith(key);
+    t.setAttribute('aria-selected', selected ? 'true' : 'false');
+  }
+  for (const p of panels){
+    p.setAttribute('aria-hidden', p.id.endsWith(key) ? 'false' : 'true');
+  }
+  document.getElementById('search').value = "";
+  renderGroup(current, "");
+  history.replaceState(null, "", `#faq/${current}`);
+}
+
+tabs.forEach(t=>{
+  t.addEventListener('click', ()=>{
+    const key = t.id.replace('tab-','');
+    switchTab(key);
+  });
+});
+
+// Search
+document.getElementById('search').addEventListener('input', (e)=>{
+  renderGroup(current, e.target.value);
+});
+
+// Initial render
+GROUPS.forEach(g => renderGroup(g.key));
+switchTab(GROUPS[0].key);
+
+// Deep-link
+function openFromHash(){
+  const m = location.hash.match(/^#?faq\/([a-z0-9-]+)(?:\/([a-z0-9-]+))?$/);
+  if (!m) return;
+  const [, key, id] = m;
+  const exists = GROUPS.some(g=>g.key===key);
+  if (!exists) return;
+  switchTab(key);
+  if (id){
+    const el = document.getElementById(id);
+    if (el){
+      el.open = true;
+      el.scrollIntoView({behavior:"smooth", block:"start"});
     }
-  </script>
+  }
+}
+window.addEventListener('hashchange', openFromHash);
+openFromHash();
+
+// Schema.org FAQPage
+(function renderSchema(){
+  const mainEntity = ITEMS.map(it => ({
+    "@type":"Question", "name": it.question,
+    "acceptedAnswer": { "@type":"Answer", "text": it.answer }
+  }));
+  const schema = { "@context":"https://schema.org", "@type":"FAQPage", "mainEntity": mainEntity };
+  const s = document.createElement('script');
+  s.type = "application/ld+json";
+  s.textContent = JSON.stringify(schema);
+  document.body.appendChild(s);
+})();
+</script>
 </body>
 </html>
