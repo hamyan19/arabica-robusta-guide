@@ -1,6 +1,4 @@
-
-
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="vi">
 <head>
   <meta charset="utf-8" />
@@ -28,6 +26,7 @@
     .srow{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
     .ico{width:18px;height:18px;display:inline-block}
     footer{margin-top:24px;color:#6e625a;font-size:12px;text-align:center}
+    .toast{position:fixed;left:50%;top:16px;transform:translateX(-50%);background:#2a221d;color:#fff;padding:10px 14px;border-radius:10px;z-index:9999}
     @media (max-width:880px){.grid{grid-template-columns:1fr}}
   </style>
 </head>
@@ -111,28 +110,11 @@
     <footer>ANARO COFFEE · © 2025</footer>
   </div>
 
-  <!-- Hidden form to send order to email via FormSubmit -->
-  <form id="mailForm" action="https://formsubmit.co/anmy1909@gmail.com" method="POST" style="display:none">
-    <input type="hidden" name="_subject" value="Đơn hàng mới từ ANARO COFFEE">
-    <input type="hidden" name="_template" value="table">
-    <input type="hidden" name="_captcha" value="false">
-    <input type="hidden" name="_next" value="thank-you.html">
-
-    <input type="hidden" name="recipient_name" id="f_name">
-    <input type="hidden" name="recipient_gender" id="f_gender">
-    <input type="hidden" name="recipient_email" id="f_email">
-    <input type="hidden" name="recipient_phone" id="f_phone">
-    <input type="hidden" name="recipient_note" id="f_note">
-
-    <input type="hidden" name="subtotal" id="f_subtotal">
-    <input type="hidden" name="weightKg" id="f_weight">
-    <input type="hidden" name="shipping" id="f_shipping">
-    <input type="hidden" name="total" id="f_total">
-    <input type="hidden" name="items" id="f_items">
-    <input type="hidden" name="order_json" id="f_json">
-  </form>
-
   <script>
+    // ====== Config ======
+    const FORM_EMAIL = "anmy1909@gmail.com"; // <-- đổi nếu cần
+    const FORM_ENDPOINT = "https://formsubmit.co/ajax/" + encodeURIComponent(FORM_EMAIL);
+
     // Social links
     const SOCIAL_LINKS = {
       zalo: "https://zalo.me/84918337071",
@@ -140,7 +122,15 @@
       fanpage: "https://www.facebook.com/anarocoffee/"
     };
 
+    // ====== Helpers ======
     const fmt = n => (n||0).toLocaleString('vi-VN') + "đ";
+    function showToast(msg){
+      const t = document.createElement('div');
+      t.className = 'toast';
+      t.textContent = msg;
+      document.body.appendChild(t);
+      setTimeout(()=>t.remove(), 2600);
+    }
 
     function readPayloadFromHash(){
       try{
@@ -178,31 +168,54 @@
       return { name, email, phone, note, gender };
     }
 
-    function submitEmail(payload){
-      const f = document.getElementById('mailForm');
-      // recipient
+    async function sendOrderByEmail(payload){
+      // Chuyển payload sang dữ liệu dễ đọc trong email
       const r = payload.recipient || {};
-      document.getElementById('f_name').value   = r.name || "";
-      document.getElementById('f_gender').value = r.gender || "";
-      document.getElementById('f_email').value  = r.email || "";
-      document.getElementById('f_phone').value  = r.phone || "";
-      document.getElementById('f_note').value   = r.note || "";
-      // order
-      document.getElementById('f_subtotal').value = (payload.subtotal||0);
-      document.getElementById('f_weight').value   = (payload.weightKg||0);
-      document.getElementById('f_shipping').value = (payload.shipping||0);
-      document.getElementById('f_total').value    = (payload.total||0);
-      document.getElementById('f_items').value    = (payload.items||[]).map(i=>`${i.name} — ${i.size} — ${i.grind} × ${i.qty}`).join("; ");
-      document.getElementById('f_json').value     = JSON.stringify(payload);
-      f.submit();
+      const itemsStr = (payload.items||[]).map(i=>`${i.name} — ${i.size} — ${i.grind} × ${i.qty}`).join("; ");
+      const body = {
+        _subject: "Đơn hàng mới từ ANARO COFFEE",
+        _template: "table",
+        "Người nhận": `${r.gender||""} ${r.name||""}`.trim(),
+        "Email": r.email||"",
+        "SĐT": r.phone||"",
+        "Ghi chú": r.note||"",
+        "Tiền hàng": (payload.subtotal||0),
+        "Phí ship": (payload.shipping||0),
+        "Tổng": (payload.total||0),
+        "Cân nặng (kg)": (payload.weightKg||0),
+        "Chi tiết": itemsStr,
+        "JSON": JSON.stringify(payload)
+      };
+
+      const res = await fetch(FORM_ENDPOINT, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        },
+        body: JSON.stringify(body)
+      });
+
+      if(!res.ok){
+        const txt = await res.text().catch(()=>'');
+        throw new Error("Submit failed: " + txt);
+      }
+      return res.json().catch(()=>({}));
     }
 
-    document.getElementById('placeOrder').addEventListener('click', ()=>{
-      const payload = readPayloadFromHash() || {};
-      payload.recipient = getRecipient();
-      payload.contact = { ...SOCIAL_LINKS };
-      // Email submit via hidden form (FormSubmit)
-      submitEmail(payload);
+    document.getElementById('placeOrder').addEventListener('click', async ()=>{
+      try{
+        const payload = readPayloadFromHash() || {};
+        payload.recipient = getRecipient();
+        payload.contact = { ...SOCIAL_LINKS };
+
+        // Gửi email (AJAX) & redirect nội bộ
+        await sendOrderByEmail(payload);
+        location.href = "thank-you.html";
+      }catch(err){
+        console.error(err);
+        showToast("Gửi đơn thất bại, vui lòng thử lại.");
+      }
     });
 
     (function init(){
@@ -211,31 +224,4 @@
     })();
   </script>
 </body>
-</html>"""
-
-<!DOCTYPE html>
-<html lang="vi">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>ANARO — Cảm ơn</title>
-  <style>
-    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;margin:0;background:#fffdf9;color:#2a221d}
-    .wrap{max-width:800px;margin:0 auto;padding:24px 16px}
-    .card{background:#fff;border:1px solid #eadfd4;border-radius:12px;padding:16px}
-    .muted{color:#6e625a}
-    .btn{display:inline-block;margin-top:14px;padding:10px 14px;border:1px solid #0001;border-radius:10px;text-decoration:none}
-  </style>
-</head>
-<body>
-  <div class="wrap">
-    <h1>🎉 Cảm ơn bạn đã đặt hàng!</h1>
-    <p class="muted">Chúng tôi đã nhận thông tin và sẽ liên hệ xác nhận trong thời gian sớm nhất.</p>
-    <div class="card">
-      <a class="btn" href="index.html">← Tiếp tục mua</a>
-    </div>
-  </div>
-</body>
-</html>"""
-
-
+</html>
