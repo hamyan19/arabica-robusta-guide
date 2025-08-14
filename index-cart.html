@@ -276,26 +276,27 @@ html = r"""
 
     // Checkout: pass cart via hash & keep localStorage
     function openCheckoutWithCart(){
-      const w = calcWeight();
-      const info = getCheckoutInfo();
-      const payload = {
-        recipient: info,
-        items: cart,
-        subtotal: calcSubtotal(),
-        weightKg: w,
-        shipping: calcShippingFixed(w),
-        total: calcSubtotal()+calcShippingFixed(w),
-        contact: {
-          zalo: "https://zalo.me/your-id",
-          messenger: "https://m.me/yourpage",
-          fanpage: "https://facebook.com/yourpage"
-        }
-      };
-      const encoded = btoa(unescape(encodeURIComponent(JSON.stringify(payload))));
-      const url = 'checkout.html#p=' + encoded;
-      window.open(url, '_blank', 'noopener');
-      saveCart(cart);
+  const w = calcWeight();
+  const info = getCheckoutInfo();
+  const payload = {
+    recipient: info,
+    items: cart,
+    subtotal: calcSubtotal(),
+    weightKg: w,
+    shipping: calcShippingFixed(w),
+    total: calcSubtotal() + calcShippingFixed(w),
+    contact: {
+      zalo: "https://zalo.me/84918337071",
+      messenger: "https://m.me/731140580350268", // Messenger link page id
+      fanpage: "https://www.facebook.com/anarocoffee/"
     }
+  };
+  const encoded = btoa(unescape(encodeURIComponent(JSON.stringify(payload))));
+  const url = 'checkout.html#p=' + encoded; // checkout.html cùng cấp với index cart
+  window.open(url, '_blank', 'noopener');
+  saveCart(cart);
+}
+
     document.getElementById('checkout').addEventListener('click', openCheckoutWithCart);
 
     // Anchor scroll
