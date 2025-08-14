@@ -85,20 +85,140 @@
     <header class="page">
   <div class="toprow">
     <h1>☕ ANARO COFFEE COLLECTION</h1>
+
+    <!-- Nút mở/đóng menu (chỉ hiện trên mobile) -->
+    <button class="nav-toggle" aria-expanded="false" aria-controls="menuPanel" aria-label="Mở menu">
+      ☰ Menu
+    </button>
+  </div>
+
+  <!-- PANEL MENU: chứa cả LINK + BỘ LỌC -->
+  <div id="menuPanel" class="menu-panel" data-state="closed" aria-hidden="true">
     <nav class="nav" aria-label="Menu">
       <a class="btn" href="faq.html">❓ Câu hỏi thường gặp</a>
       <a class="btn" href="blog.html">📝 Blog cà phê</a>
       <a class="btn" href="contact.html">📞 Liên hệ</a>
       <a class="btn btn-primary" href="index-cart.html">🛒 Mua hàng</a>
     </nav>
+
+    <div class="divider" aria-hidden="true"></div>
+
+    <nav id="filters" class="filters" aria-label="Lọc danh mục">
+      <button class="fbtn" data-cat="__all" aria-pressed="true">Tất cả</button>
+      <button class="fbtn" data-cat="ÊM NHẸ – THANH" aria-pressed="false">ÊM NHẸ – THANH</button>
+      <button class="fbtn" data-cat="CÂN BẰNG – TRÒN VỊ" aria-pressed="false">CÂN BẰNG – TRÒN VỊ</button>
+      <button class="fbtn" data-cat="ĐẬM MẠNH – HẬU DÀI" aria-pressed="false">ĐẬM MẠNH – HẬU DÀI</button>
+    </nav>
   </div>
-  <nav id="filters" class="filters" aria-label="Lọc danh mục">
-    <button class="fbtn" data-cat="__all" aria-pressed="true">Tất cả</button>
-    <button class="fbtn" data-cat="ÊM NHẸ – THANH" aria-pressed="false">ÊM NHẸ – THANH</button>
-    <button class="fbtn" data-cat="CÂN BẰNG – TRÒN VỊ" aria-pressed="false">CÂN BẰNG – TRÒN VỊ</button>
-    <button class="fbtn" data-cat="ĐẬM MẠNH – HẬU DÀI" aria-pressed="false">ĐẬM MẠNH – HẬU DÀI</button>
-  </nav>
-</header><style>
+</header>
+
+<style>
+  /* Card wrapper */
+  header.page{background:#fdf8f3;padding:15px;border-radius:15px;border:1px solid #eadfd4}
+  .toprow{display:flex;align-items:center;justify-content:space-between;gap:12px}
+  .divider{height:1px;background:#eadfd4;margin:10px 0;border-radius:1px}
+
+  /* Nav buttons */
+  .nav{display:flex;gap:10px;flex-wrap:wrap}
+  .nav .btn{padding:8px 12px;border-radius:999px;border:1px solid #6b3f25;background:transparent;text-decoration:none;color:#6b3f25;font-weight:700;transition:.2s}
+  .nav .btn:hover{background:#6b3f25;color:#fff;border-color:#6b3f25;box-shadow:0 2px 6px #00000026}
+
+  /* Filter chips */
+  .filters{margin-top:6px;display:flex;gap:8px;flex-wrap:wrap}
+  .filters .fbtn{padding:8px 14px;border-radius:999px;border:1px solid #6b3f25;background:transparent;color:#6b3f25;font-weight:600;cursor:pointer;transition:.2s}
+  .filters .fbtn:hover{background:#6b3f25;color:#fff;border-color:#6b3f25;box-shadow:0 2px 6px #00000026}
+  .filters .fbtn[aria-pressed="true"]{background:#6b3f25;color:#fff;border-color:#6b3f25}
+
+  /* ---- PANEL: mặc định đóng, mở bằng .open (áp dụng cho mọi kích thước) ---- */
+  .menu-panel{
+    border:1px solid #eadfd4; background:#fff; border-radius:12px;
+    margin-top:8px; overflow:hidden;
+    max-height:0; padding:0;
+    transition:max-height .25s ease, padding .25s ease;
+  }
+  .menu-panel.open{
+    max-height:70vh;               /* auto fit theo màn hình */
+    padding:6px 8px;
+  }
+
+  /* Toggle (ẩn trên desktop) */
+  .nav-toggle{display:none}
+
+  /* Desktop: panel luôn mở, sticky như cũ */
+  @media (min-width:601px){
+    header.page{position:sticky;top:0;z-index:1000}
+    .nav-toggle{display:none}
+    .menu-panel{
+      max-height:none; padding:0; border:none; background:transparent; overflow:visible;
+    }
+  }
+
+  /* Mobile dropdown */
+  @media (max-width:600px){
+    .toprow{align-items:flex-start}
+    .nav-toggle{
+      display:inline-flex;align-items:center;gap:6px;
+      padding:8px 12px;border:1px solid #6b3f25;border-radius:10px;
+      background:#fff;color:#6b3f25;font-weight:700
+    }
+
+    /* Bên trong panel: sắp dọc, có thể cuộn nếu dài */
+    .menu-panel .nav{flex-direction:column}
+    .menu-panel .nav .btn{
+      width:100%;text-align:left;border:none;border-bottom:1px solid #00000012;
+      border-radius:8px;background:#f3ede7;padding:12px
+    }
+    .menu-panel .nav .btn:last-child{border-bottom:none}
+
+    /* Filter cũng ở trong panel và cuộn dọc/nếu dài */
+    .menu-panel .filters{flex-wrap:wrap;max-height:40vh;overflow:auto}
+    .menu-panel .filters .fbtn{flex:1 1 auto}
+
+    /* Không sticky trên mobile để tránh chiếm chỗ */
+    header.page{position:relative}
+  }
+</style>
+
+<script>
+  (function(){
+    const toggle = document.querySelector('.nav-toggle');
+    const panel  = document.getElementById('menuPanel');
+    if(!toggle || !panel) return;
+
+    const open  = () => {
+      panel.classList.add('open');
+      panel.dataset.state = 'open';
+      panel.setAttribute('aria-hidden','false');
+      toggle.setAttribute('aria-expanded','true');
+    };
+    const close = () => {
+      panel.classList.remove('open');
+      panel.dataset.state = 'closed';
+      panel.setAttribute('aria-hidden','true');
+      toggle.setAttribute('aria-expanded','false');
+    };
+
+    toggle.addEventListener('click', (e)=>{
+      panel.classList.contains('open') ? close() : open();
+      e.stopPropagation();
+    });
+
+    // đóng khi click vào link menu hoặc nút lọc
+    panel.addEventListener('click', (e)=>{
+      if(e.target.closest('a, .fbtn')) close();
+    });
+
+    // click ra ngoài panel thì đóng
+    document.addEventListener('click', (e)=>{
+      if(!panel.classList.contains('open')) return;
+      if(!panel.contains(e.target) && e.target !== toggle) close();
+    });
+
+    // ESC để đóng
+    document.addEventListener('keydown', (e)=>{ if(e.key==='Escape') close(); });
+  })();
+</script>
+<style>
   header.page {
     background-color: #fdf8f3;
     padding: 15px;
@@ -658,6 +778,7 @@
     renderCatalog();
     renderPrices();
   </script>
+
 
 
 </body></html>
