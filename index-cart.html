@@ -1,9 +1,10 @@
+html = r"""
 <!DOCTYPE html>
 <html lang="vi">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>ANARO — Danh mục + Giỏ hàng</title>
+  <title>ANARO — Danh mục + Giỏ hàng (Checkout info + Social)</title>
   <style>
     :root{--bg:#f6efe9;--text:#2a221d;--panel:#a47148;--ink:#F8EBDD;--border:#e9d7c5;--dot:#6b3f25}
     *{box-sizing:border-box}
@@ -12,7 +13,7 @@
     header.page{position:sticky;top:0;z-index:10;background:#ffffffcc;backdrop-filter:saturate(180%) blur(8px);border-bottom:1px solid var(--border)}
     .top{display:flex;gap:12px;align-items:center;justify-content:space-between;padding:10px 0}
     h1{margin:0;font-size:20px}
-    .nav{display:flex;gap:10px;align-items:center}
+    .nav{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
     .btn{display:inline-flex;align-items:center;justify-content:center;padding:8px 12px;border-radius:10px;border:1px solid #0001;background:#0001;text-decoration:none;color:#6b3f25;font-weight:800;cursor:pointer}
     .cartbtn{position:relative}
     .cartcount{position:absolute;top:-6px;right:-6px;background:#a47148;color:var(--ink);border-radius:999px;font-size:12px;padding:0 6px}
@@ -30,25 +31,43 @@
     .dot.f{background:currentColor}
     .methods{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:0 14px 12px}
     .method{padding:6px 8px;border:1px solid #0001;border-radius:8px;background:#0001;text-align:center;font-weight:700}
-    .pick{display:flex;gap:8px;align-items:center;margin:0 14px 12px}
-    select, input[type="number"]{padding:8px 10px;border:1px solid #0002;border-radius:10px}
+    .pick{display:grid;grid-template-columns:1fr 1fr;gap:8px;align-items:center;margin:0 14px 12px}
+    select, input[type="number"], input[type="text"]{padding:8px 10px;border:1px solid #0002;border-radius:10px;width:100%}
     .actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:12px 14px 14px}
     .primary{background:#F8EBDD;border-color:transparent}
     footer.card{margin-top:auto;border-top:1px solid var(--border);padding:10px 12px;text-align:center;color:#806a5b;font-size:12px;background:#ffffffaa;border-bottom-left-radius:14px;border-bottom-right-radius:14px}
 
     .backdrop{position:fixed;inset:0;background:#0007;display:none}
-    .drawer{position:fixed;right:0;top:0;bottom:0;width:380px;max-width:95vw;background:#fff;border-left:1px solid var(--border);box-shadow:-8px 0 30px #0003;transform:translateX(100%);transition:transform .25s ease;display:flex;flex-direction:column}
+    .drawer{position:fixed;right:0;top:0;bottom:0;width:480px;max-width:95vw;background:#fff;border-left:1px solid var(--border);box-shadow:-8px 0 30px #0003;transform:translateX(100%);transition:transform .25s ease;display:flex;flex-direction:column}
     .drawer.open{transform:translateX(0)}
     .carthead{padding:12px 14px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}
     .cartlist{flex:1;overflow:auto;padding:10px 14px;display:grid;gap:10px}
     .cartrow{display:grid;grid-template-columns:1fr auto;gap:8px;border:1px solid #0001;background:#0001;border-radius:10px;padding:8px 10px}
     .cartrow .meta{font-weight:700}
+    .hint{font-size:12px;color:#6b3f25}
     .qty{display:flex;align-items:center;gap:6px}
     .qty input{width:64px;padding:6px 8px;border:1px solid #0002;border-radius:8px}
-    .cartfoot{border-top:1px solid var(--border);padding:12px 14px;display:grid;gap:10px}
-    .total{display:flex;justify-content:space-between;font-weight:900}
+    .cartfoot{border-top:1px solid var(--border);padding:12px 14px;display:grid;gap:12px}
+
+    .checkout{display:grid;gap:10px;background:#faf6f2;border:1px dashed #e7d4c4;border-radius:10px;padding:10px 12px}
+    .row2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+    .row1{display:grid;grid-template-columns:1fr;gap:8px}
+    label{font-size:13px;font-weight:700;color:#6b3f25}
+    .gender{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
+    .gender .opt{display:flex;gap:6px;align-items:center;padding:8px 10px;border:1px solid #0001;border-radius:10px;background:#0001;cursor:pointer}
+
+    .totals{display:grid;gap:6px}
+    .line{display:flex;justify-content:space-between}
+    .line strong{font-weight:900}
+
+    .social{display:grid;gap:8px}
+    .srow{display:flex;gap:8px;flex-wrap:wrap}
+    .sbtn{display:inline-flex;align-items:center;gap:8px;padding:8px 10px;border:1px solid #0001;border-radius:10px;background:#0001;text-decoration:none;color:#1e1e1e;font-weight:800}
+    .sbtn span{font-size:14px}
+    .ico{width:18px;height:18px;display:inline-block}
+
     .ghost{background:#eee;border:1px solid #0001;border-radius:10px;padding:10px 12px;font-weight:900;cursor:pointer}
-    @media (max-width:480px){.methods{grid-template-columns:1fr}.drawer{width:100%}}
+    @media (max-width:540px){.methods{grid-template-columns:1fr}.drawer{width:100%}.pick{grid-template-columns:1fr}.row2{grid-template-columns:1fr}}
   </style>
 </head>
 <body>
@@ -74,7 +93,66 @@
     </div>
     <div id="cartList" class="cartlist"></div>
     <div class="cartfoot">
-      <div id="total" class="total"><span>Tổng</span><span>0đ</span></div>
+
+      <div class="checkout">
+        <div class="row2">
+          <div>
+            <label for="recipient">Tên người nhận</label>
+            <input id="recipient" type="text" placeholder="VD: Nguyễn Văn A" />
+          </div>
+          <div>
+            <label>Giới tính (xưng hô)</label>
+            <div class="gender">
+              <label class="opt"><input type="radio" name="gender" value="Anh" checked /> Anh</label>
+              <label class="opt"><input type="radio" name="gender" value="Chị" /> Chị</label>
+              <label class="opt"><input type="radio" name="gender" value="Khác" /> Khác</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="social">
+          <div><strong>Liên hệ / Xác nhận đơn qua:</strong></div>
+          <div class="srow">
+            <a class="sbtn" target="_blank" rel="noopener" href="https://zalo.me/your-id" aria-label="Zalo">
+              <span class="ico" aria-hidden="true">
+                <!-- Zalo icon with brand color #0068FF -->
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <rect width="24" height="24" rx="5" ry="5" fill="#0068FF"></rect>
+                  <text x="6.7" y="16.5" font-family="Segoe UI, Roboto, Helvetica, Arial" font-size="10" fill="#fff" font-weight="700">Z</text>
+                </svg>
+              </span>
+              <span>Zalo</span>
+            </a>
+            <a class="sbtn" target="_blank" rel="noopener" href="https://m.me/yourpage" aria-label="Messenger">
+              <span class="ico" aria-hidden="true">
+                <!-- Messenger logo circle with brand blue #0099FF -->
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="12" cy="12" r="10" fill="#0099FF"></circle>
+                  <path d="M6.5 14.2l4.1-3.1 3.1 3.1 3.3-3.1" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path>
+                </svg>
+              </span>
+              <span>Messenger</span>
+            </a>
+            <a class="sbtn" target="_blank" rel="noopener" href="https://facebook.com/yourpage" aria-label="Fanpage Facebook">
+              <span class="ico" aria-hidden="true">
+                <!-- Facebook logo with brand #1877F2 -->
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <rect width="24" height="24" rx="5" ry="5" fill="#1877F2"></rect>
+                  <path d="M14 8h2V6h-2a3 3 0 0 0-3 3v2H9v2h2v5h2v-5h2l1-2h-3V9a1 1 0 0 1 1-1z" fill="#fff"></path>
+                </svg>
+              </span>
+              <span>Fanpage</span>
+            </a>
+          </div>
+          <div class="hint">Thay các URL <code>zalo.me/your-id</code>, <code>m.me/yourpage</code>, <code>facebook.com/yourpage</code> bằng liên kết thật.</div>
+        </div>
+      </div>
+
+      <div class="totals">
+        <div class="line"><span>Tiền hàng</span><span id="subtotal">0đ</span></div>
+        <div class="line"><span>Phí ship</span><span id="shipping">0đ</span></div>
+        <div class="line"><strong>Tổng</strong><strong id="grand">0đ</strong></div>
+      </div>
       <button id="clear" class="ghost">Xoá giỏ</button>
       <button id="checkout" class="btn primary">Tiến hành thanh toán</button>
     </div>
@@ -95,16 +173,40 @@
       {id:'culi-moc', category:'ĐẬM MẠNH – HẬU DÀI', name:'Culi Mộc', best:'Đậm mượt, hậu dài', stats:{s:5}, methods:{phin:3,espresso:3}, price:{'250g':75000,'500g':167500,'1kg':275000}},
     ];
 
+    // Helpers
     const $ = (s,ctx=document)=>ctx.querySelector(s);
     const fmt = n => (n||0).toLocaleString('vi-VN')+"đ";
     const saveCart = (x)=>localStorage.setItem('anaro_cart', JSON.stringify(x));
     const loadCart = ()=>{ try{return JSON.parse(localStorage.getItem('anaro_cart')||'[]')}catch(e){return []} };
 
+    // Weight
+    const sizeToKg = (size)=>{
+      if(!size) return 0;
+      if(size.endsWith('kg')) return parseFloat(size.replace('kg',''));
+      if(size.endsWith('g')) return parseFloat(size.replace('g',''))/1000;
+      return 0;
+    };
+
+    // Shipping: GHN HCM Huyện/Xã fixed
+    function calcShippingFixed(weightKg){
+      if(weightKg <= 0) return 0;
+      const baseW = 0.5, baseP = 29000, stepW = 0.5, stepP = 2500;
+      if(weightKg <= baseW) return baseP;
+      const extraSteps = Math.ceil((weightKg - baseW) / stepW);
+      return baseP + extraSteps * stepP;
+    }
+
+    // Build catalog
     const byCat = products.reduce((a,p)=>((a[p.category]??=[]).push(p),a),{});
     const catalog = $('#catalog');
     catalog.innerHTML = Object.entries(byCat).map(([cat,items])=>{
       const cards = items.map(p=>{
         const sizeOpts = Object.keys(p.price).map(s=>`<option value="${s}">${s} — ${fmt(p.price[s])}</option>`).join('');
+        const grindOpts = `
+          <option value="Nguyên hạt">Nguyên hạt</option>
+          <option value="Xay pha phin">Xay pha phin</option>
+          <option value="Xay Coldbrew">Xay Coldbrew</option>
+        `;
         return `<article class="card" data-id="${p.id}">
           <header><h3 class="title">${p.name}</h3></header>
           <p class="best">🎯 ${p.best}</p>
@@ -115,12 +217,18 @@
             ${p.methods.pour?`<div class="method">🌊 Pour Over ${'★'.repeat(p.methods.pour)}</div>`:''}
           </div>
           <div class="pick">
-            <label for="size-${p.id}">Khối lượng:</label>
-            <select id="size-${p.id}" class="size">
-              ${sizeOpts}
-            </select>
-            <label for="qty-${p.id}">SL:</label>
-            <input id="qty-${p.id}" class="qtyin" type="number" min="1" value="1" />
+            <div>
+              <label for="size-${p.id}">Khối lượng</label>
+              <select id="size-${p.id}" class="size">${sizeOpts}</select>
+            </div>
+            <div>
+              <label for="grind-${p.id}">Loại xay</label>
+              <select id="grind-${p.id}" class="grind">${grindOpts}</select>
+            </div>
+            <div>
+              <label for="qty-${p.id}">Số lượng</label>
+              <input id="qty-${p.id}" class="qtyin" type="number" min="1" value="1" />
+            </div>
           </div>
           <div class="actions">
             <button class="btn primary add">Thêm vào giỏ</button>
@@ -132,23 +240,50 @@
       return `<section class="category"><h2 class="category-title">${cat}</h2><div class="grid">${cards}</div></section>`
     }).join('');
 
+    // Cart state
     let cart = loadCart();
     const count = $('#count');
     const backdrop = $('#backdrop');
     const drawer = $('#drawer');
     const cartList = $('#cartList');
-    const totalEl = $('#total span:last-child');
+    const subtotalEl = $('#subtotal');
+    const shippingEl = $('#shipping');
+    const grandEl = $('#grand');
 
     function syncBadge(){ const n = cart.reduce((s,i)=>s+i.qty,0); count.textContent = n; saveCart(cart); }
-    function calcTotal(){ return cart.reduce((s,i)=>s + i.price*i.qty,0); }
+    function calcSubtotal(){ return cart.reduce((s,i)=>s + i.price*i.qty,0); }
+    function calcWeight(){ return cart.reduce((s,i)=>s + sizeToKg(i.size)*i.qty, 0); }
+
+    function getCheckoutInfo(){
+      const name = document.getElementById('recipient').value.trim();
+      let gender = 'Anh';
+      const g = document.querySelector('input[name="gender"]:checked');
+      if(g) gender = g.value;
+      return { name, gender };
+    }
 
     function renderCart(){
-      if(cart.length===0){ cartList.innerHTML = '<p>Giỏ trống. Hãy thêm vài món nhé!</p>'; totalEl.textContent = fmt(0); return; }
+      if(cart.length===0){
+        cartList.innerHTML = '<p>Giỏ trống. Hãy thêm vài món nhé!</p>';
+        subtotalEl.textContent = fmt(0);
+        shippingEl.textContent = fmt(0);
+        grandEl.textContent = fmt(0);
+        return;
+      }
       cartList.innerHTML = cart.map((it,idx)=>`<div class="cartrow" data-idx="${idx}">
-          <div><div class="meta">${it.name} — ${it.size}</div><div class="hint">${fmt(it.price)} × ${it.qty}</div></div>
+          <div>
+            <div class="meta">${it.name} — ${it.size} — ${it.grind}</div>
+            <div class="hint">${fmt(it.price)} × ${it.qty}</div>
+          </div>
           <div class="qty"><input type="number" min="1" value="${it.qty}" class="qedit" /><button class="btn del">Xoá</button></div>
         </div>`).join('');
-      totalEl.textContent = fmt(calcTotal());
+
+      const sub = calcSubtotal();
+      const w = calcWeight();
+      const ship = calcShippingFixed(w);
+      subtotalEl.textContent = fmt(sub);
+      shippingEl.textContent = fmt(ship);
+      grandEl.textContent = fmt(sub + ship);
     }
 
     function openCart(){ backdrop.style.display='block'; drawer.classList.add('open'); renderCart(); }
@@ -158,20 +293,24 @@
     $('#closeCart').addEventListener('click', closeCart);
     backdrop.addEventListener('click', closeCart);
 
-    catalog.addEventListener('click', (e)=>{
+    // Add to cart
+    document.getElementById('catalog').addEventListener('click', (e)=>{
       const addBtn = e.target.closest('.add'); if(!addBtn) return;
       const card = e.target.closest('.card');
       const id = card.dataset.id;
       const p = products.find(x=>x.id===id);
       const size = card.querySelector('.size').value;
+      const grind = card.querySelector('.grind').value;
       const qty = Math.max(1, parseInt(card.querySelector('.qtyin').value||'1',10));
       const price = p.price[size];
-      const key = id+'_'+size;
+      const key = id+'_'+size+'_'+grind;
       const i = cart.findIndex(x=>x.key===key);
-      if(i>-1){ cart[i].qty += qty; } else { cart.push({ key, id, name:p.name, size, price, qty }); }
+      if(i>-1){ cart[i].qty += qty; }
+      else { cart.push({ key, id, name:p.name, size, grind, price, qty }); }
       syncBadge(); openCart();
     });
 
+    // Edit & delete in cart
     cartList.addEventListener('input', (e)=>{
       const row = e.target.closest('.cartrow'); if(!row) return;
       const idx = +row.dataset.idx;
@@ -185,20 +324,34 @@
       if(e.target.classList.contains('del')){ cart.splice(idx,1); syncBadge(); renderCart(); }
     });
 
-    $('#clear').addEventListener('click', ()=>{ cart=[]; syncBadge(); renderCart(); });
+    // Clear cart
+    document.getElementById('clear').addEventListener('click', ()=>{ cart=[]; syncBadge(); renderCart(); });
 
-    // === CHECKOUT: mở tab mới + gắn cart vào URL hash ===
+    // Checkout: pass cart via hash & keep localStorage
     function openCheckoutWithCart(){
-      const payload = { items: cart, total: calcTotal() };
+      const w = calcWeight();
+      const info = getCheckoutInfo();
+      const payload = {
+        recipient: info,
+        items: cart,
+        subtotal: calcSubtotal(),
+        weightKg: w,
+        shipping: calcShippingFixed(w),
+        total: calcSubtotal()+calcShippingFixed(w),
+        contact: {
+          zalo: "https://zalo.me/your-id",
+          messenger: "https://m.me/yourpage",
+          fanpage: "https://facebook.com/yourpage"
+        }
+      };
       const encoded = btoa(unescape(encodeURIComponent(JSON.stringify(payload))));
       const url = 'checkout.html#p=' + encoded;
       window.open(url, '_blank', 'noopener');
-      // vẫn lưu localStorage để dự phòng/fallback
       saveCart(cart);
     }
-    $('#checkout').addEventListener('click', openCheckoutWithCart);
+    document.getElementById('checkout').addEventListener('click', openCheckoutWithCart);
 
-    // Auto scroll tới sản phẩm nếu có anchor #id từ index.html
+    // Anchor scroll
     if(location.hash){ const id = location.hash.slice(1); const el = document.querySelector('[data-id="'+id+'"]'); if(el) el.scrollIntoView({behavior:'smooth',block:'center'}); }
 
     syncBadge();
