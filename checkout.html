@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>ANARO — Checkout</title>
   <style>
-    :root{--bg:#fffdf9;--text:#2a221d;--muted:#6e625a;--border:#eadfd4}
+    :root{--bg:#fffdf9;--text:#2a221d;--muted:#6e625a;--border:#eadfd4;--brand:#7a4b2b}
     *{box-sizing:border-box}
     body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;background:var(--bg);color:var(--text)}
     .wrap{max-width:980px;margin:0 auto;padding:20px 16px}
@@ -27,7 +27,15 @@
     .ico{width:18px;height:18px;display:inline-block}
     footer{margin-top:24px;color:#6e625a;font-size:12px;text-align:center}
     .toast{position:fixed;left:50%;top:16px;transform:translateX(-50%);background:#2a221d;color:#fff;padding:10px 14px;border-radius:10px;z-index:9999}
-    @media (max-width:880px){.grid{grid-template-columns:1fr}}
+
+    /* Popup modal */
+    .backdrop{position:fixed;inset:0;background:#0007;display:none;align-items:center;justify-content:center;z-index:1000}
+    .modal{width:min(520px,92vw);background:#fff;border:1px solid var(--border);border-radius:14px;box-shadow:0 10px 40px #0005;padding:16px}
+    .modal h3{margin:0 0 6px}
+    .modal p{margin:6px 0;color:var(--muted)}
+    .modal .row{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+    .modal .btn{background:#0001}
+    .modal .cta{background:#F8EBDD}
   </style>
 </head>
 <body>
@@ -110,9 +118,23 @@
     <footer>ANARO COFFEE · © 2025</footer>
   </div>
 
+  <!-- Success popup -->
+  <div id="backdrop" class="backdrop" role="dialog" aria-modal="true" aria-labelledby="okTitle">
+    <div class="modal">
+      <h3 id="okTitle">🎉 Đặt hàng thành công</h3>
+      <p id="okSub">Cảm ơn bạn! Chúng tôi sẽ liên hệ xác nhận sớm nhất.</p>
+      <div class="row">
+        <a class="btn" href="index.html">← Tiếp tục mua</a>
+        <a id="okZalo" class="btn" target="_blank" rel="noopener">Zalo</a>
+        <a id="okMsg" class="btn" target="_blank" rel="noopener">Messenger</a>
+        <a id="okFan" class="btn" target="_blank" rel="noopener">Fanpage</a>
+      </div>
+    </div>
+  </div>
+
   <script>
     // ====== Config ======
-    const FORM_EMAIL = "anmy1909@gmail.com"; // <-- đổi nếu cần
+    const FORM_EMAIL = "anmy1909@gmail.com"; // đổi nếu cần
     const FORM_ENDPOINT = "https://formsubmit.co/ajax/" + encodeURIComponent(FORM_EMAIL);
 
     // Social links
@@ -125,12 +147,20 @@
     // ====== Helpers ======
     const fmt = n => (n||0).toLocaleString('vi-VN') + "đ";
     function showToast(msg){
-      const t = document.createElement('div');
-      t.className = 'toast';
-      t.textContent = msg;
-      document.body.appendChild(t);
+      const t = document.createElement('div'); t.className='toast'; t.textContent = msg; document.body.appendChild(t);
       setTimeout(()=>t.remove(), 2600);
     }
+    function showPopup(){
+      const bd = document.getElementById('backdrop');
+      bd.style.display = 'flex';
+    }
+    function hidePopup(){
+      const bd = document.getElementById('backdrop');
+      bd.style.display = 'none';
+    }
+    document.getElementById('backdrop').addEventListener('click', (e)=>{
+      if(e.target.id==='backdrop') hidePopup();
+    });
 
     function readPayloadFromHash(){
       try{
@@ -145,6 +175,10 @@
       document.getElementById('linkZalo').href = SOCIAL_LINKS.zalo;
       document.getElementById('linkMsg').href  = SOCIAL_LINKS.messenger;
       document.getElementById('linkFan').href  = SOCIAL_LINKS.fanpage;
+
+      document.getElementById('okZalo').href = SOCIAL_LINKS.zalo;
+      document.getElementById('okMsg').href  = SOCIAL_LINKS.messenger;
+      document.getElementById('okFan').href  = SOCIAL_LINKS.fanpage;
     }
 
     function renderOrderSummary(payload){
@@ -169,7 +203,6 @@
     }
 
     async function sendOrderByEmail(payload){
-      // Chuyển payload sang dữ liệu dễ đọc trong email
       const r = payload.recipient || {};
       const itemsStr = (payload.items||[]).map(i=>`${i.name} — ${i.size} — ${i.grind} × ${i.qty}`).join("; ");
       const body = {
@@ -189,17 +222,10 @@
 
       const res = await fetch(FORM_ENDPOINT, {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "Accept": "application/json"
-        },
+        headers: { "Content-Type": "application/json", "Accept": "application/json" },
         body: JSON.stringify(body)
       });
-
-      if(!res.ok){
-        const txt = await res.text().catch(()=>'');
-        throw new Error("Submit failed: " + txt);
-      }
+      if(!res.ok){ throw new Error(await res.text()); }
       return res.json().catch(()=>({}));
     }
 
@@ -209,9 +235,8 @@
         payload.recipient = getRecipient();
         payload.contact = { ...SOCIAL_LINKS };
 
-        // Gửi email (AJAX) & redirect nội bộ
         await sendOrderByEmail(payload);
-        location.href = "thank-you.html";
+        showPopup(); // ✅ show success popup, no redirect
       }catch(err){
         console.error(err);
         showToast("Gửi đơn thất bại, vui lòng thử lại.");
