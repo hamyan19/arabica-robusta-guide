@@ -1,10 +1,9 @@
-html = r"""
 <!DOCTYPE html>
 <html lang="vi">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>ANARO — Danh mục + Giỏ hàng (Checkout info + Social)</title>
+  <title>ANARO — Danh mục + Giỏ hàng</title>
   <style>
     :root{--bg:#f6efe9;--text:#2a221d;--panel:#a47148;--ink:#F8EBDD;--border:#e9d7c5;--dot:#6b3f25}
     *{box-sizing:border-box}
@@ -49,25 +48,11 @@ html = r"""
     .qty input{width:64px;padding:6px 8px;border:1px solid #0002;border-radius:8px}
     .cartfoot{border-top:1px solid var(--border);padding:12px 14px;display:grid;gap:12px}
 
-    .checkout{display:grid;gap:10px;background:#faf6f2;border:1px dashed #e7d4c4;border-radius:10px;padding:10px 12px}
-    .row2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-    .row1{display:grid;grid-template-columns:1fr;gap:8px}
-    label{font-size:13px;font-weight:700;color:#6b3f25}
-    .gender{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
-    .gender .opt{display:flex;gap:6px;align-items:center;padding:8px 10px;border:1px solid #0001;border-radius:10px;background:#0001;cursor:pointer}
-
     .totals{display:grid;gap:6px}
     .line{display:flex;justify-content:space-between}
     .line strong{font-weight:900}
-
-    .social{display:grid;gap:8px}
-    .srow{display:flex;gap:8px;flex-wrap:wrap}
-    .sbtn{display:inline-flex;align-items:center;gap:8px;padding:8px 10px;border:1px solid #0001;border-radius:10px;background:#0001;text-decoration:none;color:#1e1e1e;font-weight:800}
-    .sbtn span{font-size:14px}
-    .ico{width:18px;height:18px;display:inline-block}
-
     .ghost{background:#eee;border:1px solid #0001;border-radius:10px;padding:10px 12px;font-weight:900;cursor:pointer}
-    @media (max-width:540px){.methods{grid-template-columns:1fr}.drawer{width:100%}.pick{grid-template-columns:1fr}.row2{grid-template-columns:1fr}}
+    @media (max-width:540px){.methods{grid-template-columns:1fr}.drawer{width:100%}.pick{grid-template-columns:1fr}}
   </style>
 </head>
 <body>
@@ -93,8 +78,6 @@ html = r"""
     </div>
     <div id="cartList" class="cartlist"></div>
     <div class="cartfoot">
-
-     
       <div class="totals">
         <div class="line"><span>Tiền hàng</span><span id="subtotal">0đ</span></div>
         <div class="line"><span>Phí ship</span><span id="shipping">0đ</span></div>
@@ -201,14 +184,6 @@ html = r"""
     function calcSubtotal(){ return cart.reduce((s,i)=>s + i.price*i.qty,0); }
     function calcWeight(){ return cart.reduce((s,i)=>s + sizeToKg(i.size)*i.qty, 0); }
 
-    function getCheckoutInfo(){
-      const name = document.getElementById('recipient').value.trim();
-      let gender = 'Anh';
-      const g = document.querySelector('input[name="gender"]:checked');
-      if(g) gender = g.value;
-      return { name, gender };
-    }
-
     function renderCart(){
       if(cart.length===0){
         cartList.innerHTML = '<p>Giỏ trống. Hãy thêm vài món nhé!</p>';
@@ -236,8 +211,8 @@ html = r"""
     function openCart(){ backdrop.style.display='block'; drawer.classList.add('open'); renderCart(); }
     function closeCart(){ backdrop.style.display='none'; drawer.classList.remove('open'); }
 
-    $('#openCart').addEventListener('click', openCart);
-    $('#closeCart').addEventListener('click', closeCart);
+    document.getElementById('openCart').addEventListener('click', openCart);
+    document.getElementById('closeCart').addEventListener('click', closeCart);
     backdrop.addEventListener('click', closeCart);
 
     // Add to cart
@@ -274,33 +249,79 @@ html = r"""
     // Clear cart
     document.getElementById('clear').addEventListener('click', ()=>{ cart=[]; syncBadge(); renderCart(); });
 
-    // Checkout: pass cart via hash & keep localStorage
+    // Checkout: pass cart via hash; include weight & shipping; navigate same tab
     function openCheckoutWithCart(){
-  const w = calcWeight();
-  const info = getCheckoutInfo();
-  const payload = {
-    recipient: info,
-    items: cart,
-    subtotal: calcSubtotal(),
-    weightKg: w,
-    shipping: calcShippingFixed(w),
-    total: calcSubtotal() + calcShippingFixed(w),
-    contact: {
-      zalo: "https://zalo.me/84918337071",
-      messenger: "https://m.me/731140580350268", // Messenger link page id
-      fanpage: "https://www.facebook.com/anarocoffee/"
+      const w = calcWeight();
+      const payload = {
+        items: cart,
+        subtotal: calcSubtotal(),
+        weightKg: w,
+        shipping: calcShippingFixed(w),
+        total: calcSubtotal() + calcShippingFixed(w),
+        contact: {
+          zalo: "https://zalo.me/84918337071",
+          messenger: "https://m.me/anarocoffee",
+          fanpage: "https://www.facebook.com/anarocoffee/"
+        }
+      };
+      const encoded = btoa(unescape(encodeURIComponent(JSON.stringify(payload))));
+      location.href = 'checkout.html#p=' + encoded;
+      saveCart(cart);
     }
-  };
-  const encoded = btoa(unescape(encodeURIComponent(JSON.stringify(payload))));
-  const url = 'checkout.html#p=' + encoded; // checkout.html cùng cấp với index cart
-  window.open(url, '_blank', 'noopener');
-  saveCart(cart);
-}
-
     document.getElementById('checkout').addEventListener('click', openCheckoutWithCart);
 
     // Anchor scroll
-    if(location.hash){ const id = location.hash.slice(1); const el = document.querySelector('[data-id="'+id+'"]'); if(el) el.scrollIntoView({behavior:'smooth',block:'center'}); }
+    if(location.hash){
+      const id = location.hash.slice(1);
+      const el = document.querySelector('[data-id="'+id+'"]');
+      if(el) el.scrollIntoView({behavior:'smooth',block:'center'});
+    }
+
+    // Build catalog at startup
+    (function initCatalog(){
+      const byCat = products.reduce((a,p)=>((a[p.category]??=[]).push(p),a),{});
+      const catalog = document.getElementById('catalog');
+      catalog.innerHTML = Object.entries(byCat).map(([cat,items])=>{
+        const cards = items.map(p=>{
+          const sizeOpts = Object.keys(p.price).map(s=>`<option value="${s}">${s} — ${fmt(p.price[s])}</option>`).join('');
+          const grindOpts = `
+            <option value="Nguyên hạt">Nguyên hạt</option>
+            <option value="Xay pha phin">Xay pha phin</option>
+            <option value="Xay Coldbrew">Xay Coldbrew</option>
+          `;
+          return `<article class="card" data-id="${p.id}">
+            <header><h3 class="title">${p.name}</h3></header>
+            <p class="best">🎯 ${p.best}</p>
+            <div class="row">☕ Độ đậm:&nbsp;<span class="rating">${[...Array(5)].map((_,i)=>`<span class="dot ${i<(p.stats.s||0)?'f':''}"></span>`).join('')}</span></div>
+            <div class="methods">
+              ${p.methods.phin?`<div class="method">🫖 Phin ${'★'.repeat(p.methods.phin)}</div>`:''}
+              ${p.methods.espresso?`<div class="method">☕ Espresso ${'★'.repeat(p.methods.espresso)}</div>`:''}
+              ${p.methods.pour?`<div class="method">🌊 Pour Over ${'★'.repeat(p.methods.pour)}</div>`:''}
+            </div>
+            <div class="pick">
+              <div>
+                <label for="size-${p.id}">Khối lượng</label>
+                <select id="size-${p.id}" class="size">${sizeOpts}</select>
+              </div>
+              <div>
+                <label for="grind-${p.id}">Loại xay</label>
+                <select id="grind-${p.id}" class="grind">${grindOpts}</select>
+              </div>
+              <div>
+                <label for="qty-${p.id}">Số lượng</label>
+                <input id="qty-${p.id}" class="qtyin" type="number" min="1" value="1" />
+              </div>
+            </div>
+            <div class="actions">
+              <button class="btn primary add">Thêm vào giỏ</button>
+              <a class="btn" href="faq.html">Câu hỏi thường gặp</a>
+            </div>
+            <footer class="card">ANARO Coffee Guide · © 2025</footer>
+          </article>`
+        }).join('');
+        return `<section class="category"><h2 class="category-title">${cat}</h2><div class="grid">${cards}</div></section>`
+      }).join('');
+    })();
 
     syncBadge();
   </script>
