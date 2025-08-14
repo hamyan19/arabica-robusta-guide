@@ -1,9 +1,7 @@
-<!DOCTYPE html>
-<html lang="vi">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>ANARO Coffee Collection — Danh mục & Bảng giá</title>
+<html lang="vi"><head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ANARO Coffee Collection — Danh mục &amp; Bảng giá</title>
   <style>
     :root{
       --bg:#f6efe9; --text:#2a221d; --panel:#a47148; --ink:#F8EBDD;
@@ -85,34 +83,386 @@
 <body>
   <div class="container">
     <header class="page">
-      <div class="toprow">
-        <h1>☕ ANARO COFFEE COLLECTION</h1>
-        <nav class="nav" aria-label="Menu">
-          <a class="btn" href="faq.html">❓ Câu hỏi thường gặp</a>
-          <!-- CTA mới: dẫn sang trang danh mục + giỏ hàng -->
-          <a class="btn btn-primary" href="index-cart.html">🛒 Mua hàng</a>
-          <div class="social" aria-label="Kết nối">
-            <!-- ICON THẬT: Fanpage / Messenger / Zalo / Gọi nhanh -->
-            <a class="ic fb" href="https://www.facebook.com/anarocoffee/" target="_blank" rel="noopener" title="Facebook Fanpage"><span>f</span></a>
-            <a class="ic ms" href="https://m.me/anarocoffee" target="_blank" rel="noopener" title="Messenger"><span>m</span></a>
-            <a class="ic zl" href="https://zalo.me/0918337071" target="_blank" rel="noopener" title="Zalo"><span>Z</span></a>
-            <a class="ic call" href="tel:+84918337071" title="Gọi nhanh"><span>☎</span></a>
-          </div>
-        </nav>
-      </div>
-      <nav id="filters" class="filters" aria-label="Lọc danh mục"></nav>
-    </header>
+  <div class="toprow">
+    <h1>☕ ANARO COFFEE COLLECTION</h1>
+    <nav class="nav" aria-label="Menu">
+      <a class="btn" href="faq.html">❓ Câu hỏi thường gặp</a>
+      <a class="btn" href="blog.html">📝 Blog cà phê</a>
+      <a class="btn" href="contact.html">📞 Liên hệ</a>
+      <a class="btn btn-primary" href="index-cart.html">🛒 Mua hàng</a>
+    </nav>
+  </div>
+  <nav id="filters" class="filters" aria-label="Lọc danh mục">
+    <button class="fbtn" data-cat="__all" aria-pressed="true">Tất cả</button>
+    <button class="fbtn" data-cat="ÊM NHẸ – THANH" aria-pressed="false">ÊM NHẸ – THANH</button>
+    <button class="fbtn" data-cat="CÂN BẰNG – TRÒN VỊ" aria-pressed="false">CÂN BẰNG – TRÒN VỊ</button>
+    <button class="fbtn" data-cat="ĐẬM MẠNH – HẬU DÀI" aria-pressed="false">ĐẬM MẠNH – HẬU DÀI</button>
+  </nav>
+</header><style>
+  header.page {
+    background-color: #fdf8f3;
+    padding: 15px;
+    border-radius: 15px;
+    border: 1px solid #eadfd4;
+  }
+  .nav {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .nav .btn {
+    padding: 8px 12px;
+    border-radius: 999px;
+    border: 1px solid #6b3f25;
+    background: transparent;
+    text-decoration: none;
+    color: #6b3f25;
+    font-weight: 700;
+    transition: all 0.2s ease;
+  }
+  .nav .btn:hover {
+    background: #6b3f25;
+    color: #fff;
+    border-color: #6b3f25;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  }
+  .filters {
+    margin-top: 10px;
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .filters .fbtn {
+    padding: 8px 14px;
+    border-radius: 999px;
+    border: 1px solid #6b3f25;
+    background: transparent;
+    color: #6b3f25;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  .filters .fbtn:hover {
+    background: #6b3f25;
+    color: #fff;
+    border-color: #6b3f25;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  }
+  .filters .fbtn[aria-pressed="true"] {
+    background: #6b3f25;
+    color: #fff;
+    border-color: #6b3f25;
+  }
+
+  /* Responsive cho điện thoại */
+  @media (max-width: 600px) {
+    .toprow {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 10px;
+    }
+    .nav {
+      flex-direction: column;
+      width: 100%;
+    }
+    .nav .btn {
+      width: 100%;
+      text-align: center;
+    }
+    .filters {
+      flex-direction: column;
+      width: 100%;
+    }
+    .filters .fbtn {
+      width: 100%;
+    }
+  }
+</style>
+
+
+<style>
+  header.page {
+    background-color: #fdf8f3; /* màu be nhạt */
+    padding: 15px;
+    border-radius: 15px; /* bo tròn góc */
+    border: 1px solid #eadfd4; /* viền nhẹ */
+  }
+  .nav {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .nav .btn {
+    padding: 8px 12px;
+    border-radius: 999px;
+    border: 1px solid #6b3f25;
+    background: transparent;
+    text-decoration: none;
+    color: #6b3f25;
+    font-weight: 700;
+    transition: all 0.2s ease;
+  }
+  .nav .btn:hover {
+    background: #6b3f25;
+    color: #fff;
+    border-color: #6b3f25;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  }
+  .filters {
+    margin-top: 10px;
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .filters .fbtn {
+    padding: 8px 14px;
+    border-radius: 999px;
+    border: 1px solid #6b3f25;
+    background: transparent;
+    color: #6b3f25;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  .filters .fbtn:hover {
+    background: #6b3f25;
+    color: #fff;
+    border-color: #6b3f25;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  }
+  .filters .fbtn[aria-pressed="true"] {
+    background: #6b3f25;
+    color: #fff;
+    border-color: #6b3f25;
+  }
+</style>
+
 
     <!-- Catalog sẽ render ở đây -->
-    <div id="catalog"></div>
+    <div id="catalog"><section class="category"><h2 class="category-title">ÊM NHẸ – THANH</h2><div class="grid"><article class="card" id="arabica-cau-dat" aria-labelledby="arabica-cau-dat-t">
+        <header class="card-header"><h3 id="arabica-cau-dat-t" class="card-title">Arabica Cầu Đất</h3></header>
+        <p class="best-for">🎯 Thích hợp nhất cho: Người yêu hương vị trái cây, uống nhẹ nhàng</p>
+        <div class="stats">
+          <div>☕ Độ đậm: <span class="rating"><span class="dot f"></span><span class="dot f"></span><span class="dot "></span><span class="dot "></span><span class="dot "></span></span></div>
+          <div>⏰ Caffeine: <span class="rating"><span class="dot f"></span><span class="dot f"></span><span class="dot "></span><span class="dot "></span><span class="dot "></span></span></div>
+          <div>🔥 Mức rang: <span class="rating"><span class="dot f"></span><span class="dot f"></span><span class="dot "></span><span class="dot "></span><span class="dot "></span></span></div>
+        </div>
+        <div class="methods"><div class="method">🫖<span>Phin</span><span>★★☆</span></div><div class="method">☕<span>Espresso</span><span>★★☆</span></div><div class="method">🌊<span>Pour Over</span><span>★★☆</span></div></div>
+        <div class="pack"><strong>📦 Đóng gói &amp; giá:</strong>
+          <div class="chips">
+            <span class="chip"><span>250g</span><small>100.000đ</small></span><span class="chip"><span>500g</span><small>210.000đ</small></span><span class="chip"><span>1kg</span><small>360.000đ</small></span>
+          </div>
+        </div>
+        <div class="actions">
+          <!-- Đổi CTA: sang trang có giỏ hàng -->
+          <a class="btn btn-primary" href="/index-cart.html#arabica-cau-dat">Mua ngay</a>
+          <a class="btn" href="faq.html">Câu hỏi thường gặp</a>
+        </div>
+        <div class="footer">ANARO Coffee Guide · © 2025</div>
+      </article><article class="card" id="arabica-da-lat" aria-labelledby="arabica-da-lat-t">
+        <header class="card-header"><h3 id="arabica-da-lat-t" class="card-title">Arabica Đà Lạt</h3></header>
+        <p class="best-for">🎯 Thích hợp nhất cho: Hương vị cân bằng, classic và thanh thoát</p>
+        <div class="stats">
+          <div>☕ Độ đậm: <span class="rating"><span class="dot f"></span><span class="dot f"></span><span class="dot "></span><span class="dot "></span><span class="dot "></span></span></div>
+          <div>⏰ Caffeine: <span class="rating"><span class="dot f"></span><span class="dot f"></span><span class="dot "></span><span class="dot "></span><span class="dot "></span></span></div>
+          <div>🔥 Mức rang: <span class="rating"><span class="dot f"></span><span class="dot f"></span><span class="dot "></span><span class="dot "></span><span class="dot "></span></span></div>
+        </div>
+        <div class="methods"><div class="method">🫖<span>Phin</span><span>★★★</span></div><div class="method">☕<span>Espresso</span><span>★★☆</span></div><div class="method">🌊<span>Pour Over</span><span>★★★</span></div></div>
+        <div class="pack"><strong>📦 Đóng gói &amp; giá:</strong>
+          <div class="chips">
+            <span class="chip"><span>250g</span><small>90.000đ</small></span><span class="chip"><span>500g</span><small>195.000đ</small></span><span class="chip"><span>1kg</span><small>330.000đ</small></span>
+          </div>
+        </div>
+        <div class="actions">
+          <!-- Đổi CTA: sang trang có giỏ hàng -->
+          <a class="btn btn-primary" href="/index-cart.html#arabica-da-lat">Mua ngay</a>
+          <a class="btn" href="faq.html">Câu hỏi thường gặp</a>
+        </div>
+        <div class="footer">ANARO Coffee Guide · © 2025</div>
+      </article><article class="card" id="blend-3" aria-labelledby="blend-3-t">
+        <header class="card-header"><h3 id="blend-3-t" class="card-title">Blend Số 3 (A Đà Lạt 50% · R 50%)</h3></header>
+        <p class="best-for">🎯 Thích hợp nhất cho: Cầu nối giữa nhẹ và đậm; cà phê sữa đá hàng ngày</p>
+        <div class="stats">
+          <div>☕ Độ đậm: <span class="rating"><span class="dot f"></span><span class="dot f"></span><span class="dot f"></span><span class="dot "></span><span class="dot "></span></span></div>
+          <div>⏰ Caffeine: <span class="rating"><span class="dot f"></span><span class="dot f"></span><span class="dot f"></span><span class="dot "></span><span class="dot "></span></span></div>
+          <div>🔥 Mức rang: <span class="rating"><span class="dot f"></span><span class="dot f"></span><span class="dot f"></span><span class="dot "></span><span class="dot "></span></span></div>
+        </div>
+        <div class="methods"><div class="method">🫖<span>Phin</span><span>★★★</span></div><div class="method">☕<span>Espresso</span><span>★★☆</span></div><div class="method">🌊<span>Pour Over</span><span>★★☆</span></div></div>
+        <div class="pack"><strong>📦 Đóng gói &amp; giá:</strong>
+          <div class="chips">
+            <span class="chip"><span>250g</span><small>85.000đ</small></span><span class="chip"><span>500g</span><small>181.250đ</small></span><span class="chip"><span>1kg</span><small>302.500đ</small></span>
+          </div>
+        </div>
+        <div class="actions">
+          <!-- Đổi CTA: sang trang có giỏ hàng -->
+          <a class="btn btn-primary" href="/index-cart.html#blend-3">Mua ngay</a>
+          <a class="btn" href="faq.html">Câu hỏi thường gặp</a>
+        </div>
+        <div class="footer">ANARO Coffee Guide · © 2025</div>
+      </article><article class="card" id="blend-9" aria-labelledby="blend-9-t">
+        <header class="card-header"><h3 id="blend-9-t" class="card-title">Blend Số 9 (A Cầu Đất 50% · R Honey 50%)</h3></header>
+        <p class="best-for">🎯 Thích hợp nhất cho: Đậm nhưng hậu ngọt; hợp sữa đá/bạc xỉu</p>
+        <div class="stats">
+          <div>☕ Độ đậm: <span class="rating"><span class="dot f"></span><span class="dot f"></span><span class="dot f"></span><span class="dot "></span><span class="dot "></span></span></div>
+          <div>⏰ Caffeine: <span class="rating"><span class="dot f"></span><span class="dot f"></span><span class="dot f"></span><span class="dot "></span><span class="dot "></span></span></div>
+          <div>🔥 Mức rang: <span class="rating"><span class="dot f"></span><span class="dot f"></span><span class="dot "></span><span class="dot "></span><span class="dot "></span></span></div>
+        </div>
+        <div class="methods"><div class="method">🫖<span>Phin</span><span>★★★</span></div><div class="method">☕<span>Espresso</span><span>★★★</span></div><div class="method">🌊<span>Pour Over</span><span>★☆☆</span></div></div>
+        <div class="pack"><strong>📦 Đóng gói &amp; giá:</strong>
+          <div class="chips">
+            <span class="chip"><span>250g</span><small>95.000đ</small></span><span class="chip"><span>500g</span><small>201.250đ</small></span><span class="chip"><span>1kg</span><small>342.500đ</small></span>
+          </div>
+        </div>
+        <div class="actions">
+          <!-- Đổi CTA: sang trang có giỏ hàng -->
+          <a class="btn btn-primary" href="/index-cart.html#blend-9">Mua ngay</a>
+          <a class="btn" href="faq.html">Câu hỏi thường gặp</a>
+        </div>
+        <div class="footer">ANARO Coffee Guide · © 2025</div>
+      </article></div></section><section class="category"><h2 class="category-title">CÂN BẰNG – TRÒN VỊ</h2><div class="grid"><article class="card" id="blend-2" aria-labelledby="blend-2-t">
+        <header class="card-header"><h3 id="blend-2-t" class="card-title">Blend Số 2 (A Đà Lạt 30% · R 70%)</h3></header>
+        <p class="best-for">🎯 Thích hợp nhất cho: Ly sữa có mùi Arabica rõ, body &amp; caffeine tốt</p>
+        <div class="stats">
+          <div>☕ Độ đậm: <span class="rating"><span class="dot f"></span><span class="dot f"></span><span class="dot f"></span><span class="dot f"></span><span class="dot "></span></span></div>
+          <div>⏰ Caffeine: <span class="rating"><span class="dot f"></span><span class="dot f"></span><span class="dot f"></span><span class="dot f"></span><span class="dot "></span></span></div>
+          <div>🔥 Mức rang: <span class="rating"><span class="dot f"></span><span class="dot f"></span><span class="dot f"></span><span class="dot f"></span><span class="dot "></span></span></div>
+        </div>
+        <div class="methods"><div class="method">🫖<span>Phin</span><span>★★★</span></div><div class="method">☕<span>Espresso</span><span>★★★</span></div><div class="method">🌊<span>Pour Over</span><span>★★☆</span></div></div>
+        <div class="pack"><strong>📦 Đóng gói &amp; giá:</strong>
+          <div class="chips">
+            <span class="chip"><span>250g</span><small>80.000đ</small></span><span class="chip"><span>500g</span><small>173.750đ</small></span><span class="chip"><span>1kg</span><small>287.500đ</small></span>
+          </div>
+        </div>
+        <div class="actions">
+          <!-- Đổi CTA: sang trang có giỏ hàng -->
+          <a class="btn btn-primary" href="/index-cart.html#blend-2">Mua ngay</a>
+          <a class="btn" href="faq.html">Câu hỏi thường gặp</a>
+        </div>
+        <div class="footer">ANARO Coffee Guide · © 2025</div>
+      </article><article class="card" id="blend-10" aria-labelledby="blend-10-t">
+        <header class="card-header"><h3 id="blend-10-t" class="card-title">Blend Số 10 (A Cầu Đất 30% · R Honey 70%)</h3></header>
+        <p class="best-for">🎯 Thích hợp nhất cho: Đậm – tròn, hậu ngọt hơn nhờ Robusta Honey</p>
+        <div class="stats">
+          <div>☕ Độ đậm: <span class="rating"><span class="dot f"></span><span class="dot f"></span><span class="dot f"></span><span class="dot f"></span><span class="dot "></span></span></div>
+          <div>⏰ Caffeine: <span class="rating"><span class="dot f"></span><span class="dot f"></span><span class="dot f"></span><span class="dot f"></span><span class="dot "></span></span></div>
+          <div>🔥 Mức rang: <span class="rating"><span class="dot f"></span><span class="dot f"></span><span class="dot f"></span><span class="dot f"></span><span class="dot "></span></span></div>
+        </div>
+        <div class="methods"><div class="method">🫖<span>Phin</span><span>★★★</span></div><div class="method">☕<span>Espresso</span><span>★★★</span></div><div class="method">🌊<span>Pour Over</span><span>★★☆</span></div></div>
+        <div class="pack"><strong>📦 Đóng gói &amp; giá:</strong>
+          <div class="chips">
+            <span class="chip"><span>250g</span><small>93.000đ</small></span><span class="chip"><span>500g</span><small>197.750đ</small></span><span class="chip"><span>1kg</span><small>335.500đ</small></span>
+          </div>
+        </div>
+        <div class="actions">
+          <!-- Đổi CTA: sang trang có giỏ hàng -->
+          <a class="btn btn-primary" href="/index-cart.html#blend-10">Mua ngay</a>
+          <a class="btn" href="faq.html">Câu hỏi thường gặp</a>
+        </div>
+        <div class="footer">ANARO Coffee Guide · © 2025</div>
+      </article><article class="card" id="tam-bo-6" aria-labelledby="tam-bo-6-t">
+        <header class="card-header"><h3 id="tam-bo-6-t" class="card-title">Tẩm bơ Số 6 (A Đà Lạt 30% · R 70%)</h3></header>
+        <p class="best-for">🎯 Thích hợp nhất cho: Chỉ dành cho pha phin</p>
+        <div class="stats">
+          <div>☕ Độ đậm: <span class="rating"><span class="dot f"></span><span class="dot f"></span><span class="dot f"></span><span class="dot f"></span><span class="dot "></span></span></div>
+          <div>⏰ Caffeine: <span class="rating"><span class="dot f"></span><span class="dot f"></span><span class="dot f"></span><span class="dot f"></span><span class="dot "></span></span></div>
+          <div>🔥 Mức rang: <span class="rating"><span class="dot f"></span><span class="dot f"></span><span class="dot f"></span><span class="dot "></span><span class="dot "></span></span></div>
+        </div>
+        <div class="methods"><div class="method">🫖<span>Phin</span><span>★★★</span></div></div>
+        <div class="pack"><strong>📦 Đóng gói &amp; giá:</strong>
+          <div class="chips">
+            <span class="chip"><span>250g</span><small>85.000đ</small></span><span class="chip"><span>500g</span><small>178.750đ</small></span><span class="chip"><span>1kg</span><small>297.500đ</small></span>
+          </div>
+        </div>
+        <div class="actions">
+          <!-- Đổi CTA: sang trang có giỏ hàng -->
+          <a class="btn btn-primary" href="/index-cart.html#tam-bo-6">Mua ngay</a>
+          <a class="btn" href="faq.html">Câu hỏi thường gặp</a>
+        </div>
+        <div class="footer">ANARO Coffee Guide · © 2025</div>
+      </article><article class="card" id="tam-bo-7" aria-labelledby="tam-bo-7-t">
+        <header class="card-header"><h3 id="tam-bo-7-t" class="card-title">Tẩm bơ Số 7 (A Đà Lạt 50% · R 50%)</h3></header>
+        <p class="best-for">🎯 Thích hợp nhất cho: Chỉ dành cho pha phin</p>
+        <div class="stats">
+          <div>☕ Độ đậm: <span class="rating"><span class="dot f"></span><span class="dot f"></span><span class="dot f"></span><span class="dot "></span><span class="dot "></span></span></div>
+          <div>⏰ Caffeine: <span class="rating"><span class="dot f"></span><span class="dot f"></span><span class="dot f"></span><span class="dot "></span><span class="dot "></span></span></div>
+          <div>🔥 Mức rang: <span class="rating"><span class="dot f"></span><span class="dot f"></span><span class="dot f"></span><span class="dot "></span><span class="dot "></span></span></div>
+        </div>
+        <div class="methods"><div class="method">🫖<span>Phin</span><span>★★★</span></div></div>
+        <div class="pack"><strong>📦 Đóng gói &amp; giá:</strong>
+          <div class="chips">
+            <span class="chip"><span>250g</span><small>90.000đ</small></span><span class="chip"><span>500g</span><small>186.250đ</small></span><span class="chip"><span>1kg</span><small>312.500đ</small></span>
+          </div>
+        </div>
+        <div class="actions">
+          <!-- Đổi CTA: sang trang có giỏ hàng -->
+          <a class="btn btn-primary" href="/index-cart.html#tam-bo-7">Mua ngay</a>
+          <a class="btn" href="faq.html">Câu hỏi thường gặp</a>
+        </div>
+        <div class="footer">ANARO Coffee Guide · © 2025</div>
+      </article></div></section><section class="category"><h2 class="category-title">ĐẬM MẠNH – HẬU DÀI</h2><div class="grid"><article class="card" id="robusta-honey" aria-labelledby="robusta-honey-t">
+        <header class="card-header"><h3 id="robusta-honey-t" class="card-title">Robusta Honey</h3></header>
+        <p class="best-for">🎯 Thích hợp nhất cho: Đậm nhưng ngọt hậu; hợp sữa</p>
+        <div class="stats">
+          <div>☕ Độ đậm: <span class="rating"><span class="dot f"></span><span class="dot f"></span><span class="dot f"></span><span class="dot f"></span><span class="dot "></span></span></div>
+          <div>⏰ Caffeine: <span class="rating"><span class="dot f"></span><span class="dot f"></span><span class="dot f"></span><span class="dot f"></span><span class="dot "></span></span></div>
+          <div>🔥 Mức rang: <span class="rating"><span class="dot f"></span><span class="dot f"></span><span class="dot f"></span><span class="dot f"></span><span class="dot "></span></span></div>
+        </div>
+        <div class="methods"><div class="method">🫖<span>Phin</span><span>★★★</span></div><div class="method">☕<span>Espresso</span><span>★★☆</span></div></div>
+        <div class="pack"><strong>📦 Đóng gói &amp; giá:</strong>
+          <div class="chips">
+            <span class="chip"><span>250g</span><small>89.000đ</small></span><span class="chip"><span>500g</span><small>192.500đ</small></span><span class="chip"><span>1kg</span><small>325.000đ</small></span>
+          </div>
+        </div>
+        <div class="actions">
+          <!-- Đổi CTA: sang trang có giỏ hàng -->
+          <a class="btn btn-primary" href="/index-cart.html#robusta-honey">Mua ngay</a>
+          <a class="btn" href="faq.html">Câu hỏi thường gặp</a>
+        </div>
+        <div class="footer">ANARO Coffee Guide · © 2025</div>
+      </article><article class="card" id="robusta-moc" aria-labelledby="robusta-moc-t">
+        <header class="card-header"><h3 id="robusta-moc-t" class="card-title">Robusta Mộc</h3></header>
+        <p class="best-for">🎯 Thích hợp nhất cho: Đen nóng/đen đá rất đậm, mộc, hậu dài</p>
+        <div class="stats">
+          <div>☕ Độ đậm: <span class="rating"><span class="dot f"></span><span class="dot f"></span><span class="dot f"></span><span class="dot f"></span><span class="dot f"></span></span></div>
+          <div>⏰ Caffeine: <span class="rating"><span class="dot f"></span><span class="dot f"></span><span class="dot f"></span><span class="dot f"></span><span class="dot f"></span></span></div>
+          <div>🔥 Mức rang: <span class="rating"><span class="dot f"></span><span class="dot f"></span><span class="dot f"></span><span class="dot f"></span><span class="dot "></span></span></div>
+        </div>
+        <div class="methods"><div class="method">🫖<span>Phin</span><span>★★★</span></div><div class="method">☕<span>Espresso</span><span>★★★</span></div></div>
+        <div class="pack"><strong>📦 Đóng gói &amp; giá:</strong>
+          <div class="chips">
+            <span class="chip"><span>250g</span><small>75.000đ</small></span><span class="chip"><span>500g</span><small>167.500đ</small></span><span class="chip"><span>1kg</span><small>275.000đ</small></span>
+          </div>
+        </div>
+        <div class="actions">
+          <!-- Đổi CTA: sang trang có giỏ hàng -->
+          <a class="btn btn-primary" href="/index-cart.html#robusta-moc">Mua ngay</a>
+          <a class="btn" href="faq.html">Câu hỏi thường gặp</a>
+        </div>
+        <div class="footer">ANARO Coffee Guide · © 2025</div>
+      </article><article class="card" id="culi-moc" aria-labelledby="culi-moc-t">
+        <header class="card-header"><h3 id="culi-moc-t" class="card-title">Culi Mộc</h3></header>
+        <p class="best-for">🎯 Thích hợp nhất cho: Đậm mượt, hậu dài</p>
+        <div class="stats">
+          <div>☕ Độ đậm: <span class="rating"><span class="dot f"></span><span class="dot f"></span><span class="dot f"></span><span class="dot f"></span><span class="dot f"></span></span></div>
+          <div>⏰ Caffeine: <span class="rating"><span class="dot f"></span><span class="dot f"></span><span class="dot f"></span><span class="dot f"></span><span class="dot f"></span></span></div>
+          <div>🔥 Mức rang: <span class="rating"><span class="dot f"></span><span class="dot f"></span><span class="dot f"></span><span class="dot f"></span><span class="dot "></span></span></div>
+        </div>
+        <div class="methods"><div class="method">🫖<span>Phin</span><span>★★★</span></div><div class="method">☕<span>Espresso</span><span>★★★</span></div></div>
+        <div class="pack"><strong>📦 Đóng gói &amp; giá:</strong>
+          <div class="chips">
+            <span class="chip"><span>250g</span><small>75.000đ</small></span><span class="chip"><span>500g</span><small>167.500đ</small></span><span class="chip"><span>1kg</span><small>275.000đ</small></span>
+          </div>
+        </div>
+        <div class="actions">
+          <!-- Đổi CTA: sang trang có giỏ hàng -->
+          <a class="btn btn-primary" href="/index-cart.html#culi-moc">Mua ngay</a>
+          <a class="btn" href="faq.html">Câu hỏi thường gặp</a>
+        </div>
+        <div class="footer">ANARO Coffee Guide · © 2025</div>
+      </article></div></section></div>
 
     <!-- BẢNG GIÁ & COMBO -->
-    <section class="prices" id="priceSection">
-      <h2>Bảng giá</h2>
-      <div id="priceTables"></div>
-      <h3 style="margin-top:18px">Combo dùng thử — 3 x 250g</h3>
-      <div id="combos"></div>
-    </section>
+    
   </div>
 
   <script>
@@ -308,5 +658,6 @@
     renderCatalog();
     renderPrices();
   </script>
-</body>
-</html>
+
+
+</body></html>
