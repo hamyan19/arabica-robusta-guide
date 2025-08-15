@@ -1,9 +1,6 @@
-
-<!DOCTYPE html>
-<html lang="vi">
-<head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+<html lang="vi"><script src="chrome-extension://eppiocemhmnlbhjplcgkofciiegomcon/content/location/location.js" id="eppiocemhmnlbhjplcgkofciiegomcon"></script><script src="chrome-extension://eppiocemhmnlbhjplcgkofciiegomcon/libs/extend-native-history-api.js"></script><script src="chrome-extension://eppiocemhmnlbhjplcgkofciiegomcon/libs/requests.js"></script><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>FAQ Cà Phê — Full (Tabs + Search + Anchors)</title>
 <style>
   :root{
@@ -54,25 +51,822 @@
 
   .hint{background:var(--chip); border:1px solid var(--line); padding:12px 14px; border-radius:10px; font-size:13px; margin:10px 0 20px;}
   code{background:#f6efe9; padding:2px 6px; border-radius:6px; border:1px solid var(--line);}
+.back-btn {
+  display: inline-block;
+  margin-bottom: 16px;
+  padding: 10px 16px;
+  border-radius: 999px;
+  background: var(--brand); /* màu chính của brand */
+  color: #fff;
+  font-weight: 600;
+  text-decoration: none;
+  letter-spacing: .2px;
+  border: 1px solid var(--brand);
+  transition: background 0.2s ease, transform 0.15s ease;
+}
+.back-btn:hover {
+  background: #5d3520; /* màu đậm hơn khi hover */
+  transform: translateY(-1px);
+}
 </style>
-</head>
-<body>
-<div class="wrap">
+<script bis_use="true" type="text/javascript" charset="utf-8" data-bis-config="[&quot;facebook.com/&quot;,&quot;twitter.com/&quot;,&quot;youtube-nocookie.com/embed/&quot;,&quot;//vk.com/&quot;,&quot;//www.vk.com/&quot;,&quot;linkedin.com/&quot;,&quot;//www.linkedin.com/&quot;,&quot;//instagram.com/&quot;,&quot;//www.instagram.com/&quot;,&quot;//www.google.com/recaptcha/api2/&quot;,&quot;//hangouts.google.com/webchat/&quot;,&quot;//www.google.com/calendar/&quot;,&quot;//www.google.com/maps/embed&quot;,&quot;spotify.com/&quot;,&quot;soundcloud.com/&quot;,&quot;//player.vimeo.com/&quot;,&quot;//disqus.com/&quot;,&quot;//tgwidget.com/&quot;,&quot;//js.driftt.com/&quot;,&quot;friends2follow.com&quot;,&quot;/widget&quot;,&quot;login&quot;,&quot;//video.bigmir.net/&quot;,&quot;blogger.com&quot;,&quot;//smartlock.google.com/&quot;,&quot;//keep.google.com/&quot;,&quot;/web.tolstoycomments.com/&quot;,&quot;moz-extension://&quot;,&quot;chrome-extension://&quot;,&quot;/auth/&quot;,&quot;//analytics.google.com/&quot;,&quot;adclarity.com&quot;,&quot;paddle.com/checkout&quot;,&quot;hcaptcha.com&quot;,&quot;recaptcha.net&quot;,&quot;2captcha.com&quot;,&quot;accounts.google.com&quot;,&quot;www.google.com/shopping/customerreviews&quot;,&quot;buy.tinypass.com&quot;,&quot;gstatic.com&quot;,&quot;secureir.ebaystatic.com&quot;,&quot;docs.google.com&quot;,&quot;contacts.google.com&quot;,&quot;github.com&quot;,&quot;mail.google.com&quot;,&quot;chat.google.com&quot;,&quot;audio.xpleer.com&quot;,&quot;keepa.com&quot;,&quot;static.xx.fbcdn.net&quot;,&quot;sas.selleramp.com&quot;,&quot;1plus1.video&quot;,&quot;console.googletagservices.com&quot;,&quot;//lnkd.demdex.net/&quot;,&quot;//radar.cedexis.com/&quot;,&quot;//li.protechts.net/&quot;,&quot;challenges.cloudflare.com/&quot;,&quot;ogs.google.com&quot;]" src="chrome-extension://eppiocemhmnlbhjplcgkofciiegomcon/executors/traffic.js"></script><style type="text/css">.index-module_type__E-SaG::after {
+  content: '|';
+  animation: index-module_cursor__PQg0P 1.1s infinite step-start;
+}
+
+@keyframes index-module_cursor__PQg0P {
+  50% {
+    opacity: 0;
+  }
+}
+</style></head>
+<body __processed_6a9e1d66-bad5-40f8-941e-a695179d9485__="true" bis_register="W3sibWFzdGVyIjp0cnVlLCJleHRlbnNpb25JZCI6ImVwcGlvY2VtaG1ubGJoanBsY2drb2ZjaWllZ29tY29uIiwiYWRibG9ja2VyU3RhdHVzIjp7IkRJU1BMQVkiOiJkaXNhYmxlZCIsIkZBQ0VCT09LIjoiZGlzYWJsZWQiLCJUV0lUVEVSIjoiZGlzYWJsZWQiLCJSRURESVQiOiJkaXNhYmxlZCIsIlBJTlRFUkVTVCI6ImRpc2FibGVkIiwiSU5TVEFHUkFNIjoiZGlzYWJsZWQiLCJUSUtUT0siOiJkaXNhYmxlZCIsIkxJTktFRElOIjoiZGlzYWJsZWQiLCJDT05GSUciOiJkaXNhYmxlZCJ9LCJ2ZXJzaW9uIjoiMi4wLjI2Iiwic2NvcmUiOjIwMDI2fV0=">
+<div class="wrap" bis_skin_checked="1">
   <h1>FAQ Cà Phê — Bản đầy đủ</h1>
+<a href="index.html" class="back-btn">← Về trang chủ</a>
+
  
 
  
-  <div class="tabs" role="tablist" aria-label="Nhóm FAQ" id="tabs"></div>
+  <div class="tabs" role="tablist" aria-label="Nhóm FAQ" id="tabs" bis_skin_checked="1"><button class="tab" id="tab-basic" role="tab" aria-controls="panel-basic" aria-selected="true">Kiến thức cơ bản</button><button class="tab" id="tab-storage" role="tab" aria-controls="panel-storage" aria-selected="false">Bảo quản</button><button class="tab" id="tab-brew" role="tab" aria-controls="panel-brew" aria-selected="false">Pha chế</button><button class="tab" id="tab-health" role="tab" aria-controls="panel-health" aria-selected="false">Sức khỏe</button><button class="tab" id="tab-benefits" role="tab" aria-controls="panel-benefits" aria-selected="false">Lợi ích</button><button class="tab" id="tab-beauty" role="tab" aria-controls="panel-beauty" aria-selected="false">Làm đẹp</button><button class="tab" id="tab-grounds" role="tab" aria-controls="panel-grounds" aria-selected="false">Bã cà phê</button></div>
 
-  <div class="toolbar">
-    <div class="search" role="search">
-      <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 21l-4.35-4.35m1.35-5.65a7 7 0 11-14 0 7 7 0 0114 0z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+  <div class="toolbar" bis_skin_checked="1">
+    <div class="search" role="search" bis_skin_checked="1">
+      <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 21l-4.35-4.35m1.35-5.65a7 7 0 11-14 0 7 7 0 0114 0z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path></svg>
       <input id="search" type="search" placeholder="Tìm trong nhóm hiện tại..." aria-label="Tìm kiếm câu hỏi trong nhóm">
     </div>
-    <div class="count" id="count">0 mục</div>
+    <div class="count" id="count" bis_skin_checked="1">7 mục</div>
   </div>
 
-  <div id="panels"></div>
+  <div id="panels" bis_skin_checked="1"><section id="panel-basic" class="group" role="tabpanel" aria-labelledby="tab-basic" aria-hidden="false"><div class="faq-list" id="list-basic" bis_skin_checked="1"><article class="faq-item">
+      <details id="ca-phe-giam-nguy-co-ung-thu-nao" data-anchor="faq/basic/ca-phe-giam-nguy-co-ung-thu-nao">
+        <summary>
+          <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 10l4 4 4-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+          <span class="q">Cà phê giảm nguy cơ ung thư nào?</span>
+        </summary>
+        <div class="answer" bis_skin_checked="1">
+          <div bis_skin_checked="1">
+            <p>Liên hệ giảm nguy cơ ung thư gan và đại trực tràng trong nhiều nghiên cứu tổng hợp.</p>
+            <p class="note">. Tags: <code>loi ich, ung thu gan, ung thu dai truc trang</code></p>
+          </div>
+          <div class="imgbox" bis_skin_checked="1">
+            <img class="imgph" src="data:image/svg+xml;utf8,%0A%20%20%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20360%20270%22%3E%0A%20%20%20%20%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20x2%3D%221%22%20y1%3D%220%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23f3ede8%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23e9dfd7%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%0A%20%20%20%20%3Crect%20width%3D%22360%22%20height%3D%22270%22%20fill%3D%22url(%23g)%22%2F%3E%0A%20%20%20%20%3Cg%20fill%3D%22none%22%20stroke%3D%22%237a4b2b%22%20stroke-width%3D%226%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M70%20160h160a40%2040%200%200%201-40%2040H110a40%2040%200%200%201-40-40z%22%20fill%3D%22%23fff%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M230%20160h34a22%2022%200%201%201-6%2043%22%20%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M120%2080c-10%2010-5%2020%202%2026M160%2074c-10%2010-5%2020%202%2026M200%2068c-10%2010-5%2020%202%2026%22%2F%3E%0A%20%20%20%20%3C%2Fg%3E%0A%20%20%20%20%3Ctext%20x%3D%2220%22%20y%3D%2235%22%20font-family%3D%22system-ui%2CSegoe%20UI%2CRoboto%22%20font-size%3D%2218%22%20fill%3D%22%237a4b2b%22%3E%E1%BA%A2nh%20minh%20ho%E1%BA%A1%20(demo)%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E%0A" alt="Ảnh minh hoạ cà phê (demo)">
+          </div>
+        </div>
+      </details>
+    </article><article class="faq-item">
+      <details id="ca-phe-arabica-va-robusta-khac-nhau-the-nao" data-anchor="faq/basic/ca-phe-arabica-va-robusta-khac-nhau-the-nao">
+        <summary>
+          <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 10l4 4 4-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+          <span class="q">Cà phê Arabica và Robusta khác nhau thế nào?</span>
+        </summary>
+        <div class="answer" bis_skin_checked="1">
+          <div bis_skin_checked="1">
+            <p>Arabica hương thanh, hậu ngọt; Robusta đậm đắng, nhiều caffeine; Arabica chiếm phần lớn sản lượng.</p>
+            <p class="note">. Tags: <code>kien thuc, arabica, robusta, giong</code></p>
+          </div>
+          <div class="imgbox" bis_skin_checked="1">
+            <img class="imgph" src="data:image/svg+xml;utf8,%0A%20%20%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20360%20270%22%3E%0A%20%20%20%20%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20x2%3D%221%22%20y1%3D%220%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23f3ede8%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23e9dfd7%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%0A%20%20%20%20%3Crect%20width%3D%22360%22%20height%3D%22270%22%20fill%3D%22url(%23g)%22%2F%3E%0A%20%20%20%20%3Cg%20fill%3D%22none%22%20stroke%3D%22%237a4b2b%22%20stroke-width%3D%226%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M70%20160h160a40%2040%200%200%201-40%2040H110a40%2040%200%200%201-40-40z%22%20fill%3D%22%23fff%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M230%20160h34a22%2022%200%201%201-6%2043%22%20%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M120%2080c-10%2010-5%2020%202%2026M160%2074c-10%2010-5%2020%202%2026M200%2068c-10%2010-5%2020%202%2026%22%2F%3E%0A%20%20%20%20%3C%2Fg%3E%0A%20%20%20%20%3Ctext%20x%3D%2220%22%20y%3D%2235%22%20font-family%3D%22system-ui%2CSegoe%20UI%2CRoboto%22%20font-size%3D%2218%22%20fill%3D%22%237a4b2b%22%3E%E1%BA%A2nh%20minh%20ho%E1%BA%A1%20(demo)%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E%0A" alt="Ảnh minh hoạ cà phê (demo)">
+          </div>
+        </div>
+      </details>
+    </article><article class="faq-item">
+      <details id="ca-phe-nguyen-chat-la-gi" data-anchor="faq/basic/ca-phe-nguyen-chat-la-gi">
+        <summary>
+          <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 10l4 4 4-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+          <span class="q">Cà phê nguyên chất là gì?</span>
+        </summary>
+        <div class="answer" bis_skin_checked="1">
+          <div bis_skin_checked="1">
+            <p>Không pha tạp, không hoá chất; bột tơi nhẹ, mùi tự nhiên, bọt mỏng tan nhanh khi pha.</p>
+            <p class="note">. Tags: <code>kien thuc, nguyen chat</code></p>
+          </div>
+          <div class="imgbox" bis_skin_checked="1">
+            <img class="imgph" src="data:image/svg+xml;utf8,%0A%20%20%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20360%20270%22%3E%0A%20%20%20%20%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20x2%3D%221%22%20y1%3D%220%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23f3ede8%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23e9dfd7%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%0A%20%20%20%20%3Crect%20width%3D%22360%22%20height%3D%22270%22%20fill%3D%22url(%23g)%22%2F%3E%0A%20%20%20%20%3Cg%20fill%3D%22none%22%20stroke%3D%22%237a4b2b%22%20stroke-width%3D%226%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M70%20160h160a40%2040%200%200%201-40%2040H110a40%2040%200%200%201-40-40z%22%20fill%3D%22%23fff%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M230%20160h34a22%2022%200%201%201-6%2043%22%20%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M120%2080c-10%2010-5%2020%202%2026M160%2074c-10%2010-5%2020%202%2026M200%2068c-10%2010-5%2020%202%2026%22%2F%3E%0A%20%20%20%20%3C%2Fg%3E%0A%20%20%20%20%3Ctext%20x%3D%2220%22%20y%3D%2235%22%20font-family%3D%22system-ui%2CSegoe%20UI%2CRoboto%22%20font-size%3D%2218%22%20fill%3D%22%237a4b2b%22%3E%E1%BA%A2nh%20minh%20ho%E1%BA%A1%20(demo)%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E%0A" alt="Ảnh minh hoạ cà phê (demo)">
+          </div>
+        </div>
+      </details>
+    </article><article class="faq-item">
+      <details id="ca-phe-decaf-la-gi-va-lam-the-nao" data-anchor="faq/basic/ca-phe-decaf-la-gi-va-lam-the-nao">
+        <summary>
+          <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 10l4 4 4-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+          <span class="q">Cà phê decaf là gì và làm thế nào?</span>
+        </summary>
+        <div class="answer" bis_skin_checked="1">
+          <div bis_skin_checked="1">
+            <p>Khử bớt caffeine từ hạt xanh bằng nước/dung môi; giữ phần lớn hương vị tự nhiên.</p>
+            <p class="note">. Tags: <code>kien thuc, decaf, khong cafein</code></p>
+          </div>
+          <div class="imgbox" bis_skin_checked="1">
+            <img class="imgph" src="data:image/svg+xml;utf8,%0A%20%20%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20360%20270%22%3E%0A%20%20%20%20%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20x2%3D%221%22%20y1%3D%220%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23f3ede8%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23e9dfd7%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%0A%20%20%20%20%3Crect%20width%3D%22360%22%20height%3D%22270%22%20fill%3D%22url(%23g)%22%2F%3E%0A%20%20%20%20%3Cg%20fill%3D%22none%22%20stroke%3D%22%237a4b2b%22%20stroke-width%3D%226%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M70%20160h160a40%2040%200%200%201-40%2040H110a40%2040%200%200%201-40-40z%22%20fill%3D%22%23fff%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M230%20160h34a22%2022%200%201%201-6%2043%22%20%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M120%2080c-10%2010-5%2020%202%2026M160%2074c-10%2010-5%2020%202%2026M200%2068c-10%2010-5%2020%202%2026%22%2F%3E%0A%20%20%20%20%3C%2Fg%3E%0A%20%20%20%20%3Ctext%20x%3D%2220%22%20y%3D%2235%22%20font-family%3D%22system-ui%2CSegoe%20UI%2CRoboto%22%20font-size%3D%2218%22%20fill%3D%22%237a4b2b%22%3E%E1%BA%A2nh%20minh%20ho%E1%BA%A1%20(demo)%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E%0A" alt="Ảnh minh hoạ cà phê (demo)">
+          </div>
+        </div>
+      </details>
+    </article><article class="faq-item">
+      <details id="co-nhung-phuong-phap-pha-ca-phe-nao" data-anchor="faq/basic/co-nhung-phuong-phap-pha-ca-phe-nao">
+        <summary>
+          <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 10l4 4 4-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+          <span class="q">Có những phương pháp pha cà phê nào?</span>
+        </summary>
+        <div class="answer" bis_skin_checked="1">
+          <div bis_skin_checked="1">
+            <p>Đun sôi (Turkish), ngâm (French press), áp suất (espresso), nhỏ giọt (drip/percolator).</p>
+            <p class="note">. Tags: <code>kien thuc, phuong phap, espresso, drip, press</code></p>
+          </div>
+          <div class="imgbox" bis_skin_checked="1">
+            <img class="imgph" src="data:image/svg+xml;utf8,%0A%20%20%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20360%20270%22%3E%0A%20%20%20%20%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20x2%3D%221%22%20y1%3D%220%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23f3ede8%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23e9dfd7%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%0A%20%20%20%20%3Crect%20width%3D%22360%22%20height%3D%22270%22%20fill%3D%22url(%23g)%22%2F%3E%0A%20%20%20%20%3Cg%20fill%3D%22none%22%20stroke%3D%22%237a4b2b%22%20stroke-width%3D%226%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M70%20160h160a40%2040%200%200%201-40%2040H110a40%2040%200%200%201-40-40z%22%20fill%3D%22%23fff%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M230%20160h34a22%2022%200%201%201-6%2043%22%20%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M120%2080c-10%2010-5%2020%202%2026M160%2074c-10%2010-5%2020%202%2026M200%2068c-10%2010-5%2020%202%2026%22%2F%3E%0A%20%20%20%20%3C%2Fg%3E%0A%20%20%20%20%3Ctext%20x%3D%2220%22%20y%3D%2235%22%20font-family%3D%22system-ui%2CSegoe%20UI%2CRoboto%22%20font-size%3D%2218%22%20fill%3D%22%237a4b2b%22%3E%E1%BA%A2nh%20minh%20ho%E1%BA%A1%20(demo)%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E%0A" alt="Ảnh minh hoạ cà phê (demo)">
+          </div>
+        </div>
+      </details>
+    </article><article class="faq-item">
+      <details id="ca-phe-co-giup-phan-chan-khi-lam-viec" data-anchor="faq/basic/ca-phe-co-giup-phan-chan-khi-lam-viec">
+        <summary>
+          <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 10l4 4 4-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+          <span class="q">Cà phê có giúp phấn chấn khi làm việc?</span>
+        </summary>
+        <div class="answer" bis_skin_checked="1">
+          <div bis_skin_checked="1">
+            <p>Có — hỗ trợ tâm trạng và tập trung nếu dùng hợp lý, tránh quá liều gây mất ngủ.</p>
+            <p class="note">. Tags: <code>lam dep, tam trang, tap trung</code></p>
+          </div>
+          <div class="imgbox" bis_skin_checked="1">
+            <img class="imgph" src="data:image/svg+xml;utf8,%0A%20%20%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20360%20270%22%3E%0A%20%20%20%20%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20x2%3D%221%22%20y1%3D%220%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23f3ede8%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23e9dfd7%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%0A%20%20%20%20%3Crect%20width%3D%22360%22%20height%3D%22270%22%20fill%3D%22url(%23g)%22%2F%3E%0A%20%20%20%20%3Cg%20fill%3D%22none%22%20stroke%3D%22%237a4b2b%22%20stroke-width%3D%226%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M70%20160h160a40%2040%200%200%201-40%2040H110a40%2040%200%200%201-40-40z%22%20fill%3D%22%23fff%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M230%20160h34a22%2022%200%201%201-6%2043%22%20%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M120%2080c-10%2010-5%2020%202%2026M160%2074c-10%2010-5%2020%202%2026M200%2068c-10%2010-5%2020%202%2026%22%2F%3E%0A%20%20%20%20%3C%2Fg%3E%0A%20%20%20%20%3Ctext%20x%3D%2220%22%20y%3D%2235%22%20font-family%3D%22system-ui%2CSegoe%20UI%2CRoboto%22%20font-size%3D%2218%22%20fill%3D%22%237a4b2b%22%3E%E1%BA%A2nh%20minh%20ho%E1%BA%A1%20(demo)%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E%0A" alt="Ảnh minh hoạ cà phê (demo)">
+          </div>
+        </div>
+      </details>
+    </article><article class="faq-item">
+      <details id="tron-ba-voi-hat-giong-co-ich-gi" data-anchor="faq/basic/tron-ba-voi-hat-giong-co-ich-gi">
+        <summary>
+          <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 10l4 4 4-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+          <span class="q">Trộn bã với hạt giống có ích gì?</span>
+        </summary>
+        <div class="answer" bis_skin_checked="1">
+          <div bis_skin_checked="1">
+            <p>Trộn bã phơi khô với hạt cà rốt/củ cải trước khi gieo để tăng tỉ lệ và năng suất thu hoạch.</p>
+            <p class="note">. Tags: <code>ba, hat giong, vuon</code></p>
+          </div>
+          <div class="imgbox" bis_skin_checked="1">
+            <img class="imgph" src="data:image/svg+xml;utf8,%0A%20%20%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20360%20270%22%3E%0A%20%20%20%20%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20x2%3D%221%22%20y1%3D%220%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23f3ede8%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23e9dfd7%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%0A%20%20%20%20%3Crect%20width%3D%22360%22%20height%3D%22270%22%20fill%3D%22url(%23g)%22%2F%3E%0A%20%20%20%20%3Cg%20fill%3D%22none%22%20stroke%3D%22%237a4b2b%22%20stroke-width%3D%226%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M70%20160h160a40%2040%200%200%201-40%2040H110a40%2040%200%200%201-40-40z%22%20fill%3D%22%23fff%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M230%20160h34a22%2022%200%201%201-6%2043%22%20%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M120%2080c-10%2010-5%2020%202%2026M160%2074c-10%2010-5%2020%202%2026M200%2068c-10%2010-5%2020%202%2026%22%2F%3E%0A%20%20%20%20%3C%2Fg%3E%0A%20%20%20%20%3Ctext%20x%3D%2220%22%20y%3D%2235%22%20font-family%3D%22system-ui%2CSegoe%20UI%2CRoboto%22%20font-size%3D%2218%22%20fill%3D%22%237a4b2b%22%3E%E1%BA%A2nh%20minh%20ho%E1%BA%A1%20(demo)%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E%0A" alt="Ảnh minh hoạ cà phê (demo)">
+          </div>
+        </div>
+      </details>
+    </article></div></section><section id="panel-storage" class="group" role="tabpanel" aria-labelledby="tab-storage" aria-hidden="true"><div class="faq-list" id="list-storage" bis_skin_checked="1"><article class="faq-item">
+      <details id="hat-ca-phe-giu-uoc-bao-lau-va-bao-quan-the-nao" data-anchor="faq/storage/hat-ca-phe-giu-uoc-bao-lau-va-bao-quan-the-nao">
+        <summary>
+          <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 10l4 4 4-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+          <span class="q">Hạt cà phê giữ được bao lâu và bảo quản thế nào?</span>
+        </summary>
+        <div class="answer" bis_skin_checked="1">
+          <div bis_skin_checked="1">
+            <p>Giữ trong hộp kín, nơi khô mát tránh ánh sáng; 6–12 tháng, ngon nhất 3–6 tháng sau rang.</p>
+            <p class="note">. Tags: <code>bao quan, hat, han dung, hop kin</code></p>
+          </div>
+          <div class="imgbox" bis_skin_checked="1">
+            <img class="imgph" src="data:image/svg+xml;utf8,%0A%20%20%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20360%20270%22%3E%0A%20%20%20%20%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20x2%3D%221%22%20y1%3D%220%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23f3ede8%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23e9dfd7%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%0A%20%20%20%20%3Crect%20width%3D%22360%22%20height%3D%22270%22%20fill%3D%22url(%23g)%22%2F%3E%0A%20%20%20%20%3Cg%20fill%3D%22none%22%20stroke%3D%22%237a4b2b%22%20stroke-width%3D%226%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M70%20160h160a40%2040%200%200%201-40%2040H110a40%2040%200%200%201-40-40z%22%20fill%3D%22%23fff%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M230%20160h34a22%2022%200%201%201-6%2043%22%20%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M120%2080c-10%2010-5%2020%202%2026M160%2074c-10%2010-5%2020%202%2026M200%2068c-10%2010-5%2020%202%2026%22%2F%3E%0A%20%20%20%20%3C%2Fg%3E%0A%20%20%20%20%3Ctext%20x%3D%2220%22%20y%3D%2235%22%20font-family%3D%22system-ui%2CSegoe%20UI%2CRoboto%22%20font-size%3D%2218%22%20fill%3D%22%237a4b2b%22%3E%E1%BA%A2nh%20minh%20ho%E1%BA%A1%20(demo)%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E%0A" alt="Ảnh minh hoạ cà phê (demo)">
+          </div>
+        </div>
+      </details>
+    </article><article class="faq-item">
+      <details id="ca-phe-xay-su-dung-uoc-bao-lau" data-anchor="faq/storage/ca-phe-xay-su-dung-uoc-bao-lau">
+        <summary>
+          <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 10l4 4 4-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+          <span class="q">Cà phê xay sử dụng được bao lâu?</span>
+        </summary>
+        <div class="answer" bis_skin_checked="1">
+          <div bis_skin_checked="1">
+            <p>3–6 tháng nếu kín khí; ngon nhất 1–2 tháng sau khi xay; tránh không khí, ánh sáng, ẩm.</p>
+            <p class="note">. Tags: <code>bao quan, xay, han dung</code></p>
+          </div>
+          <div class="imgbox" bis_skin_checked="1">
+            <img class="imgph" src="data:image/svg+xml;utf8,%0A%20%20%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20360%20270%22%3E%0A%20%20%20%20%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20x2%3D%221%22%20y1%3D%220%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23f3ede8%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23e9dfd7%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%0A%20%20%20%20%3Crect%20width%3D%22360%22%20height%3D%22270%22%20fill%3D%22url(%23g)%22%2F%3E%0A%20%20%20%20%3Cg%20fill%3D%22none%22%20stroke%3D%22%237a4b2b%22%20stroke-width%3D%226%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M70%20160h160a40%2040%200%200%201-40%2040H110a40%2040%200%200%201-40-40z%22%20fill%3D%22%23fff%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M230%20160h34a22%2022%200%201%201-6%2043%22%20%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M120%2080c-10%2010-5%2020%202%2026M160%2074c-10%2010-5%2020%202%2026M200%2068c-10%2010-5%2020%202%2026%22%2F%3E%0A%20%20%20%20%3C%2Fg%3E%0A%20%20%20%20%3Ctext%20x%3D%2220%22%20y%3D%2235%22%20font-family%3D%22system-ui%2CSegoe%20UI%2CRoboto%22%20font-size%3D%2218%22%20fill%3D%22%237a4b2b%22%3E%E1%BA%A2nh%20minh%20ho%E1%BA%A1%20(demo)%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E%0A" alt="Ảnh minh hoạ cà phê (demo)">
+          </div>
+        </div>
+      </details>
+    </article><article class="faq-item">
+      <details id="ca-phe-hoa-tan-co-the-e-lau-khong" data-anchor="faq/storage/ca-phe-hoa-tan-co-the-e-lau-khong">
+        <summary>
+          <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 10l4 4 4-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+          <span class="q">Cà phê hoà tan có thể để lâu không?</span>
+        </summary>
+        <div class="answer" bis_skin_checked="1">
+          <div bis_skin_checked="1">
+            <p>Có, thường 1–2 năm; giữ trong bao bì gốc/hộp kín, nơi khô mát.</p>
+            <p class="note">. Tags: <code>bao quan, hoa tan, han dung</code></p>
+          </div>
+          <div class="imgbox" bis_skin_checked="1">
+            <img class="imgph" src="data:image/svg+xml;utf8,%0A%20%20%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20360%20270%22%3E%0A%20%20%20%20%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20x2%3D%221%22%20y1%3D%220%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23f3ede8%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23e9dfd7%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%0A%20%20%20%20%3Crect%20width%3D%22360%22%20height%3D%22270%22%20fill%3D%22url(%23g)%22%2F%3E%0A%20%20%20%20%3Cg%20fill%3D%22none%22%20stroke%3D%22%237a4b2b%22%20stroke-width%3D%226%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M70%20160h160a40%2040%200%200%201-40%2040H110a40%2040%200%200%201-40-40z%22%20fill%3D%22%23fff%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M230%20160h34a22%2022%200%201%201-6%2043%22%20%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M120%2080c-10%2010-5%2020%202%2026M160%2074c-10%2010-5%2020%202%2026M200%2068c-10%2010-5%2020%202%2026%22%2F%3E%0A%20%20%20%20%3C%2Fg%3E%0A%20%20%20%20%3Ctext%20x%3D%2220%22%20y%3D%2235%22%20font-family%3D%22system-ui%2CSegoe%20UI%2CRoboto%22%20font-size%3D%2218%22%20fill%3D%22%237a4b2b%22%3E%E1%BA%A2nh%20minh%20ho%E1%BA%A1%20(demo)%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E%0A" alt="Ảnh minh hoạ cà phê (demo)">
+          </div>
+        </div>
+      </details>
+    </article><article class="faq-item">
+      <details id="ca-phe-pha-phin-hoac-espresso-con-thua-nen-lam-gi" data-anchor="faq/storage/ca-phe-pha-phin-hoac-espresso-con-thua-nen-lam-gi">
+        <summary>
+          <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 10l4 4 4-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+          <span class="q">Cà phê pha phin hoặc espresso còn thừa nên làm gì?</span>
+        </summary>
+        <div class="answer" bis_skin_checked="1">
+          <div bis_skin_checked="1">
+            <p>Lý tưởng uống ngay; nếu dư, cho vào hộp kín, dùng trong 1–2 tuần (tốt nhất là dùng sớm).</p>
+            <p class="note">. Tags: <code>bao quan, phin, espresso</code></p>
+          </div>
+          <div class="imgbox" bis_skin_checked="1">
+            <img class="imgph" src="data:image/svg+xml;utf8,%0A%20%20%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20360%20270%22%3E%0A%20%20%20%20%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20x2%3D%221%22%20y1%3D%220%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23f3ede8%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23e9dfd7%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%0A%20%20%20%20%3Crect%20width%3D%22360%22%20height%3D%22270%22%20fill%3D%22url(%23g)%22%2F%3E%0A%20%20%20%20%3Cg%20fill%3D%22none%22%20stroke%3D%22%237a4b2b%22%20stroke-width%3D%226%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M70%20160h160a40%2040%200%200%201-40%2040H110a40%2040%200%200%201-40-40z%22%20fill%3D%22%23fff%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M230%20160h34a22%2022%200%201%201-6%2043%22%20%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M120%2080c-10%2010-5%2020%202%2026M160%2074c-10%2010-5%2020%202%2026M200%2068c-10%2010-5%2020%202%2026%22%2F%3E%0A%20%20%20%20%3C%2Fg%3E%0A%20%20%20%20%3Ctext%20x%3D%2220%22%20y%3D%2235%22%20font-family%3D%22system-ui%2CSegoe%20UI%2CRoboto%22%20font-size%3D%2218%22%20fill%3D%22%237a4b2b%22%3E%E1%BA%A2nh%20minh%20ho%E1%BA%A1%20(demo)%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E%0A" alt="Ảnh minh hoạ cà phê (demo)">
+          </div>
+        </div>
+      </details>
+    </article><article class="faq-item">
+      <details id="cold-brew-giu-uoc-bao-lau" data-anchor="faq/storage/cold-brew-giu-uoc-bao-lau">
+        <summary>
+          <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 10l4 4 4-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+          <span class="q">Cold brew giữ được bao lâu?</span>
+        </summary>
+        <div class="answer" bis_skin_checked="1">
+          <div bis_skin_checked="1">
+            <p>Bảo quản lạnh dùng trong ~1 tuần; có thể đông lạnh trong hộp kín để giữ lâu hơn.</p>
+            <p class="note">. Tags: <code>bao quan, cold brew, dong lanh</code></p>
+          </div>
+          <div class="imgbox" bis_skin_checked="1">
+            <img class="imgph" src="data:image/svg+xml;utf8,%0A%20%20%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20360%20270%22%3E%0A%20%20%20%20%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20x2%3D%221%22%20y1%3D%220%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23f3ede8%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23e9dfd7%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%0A%20%20%20%20%3Crect%20width%3D%22360%22%20height%3D%22270%22%20fill%3D%22url(%23g)%22%2F%3E%0A%20%20%20%20%3Cg%20fill%3D%22none%22%20stroke%3D%22%237a4b2b%22%20stroke-width%3D%226%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M70%20160h160a40%2040%200%200%201-40%2040H110a40%2040%200%200%201-40-40z%22%20fill%3D%22%23fff%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M230%20160h34a22%2022%200%201%201-6%2043%22%20%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M120%2080c-10%2010-5%2020%202%2026M160%2074c-10%2010-5%2020%202%2026M200%2068c-10%2010-5%2020%202%2026%22%2F%3E%0A%20%20%20%20%3C%2Fg%3E%0A%20%20%20%20%3Ctext%20x%3D%2220%22%20y%3D%2235%22%20font-family%3D%22system-ui%2CSegoe%20UI%2CRoboto%22%20font-size%3D%2218%22%20fill%3D%22%237a4b2b%22%3E%E1%BA%A2nh%20minh%20ho%E1%BA%A1%20(demo)%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E%0A" alt="Ảnh minh hoạ cà phê (demo)">
+          </div>
+        </div>
+      </details>
+    </article><article class="faq-item">
+      <details id="co-nen-e-ca-phe-trong-tu-lanh" data-anchor="faq/storage/co-nen-e-ca-phe-trong-tu-lanh">
+        <summary>
+          <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 10l4 4 4-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+          <span class="q">Có nên để cà phê trong tủ lạnh?</span>
+        </summary>
+        <div class="answer" bis_skin_checked="1">
+          <div bis_skin_checked="1">
+            <p>Không; độ ẩm làm giảm hương. Hãy dùng hộp kín, tránh ẩm/nhiệt/ánh sáng.</p>
+            <p class="note">. Tags: <code>bao quan, tu lanh, hop kin</code></p>
+          </div>
+          <div class="imgbox" bis_skin_checked="1">
+            <img class="imgph" src="data:image/svg+xml;utf8,%0A%20%20%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20360%20270%22%3E%0A%20%20%20%20%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20x2%3D%221%22%20y1%3D%220%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23f3ede8%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23e9dfd7%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%0A%20%20%20%20%3Crect%20width%3D%22360%22%20height%3D%22270%22%20fill%3D%22url(%23g)%22%2F%3E%0A%20%20%20%20%3Cg%20fill%3D%22none%22%20stroke%3D%22%237a4b2b%22%20stroke-width%3D%226%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M70%20160h160a40%2040%200%200%201-40%2040H110a40%2040%200%200%201-40-40z%22%20fill%3D%22%23fff%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M230%20160h34a22%2022%200%201%201-6%2043%22%20%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M120%2080c-10%2010-5%2020%202%2026M160%2074c-10%2010-5%2020%202%2026M200%2068c-10%2010-5%2020%202%2026%22%2F%3E%0A%20%20%20%20%3C%2Fg%3E%0A%20%20%20%20%3Ctext%20x%3D%2220%22%20y%3D%2235%22%20font-family%3D%22system-ui%2CSegoe%20UI%2CRoboto%22%20font-size%3D%2218%22%20fill%3D%22%237a4b2b%22%3E%E1%BA%A2nh%20minh%20ho%E1%BA%A1%20(demo)%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E%0A" alt="Ảnh minh hoạ cà phê (demo)">
+          </div>
+        </div>
+      </details>
+    </article><article class="faq-item">
+      <details id="bao-quan-ca-phe-sau-khi-mo-goi-the-nao" data-anchor="faq/storage/bao-quan-ca-phe-sau-khi-mo-goi-the-nao">
+        <summary>
+          <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 10l4 4 4-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+          <span class="q">Bảo quản cà phê sau khi mở gói thế nào?</span>
+        </summary>
+        <div class="answer" bis_skin_checked="1">
+          <div bis_skin_checked="1">
+            <p>Dùng hộp kín/hút chân không, để nơi khô mát; xay tới đâu dùng tới đó; mua lượng nhỏ.</p>
+            <p class="note">. Tags: <code>bao quan, mo goi, hop kin</code></p>
+          </div>
+          <div class="imgbox" bis_skin_checked="1">
+            <img class="imgph" src="data:image/svg+xml;utf8,%0A%20%20%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20360%20270%22%3E%0A%20%20%20%20%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20x2%3D%221%22%20y1%3D%220%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23f3ede8%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23e9dfd7%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%0A%20%20%20%20%3Crect%20width%3D%22360%22%20height%3D%22270%22%20fill%3D%22url(%23g)%22%2F%3E%0A%20%20%20%20%3Cg%20fill%3D%22none%22%20stroke%3D%22%237a4b2b%22%20stroke-width%3D%226%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M70%20160h160a40%2040%200%200%201-40%2040H110a40%2040%200%200%201-40-40z%22%20fill%3D%22%23fff%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M230%20160h34a22%2022%200%201%201-6%2043%22%20%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M120%2080c-10%2010-5%2020%202%2026M160%2074c-10%2010-5%2020%202%2026M200%2068c-10%2010-5%2020%202%2026%22%2F%3E%0A%20%20%20%20%3C%2Fg%3E%0A%20%20%20%20%3Ctext%20x%3D%2220%22%20y%3D%2235%22%20font-family%3D%22system-ui%2CSegoe%20UI%2CRoboto%22%20font-size%3D%2218%22%20fill%3D%22%237a4b2b%22%3E%E1%BA%A2nh%20minh%20ho%E1%BA%A1%20(demo)%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E%0A" alt="Ảnh minh hoạ cà phê (demo)">
+          </div>
+        </div>
+      </details>
+    </article><article class="faq-item">
+      <details id="nen-mua-hat-hay-ca-phe-xay-san" data-anchor="faq/storage/nen-mua-hat-hay-ca-phe-xay-san">
+        <summary>
+          <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 10l4 4 4-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+          <span class="q">Nên mua hạt hay cà phê xay sẵn?</span>
+        </summary>
+        <div class="answer" bis_skin_checked="1">
+          <div bis_skin_checked="1">
+            <p>Hạt giữ hương lâu, nên xay trước khi pha; xay sẵn tiện nhưng nên dùng trong 1–2 tháng.</p>
+            <p class="note">. Tags: <code>bao quan, hat, xay</code></p>
+          </div>
+          <div class="imgbox" bis_skin_checked="1">
+            <img class="imgph" src="data:image/svg+xml;utf8,%0A%20%20%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20360%20270%22%3E%0A%20%20%20%20%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20x2%3D%221%22%20y1%3D%220%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23f3ede8%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23e9dfd7%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%0A%20%20%20%20%3Crect%20width%3D%22360%22%20height%3D%22270%22%20fill%3D%22url(%23g)%22%2F%3E%0A%20%20%20%20%3Cg%20fill%3D%22none%22%20stroke%3D%22%237a4b2b%22%20stroke-width%3D%226%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M70%20160h160a40%2040%200%200%201-40%2040H110a40%2040%200%200%201-40-40z%22%20fill%3D%22%23fff%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M230%20160h34a22%2022%200%201%201-6%2043%22%20%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M120%2080c-10%2010-5%2020%202%2026M160%2074c-10%2010-5%2020%202%2026M200%2068c-10%2010-5%2020%202%2026%22%2F%3E%0A%20%20%20%20%3C%2Fg%3E%0A%20%20%20%20%3Ctext%20x%3D%2220%22%20y%3D%2235%22%20font-family%3D%22system-ui%2CSegoe%20UI%2CRoboto%22%20font-size%3D%2218%22%20fill%3D%22%237a4b2b%22%3E%E1%BA%A2nh%20minh%20ho%E1%BA%A1%20(demo)%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E%0A" alt="Ảnh minh hoạ cà phê (demo)">
+          </div>
+        </div>
+      </details>
+    </article></div></section><section id="panel-brew" class="group" role="tabpanel" aria-labelledby="tab-brew" aria-hidden="true"><div class="faq-list" id="list-brew" bis_skin_checked="1"><article class="faq-item">
+      <details id="ty-le-pha-chuan-phin-pour-over-espresso" data-anchor="faq/brew/ty-le-pha-chuan-phin-pour-over-espresso">
+        <summary>
+          <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 10l4 4 4-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+          <span class="q">Tỷ lệ pha chuẩn (phin / pour-over / espresso)?</span>
+        </summary>
+        <div class="answer" bis_skin_checked="1">
+          <div bis_skin_checked="1">
+            <p>Phin: 18–22g/180–200ml • Pour-over: 1:15–17 • Espresso: 18g → 30–40ml.</p>
+            <p class="note">. Tags: <code>pha che, phin, pour-over, espresso, ty le</code></p>
+          </div>
+          <div class="imgbox" bis_skin_checked="1">
+            <img class="imgph" src="data:image/svg+xml;utf8,%0A%20%20%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20360%20270%22%3E%0A%20%20%20%20%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20x2%3D%221%22%20y1%3D%220%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23f3ede8%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23e9dfd7%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%0A%20%20%20%20%3Crect%20width%3D%22360%22%20height%3D%22270%22%20fill%3D%22url(%23g)%22%2F%3E%0A%20%20%20%20%3Cg%20fill%3D%22none%22%20stroke%3D%22%237a4b2b%22%20stroke-width%3D%226%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M70%20160h160a40%2040%200%200%201-40%2040H110a40%2040%200%200%201-40-40z%22%20fill%3D%22%23fff%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M230%20160h34a22%2022%200%201%201-6%2043%22%20%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M120%2080c-10%2010-5%2020%202%2026M160%2074c-10%2010-5%2020%202%2026M200%2068c-10%2010-5%2020%202%2026%22%2F%3E%0A%20%20%20%20%3C%2Fg%3E%0A%20%20%20%20%3Ctext%20x%3D%2220%22%20y%3D%2235%22%20font-family%3D%22system-ui%2CSegoe%20UI%2CRoboto%22%20font-size%3D%2218%22%20fill%3D%22%237a4b2b%22%3E%E1%BA%A2nh%20minh%20ho%E1%BA%A1%20(demo)%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E%0A" alt="Ảnh minh hoạ cà phê (demo)">
+          </div>
+        </div>
+      </details>
+    </article><article class="faq-item">
+      <details id="nhiet-o-nuoc-ly-tuong-e-chiet-xuat-ca-phe" data-anchor="faq/brew/nhiet-o-nuoc-ly-tuong-e-chiet-xuat-ca-phe">
+        <summary>
+          <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 10l4 4 4-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+          <span class="q">Nhiệt độ nước lý tưởng để chiết xuất cà phê?</span>
+        </summary>
+        <div class="answer" bis_skin_checked="1">
+          <div bis_skin_checked="1">
+            <p>Khoảng 91–96°C; quá sôi dễ đắng, quá nguội làm nhạt và thiếu hương.</p>
+            <p class="note">. Tags: <code>pha che, nhiet do, chiet xuat</code></p>
+          </div>
+          <div class="imgbox" bis_skin_checked="1">
+            <img class="imgph" src="data:image/svg+xml;utf8,%0A%20%20%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20360%20270%22%3E%0A%20%20%20%20%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20x2%3D%221%22%20y1%3D%220%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23f3ede8%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23e9dfd7%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%0A%20%20%20%20%3Crect%20width%3D%22360%22%20height%3D%22270%22%20fill%3D%22url(%23g)%22%2F%3E%0A%20%20%20%20%3Cg%20fill%3D%22none%22%20stroke%3D%22%237a4b2b%22%20stroke-width%3D%226%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M70%20160h160a40%2040%200%200%201-40%2040H110a40%2040%200%200%201-40-40z%22%20fill%3D%22%23fff%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M230%20160h34a22%2022%200%201%201-6%2043%22%20%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M120%2080c-10%2010-5%2020%202%2026M160%2074c-10%2010-5%2020%202%2026M200%2068c-10%2010-5%2020%202%2026%22%2F%3E%0A%20%20%20%20%3C%2Fg%3E%0A%20%20%20%20%3Ctext%20x%3D%2220%22%20y%3D%2235%22%20font-family%3D%22system-ui%2CSegoe%20UI%2CRoboto%22%20font-size%3D%2218%22%20fill%3D%22%237a4b2b%22%3E%E1%BA%A2nh%20minh%20ho%E1%BA%A1%20(demo)%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E%0A" alt="Ảnh minh hoạ cà phê (demo)">
+          </div>
+        </div>
+      </details>
+    </article><article class="faq-item">
+      <details id="khac-biet-giua-phin-pour-over-va-espresso" data-anchor="faq/brew/khac-biet-giua-phin-pour-over-va-espresso">
+        <summary>
+          <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 10l4 4 4-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+          <span class="q">Khác biệt giữa phin, pour-over và espresso?</span>
+        </summary>
+        <div class="answer" bis_skin_checked="1">
+          <div bis_skin_checked="1">
+            <p>Phin: đậm chậm; Pour-over: sáng thanh; Espresso: cô đặc — nền latte/cappuccino.</p>
+            <p class="note">. Tags: <code>pha che, phin, pour-over, espresso</code></p>
+          </div>
+          <div class="imgbox" bis_skin_checked="1">
+            <img class="imgph" src="data:image/svg+xml;utf8,%0A%20%20%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20360%20270%22%3E%0A%20%20%20%20%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20x2%3D%221%22%20y1%3D%220%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23f3ede8%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23e9dfd7%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%0A%20%20%20%20%3Crect%20width%3D%22360%22%20height%3D%22270%22%20fill%3D%22url(%23g)%22%2F%3E%0A%20%20%20%20%3Cg%20fill%3D%22none%22%20stroke%3D%22%237a4b2b%22%20stroke-width%3D%226%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M70%20160h160a40%2040%200%200%201-40%2040H110a40%2040%200%200%201-40-40z%22%20fill%3D%22%23fff%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M230%20160h34a22%2022%200%201%201-6%2043%22%20%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M120%2080c-10%2010-5%2020%202%2026M160%2074c-10%2010-5%2020%202%2026M200%2068c-10%2010-5%2020%202%2026%22%2F%3E%0A%20%20%20%20%3C%2Fg%3E%0A%20%20%20%20%3Ctext%20x%3D%2220%22%20y%3D%2235%22%20font-family%3D%22system-ui%2CSegoe%20UI%2CRoboto%22%20font-size%3D%2218%22%20fill%3D%22%237a4b2b%22%3E%E1%BA%A2nh%20minh%20ho%E1%BA%A1%20(demo)%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E%0A" alt="Ảnh minh hoạ cà phê (demo)">
+          </div>
+        </div>
+      </details>
+    </article><article class="faq-item">
+      <details id="giam-vi-ang-hoac-chua-nhu-the-nao-khi-pha" data-anchor="faq/brew/giam-vi-ang-hoac-chua-nhu-the-nao-khi-pha">
+        <summary>
+          <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 10l4 4 4-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+          <span class="q">Giảm vị đắng hoặc chua như thế nào khi pha?</span>
+        </summary>
+        <div class="answer" bis_skin_checked="1">
+          <div bis_skin_checked="1">
+            <p>Đắng: rang nhạt hơn, hạ nhiệt, rút ngắn thời gian. Chua: rang đậm hơn, tăng nhiệt, kéo dài thời gian.</p>
+            <p class="note">. Tags: <code>pha che, dang, chua, chinh bien</code></p>
+          </div>
+          <div class="imgbox" bis_skin_checked="1">
+            <img class="imgph" src="data:image/svg+xml;utf8,%0A%20%20%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20360%20270%22%3E%0A%20%20%20%20%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20x2%3D%221%22%20y1%3D%220%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23f3ede8%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23e9dfd7%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%0A%20%20%20%20%3Crect%20width%3D%22360%22%20height%3D%22270%22%20fill%3D%22url(%23g)%22%2F%3E%0A%20%20%20%20%3Cg%20fill%3D%22none%22%20stroke%3D%22%237a4b2b%22%20stroke-width%3D%226%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M70%20160h160a40%2040%200%200%201-40%2040H110a40%2040%200%200%201-40-40z%22%20fill%3D%22%23fff%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M230%20160h34a22%2022%200%201%201-6%2043%22%20%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M120%2080c-10%2010-5%2020%202%2026M160%2074c-10%2010-5%2020%202%2026M200%2068c-10%2010-5%2020%202%2026%22%2F%3E%0A%20%20%20%20%3C%2Fg%3E%0A%20%20%20%20%3Ctext%20x%3D%2220%22%20y%3D%2235%22%20font-family%3D%22system-ui%2CSegoe%20UI%2CRoboto%22%20font-size%3D%2218%22%20fill%3D%22%237a4b2b%22%3E%E1%BA%A2nh%20minh%20ho%E1%BA%A1%20(demo)%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E%0A" alt="Ảnh minh hoạ cà phê (demo)">
+          </div>
+        </div>
+      </details>
+    </article><article class="faq-item">
+      <details id="uong-ca-phe-en-co-giup-giu-dang" data-anchor="faq/brew/uong-ca-phe-en-co-giup-giu-dang">
+        <summary>
+          <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 10l4 4 4-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+          <span class="q">Uống cà phê đen có giúp giữ dáng?</span>
+        </summary>
+        <div class="answer" bis_skin_checked="1">
+          <div bis_skin_checked="1">
+            <p>Một tách đen ~2 calo &amp; giàu chất chống oxy hoá; dùng trước tập giúp bền sức và đốt calo tốt hơn.</p>
+            <p class="note">. Tags: <code>lam dep, giu dang, calo, antioxidant</code></p>
+          </div>
+          <div class="imgbox" bis_skin_checked="1">
+            <img class="imgph" src="data:image/svg+xml;utf8,%0A%20%20%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20360%20270%22%3E%0A%20%20%20%20%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20x2%3D%221%22%20y1%3D%220%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23f3ede8%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23e9dfd7%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%0A%20%20%20%20%3Crect%20width%3D%22360%22%20height%3D%22270%22%20fill%3D%22url(%23g)%22%2F%3E%0A%20%20%20%20%3Cg%20fill%3D%22none%22%20stroke%3D%22%237a4b2b%22%20stroke-width%3D%226%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M70%20160h160a40%2040%200%200%201-40%2040H110a40%2040%200%200%201-40-40z%22%20fill%3D%22%23fff%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M230%20160h34a22%2022%200%201%201-6%2043%22%20%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M120%2080c-10%2010-5%2020%202%2026M160%2074c-10%2010-5%2020%202%2026M200%2068c-10%2010-5%2020%202%2026%22%2F%3E%0A%20%20%20%20%3C%2Fg%3E%0A%20%20%20%20%3Ctext%20x%3D%2220%22%20y%3D%2235%22%20font-family%3D%22system-ui%2CSegoe%20UI%2CRoboto%22%20font-size%3D%2218%22%20fill%3D%22%237a4b2b%22%3E%E1%BA%A2nh%20minh%20ho%E1%BA%A1%20(demo)%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E%0A" alt="Ảnh minh hoạ cà phê (demo)">
+          </div>
+        </div>
+      </details>
+    </article></div></section><section id="panel-health" class="group" role="tabpanel" aria-labelledby="tab-health" aria-hidden="true"><div class="faq-list" id="list-health" bis_skin_checked="1"><article class="faq-item">
+      <details id="nhung-ai-nen-han-che-hoac-tranh-uong-ca-phe" data-anchor="faq/health/nhung-ai-nen-han-che-hoac-tranh-uong-ca-phe">
+        <summary>
+          <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 10l4 4 4-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+          <span class="q">Những ai nên hạn chế hoặc tránh uống cà phê?</span>
+        </summary>
+        <div class="answer" bis_skin_checked="1">
+          <div bis_skin_checked="1">
+            <p>Người đau dạ dày, viêm tụy, tăng nhãn áp, rối loạn giấc ngủ/lo âu, bệnh tim, IBS; trẻ em, phụ nữ đang hành kinh nên thận trọng.</p>
+            <p class="note">. Tags: <code>suc khoe, canh bao, doi tuong</code></p>
+          </div>
+          <div class="imgbox" bis_skin_checked="1">
+            <img class="imgph" src="data:image/svg+xml;utf8,%0A%20%20%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20360%20270%22%3E%0A%20%20%20%20%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20x2%3D%221%22%20y1%3D%220%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23f3ede8%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23e9dfd7%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%0A%20%20%20%20%3Crect%20width%3D%22360%22%20height%3D%22270%22%20fill%3D%22url(%23g)%22%2F%3E%0A%20%20%20%20%3Cg%20fill%3D%22none%22%20stroke%3D%22%237a4b2b%22%20stroke-width%3D%226%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M70%20160h160a40%2040%200%200%201-40%2040H110a40%2040%200%200%201-40-40z%22%20fill%3D%22%23fff%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M230%20160h34a22%2022%200%201%201-6%2043%22%20%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M120%2080c-10%2010-5%2020%202%2026M160%2074c-10%2010-5%2020%202%2026M200%2068c-10%2010-5%2020%202%2026%22%2F%3E%0A%20%20%20%20%3C%2Fg%3E%0A%20%20%20%20%3Ctext%20x%3D%2220%22%20y%3D%2235%22%20font-family%3D%22system-ui%2CSegoe%20UI%2CRoboto%22%20font-size%3D%2218%22%20fill%3D%22%237a4b2b%22%3E%E1%BA%A2nh%20minh%20ho%E1%BA%A1%20(demo)%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E%0A" alt="Ảnh minh hoạ cà phê (demo)">
+          </div>
+        </div>
+      </details>
+    </article><article class="faq-item">
+      <details id="uong-ca-phe-co-tac-dung-phu-gi" data-anchor="faq/health/uong-ca-phe-co-tac-dung-phu-gi">
+        <summary>
+          <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 10l4 4 4-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+          <span class="q">Uống cà phê có tác dụng phụ gì?</span>
+        </summary>
+        <div class="answer" bis_skin_checked="1">
+          <div bis_skin_checked="1">
+            <p>Có thể gây tiêu chảy, mất ngủ, tăng axit dạ dày; uống khi đói dễ kích thích ruột.</p>
+            <p class="note">. Tags: <code>suc khoe, tac dung phu, tieu hoa, mat ngu</code></p>
+          </div>
+          <div class="imgbox" bis_skin_checked="1">
+            <img class="imgph" src="data:image/svg+xml;utf8,%0A%20%20%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20360%20270%22%3E%0A%20%20%20%20%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20x2%3D%221%22%20y1%3D%220%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23f3ede8%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23e9dfd7%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%0A%20%20%20%20%3Crect%20width%3D%22360%22%20height%3D%22270%22%20fill%3D%22url(%23g)%22%2F%3E%0A%20%20%20%20%3Cg%20fill%3D%22none%22%20stroke%3D%22%237a4b2b%22%20stroke-width%3D%226%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M70%20160h160a40%2040%200%200%201-40%2040H110a40%2040%200%200%201-40-40z%22%20fill%3D%22%23fff%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M230%20160h34a22%2022%200%201%201-6%2043%22%20%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M120%2080c-10%2010-5%2020%202%2026M160%2074c-10%2010-5%2020%202%2026M200%2068c-10%2010-5%2020%202%2026%22%2F%3E%0A%20%20%20%20%3C%2Fg%3E%0A%20%20%20%20%3Ctext%20x%3D%2220%22%20y%3D%2235%22%20font-family%3D%22system-ui%2CSegoe%20UI%2CRoboto%22%20font-size%3D%2218%22%20fill%3D%22%237a4b2b%22%3E%E1%BA%A2nh%20minh%20ho%E1%BA%A1%20(demo)%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E%0A" alt="Ảnh minh hoạ cà phê (demo)">
+          </div>
+        </div>
+      </details>
+    </article><article class="faq-item">
+      <details id="bao-nhieu-caffeine-moi-ngay-la-an-toan" data-anchor="faq/health/bao-nhieu-caffeine-moi-ngay-la-an-toan">
+        <summary>
+          <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 10l4 4 4-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+          <span class="q">Bao nhiêu caffeine mỗi ngày là an toàn?</span>
+        </summary>
+        <div class="answer" bis_skin_checked="1">
+          <div bis_skin_checked="1">
+            <p>Xấp xỉ tối đa ~400 mg/ngày ở người trưởng thành khoẻ mạnh (tuỳ nhạy cảm &amp; bệnh nền).</p>
+            <p class="note">. Tags: <code>suc khoe, caffeine an toan, nguong</code></p>
+          </div>
+          <div class="imgbox" bis_skin_checked="1">
+            <img class="imgph" src="data:image/svg+xml;utf8,%0A%20%20%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20360%20270%22%3E%0A%20%20%20%20%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20x2%3D%221%22%20y1%3D%220%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23f3ede8%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23e9dfd7%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%0A%20%20%20%20%3Crect%20width%3D%22360%22%20height%3D%22270%22%20fill%3D%22url(%23g)%22%2F%3E%0A%20%20%20%20%3Cg%20fill%3D%22none%22%20stroke%3D%22%237a4b2b%22%20stroke-width%3D%226%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M70%20160h160a40%2040%200%200%201-40%2040H110a40%2040%200%200%201-40-40z%22%20fill%3D%22%23fff%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M230%20160h34a22%2022%200%201%201-6%2043%22%20%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M120%2080c-10%2010-5%2020%202%2026M160%2074c-10%2010-5%2020%202%2026M200%2068c-10%2010-5%2020%202%2026%22%2F%3E%0A%20%20%20%20%3C%2Fg%3E%0A%20%20%20%20%3Ctext%20x%3D%2220%22%20y%3D%2235%22%20font-family%3D%22system-ui%2CSegoe%20UI%2CRoboto%22%20font-size%3D%2218%22%20fill%3D%22%237a4b2b%22%3E%E1%BA%A2nh%20minh%20ho%E1%BA%A1%20(demo)%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E%0A" alt="Ảnh minh hoạ cà phê (demo)">
+          </div>
+        </div>
+      </details>
+    </article><article class="faq-item">
+      <details id="uong-ca-phe-khi-nao-anh-huong-giac-ngu" data-anchor="faq/health/uong-ca-phe-khi-nao-anh-huong-giac-ngu">
+        <summary>
+          <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 10l4 4 4-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+          <span class="q">Uống cà phê khi nào ảnh hưởng giấc ngủ?</span>
+        </summary>
+        <div class="answer" bis_skin_checked="1">
+          <div bis_skin_checked="1">
+            <p>Tránh dùng caffeine trong vòng 6 giờ trước khi ngủ để hạn chế ảnh hưởng tới giấc ngủ.</p>
+            <p class="note">. Tags: <code>suc khoe, ngu, mat ngu</code></p>
+          </div>
+          <div class="imgbox" bis_skin_checked="1">
+            <img class="imgph" src="data:image/svg+xml;utf8,%0A%20%20%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20360%20270%22%3E%0A%20%20%20%20%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20x2%3D%221%22%20y1%3D%220%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23f3ede8%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23e9dfd7%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%0A%20%20%20%20%3Crect%20width%3D%22360%22%20height%3D%22270%22%20fill%3D%22url(%23g)%22%2F%3E%0A%20%20%20%20%3Cg%20fill%3D%22none%22%20stroke%3D%22%237a4b2b%22%20stroke-width%3D%226%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M70%20160h160a40%2040%200%200%201-40%2040H110a40%2040%200%200%201-40-40z%22%20fill%3D%22%23fff%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M230%20160h34a22%2022%200%201%201-6%2043%22%20%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M120%2080c-10%2010-5%2020%202%2026M160%2074c-10%2010-5%2020%202%2026M200%2068c-10%2010-5%2020%202%2026%22%2F%3E%0A%20%20%20%20%3C%2Fg%3E%0A%20%20%20%20%3Ctext%20x%3D%2220%22%20y%3D%2235%22%20font-family%3D%22system-ui%2CSegoe%20UI%2CRoboto%22%20font-size%3D%2218%22%20fill%3D%22%237a4b2b%22%3E%E1%BA%A2nh%20minh%20ho%E1%BA%A1%20(demo)%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E%0A" alt="Ảnh minh hoạ cà phê (demo)">
+          </div>
+        </div>
+      </details>
+    </article><article class="faq-item">
+      <details id="ca-phe-anh-huong-huyet-ap-va-tim-mach-ra-sao" data-anchor="faq/health/ca-phe-anh-huong-huyet-ap-va-tim-mach-ra-sao">
+        <summary>
+          <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 10l4 4 4-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+          <span class="q">Cà phê ảnh hưởng huyết áp và tim mạch ra sao?</span>
+        </summary>
+        <div class="answer" bis_skin_checked="1">
+          <div bis_skin_checked="1">
+            <p>Có thể tăng huyết áp/nhịp tim tạm thời; người bệnh tim nên hỏi bác sĩ và hạn chế lượng dùng.</p>
+            <p class="note">. Tags: <code>suc khoe, huyet ap, tim mach</code></p>
+          </div>
+          <div class="imgbox" bis_skin_checked="1">
+            <img class="imgph" src="data:image/svg+xml;utf8,%0A%20%20%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20360%20270%22%3E%0A%20%20%20%20%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20x2%3D%221%22%20y1%3D%220%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23f3ede8%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23e9dfd7%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%0A%20%20%20%20%3Crect%20width%3D%22360%22%20height%3D%22270%22%20fill%3D%22url(%23g)%22%2F%3E%0A%20%20%20%20%3Cg%20fill%3D%22none%22%20stroke%3D%22%237a4b2b%22%20stroke-width%3D%226%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M70%20160h160a40%2040%200%200%201-40%2040H110a40%2040%200%200%201-40-40z%22%20fill%3D%22%23fff%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M230%20160h34a22%2022%200%201%201-6%2043%22%20%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M120%2080c-10%2010-5%2020%202%2026M160%2074c-10%2010-5%2020%202%2026M200%2068c-10%2010-5%2020%202%2026%22%2F%3E%0A%20%20%20%20%3C%2Fg%3E%0A%20%20%20%20%3Ctext%20x%3D%2220%22%20y%3D%2235%22%20font-family%3D%22system-ui%2CSegoe%20UI%2CRoboto%22%20font-size%3D%2218%22%20fill%3D%22%237a4b2b%22%3E%E1%BA%A2nh%20minh%20ho%E1%BA%A1%20(demo)%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E%0A" alt="Ảnh minh hoạ cà phê (demo)">
+          </div>
+        </div>
+      </details>
+    </article><article class="faq-item">
+      <details id="uong-nhieu-ca-phe-co-gay-loang-xuong" data-anchor="faq/health/uong-nhieu-ca-phe-co-gay-loang-xuong">
+        <summary>
+          <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 10l4 4 4-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+          <span class="q">Uống nhiều cà phê có gây loãng xương?</span>
+        </summary>
+        <div class="answer" bis_skin_checked="1">
+          <div bis_skin_checked="1">
+            <p>Caffeine có thể tăng bài tiết canxi; dùng nhiều có nguy cơ mất xương — nên giới hạn và bổ sung canxi.</p>
+            <p class="note">. Tags: <code>suc khoe, loang xuong, canxi</code></p>
+          </div>
+          <div class="imgbox" bis_skin_checked="1">
+            <img class="imgph" src="data:image/svg+xml;utf8,%0A%20%20%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20360%20270%22%3E%0A%20%20%20%20%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20x2%3D%221%22%20y1%3D%220%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23f3ede8%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23e9dfd7%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%0A%20%20%20%20%3Crect%20width%3D%22360%22%20height%3D%22270%22%20fill%3D%22url(%23g)%22%2F%3E%0A%20%20%20%20%3Cg%20fill%3D%22none%22%20stroke%3D%22%237a4b2b%22%20stroke-width%3D%226%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M70%20160h160a40%2040%200%200%201-40%2040H110a40%2040%200%200%201-40-40z%22%20fill%3D%22%23fff%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M230%20160h34a22%2022%200%201%201-6%2043%22%20%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M120%2080c-10%2010-5%2020%202%2026M160%2074c-10%2010-5%2020%202%2026M200%2068c-10%2010-5%2020%202%2026%22%2F%3E%0A%20%20%20%20%3C%2Fg%3E%0A%20%20%20%20%3Ctext%20x%3D%2220%22%20y%3D%2235%22%20font-family%3D%22system-ui%2CSegoe%20UI%2CRoboto%22%20font-size%3D%2218%22%20fill%3D%22%237a4b2b%22%3E%E1%BA%A2nh%20minh%20ho%E1%BA%A1%20(demo)%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E%0A" alt="Ảnh minh hoạ cà phê (demo)">
+          </div>
+        </div>
+      </details>
+    </article><article class="faq-item">
+      <details id="co-nen-uong-ca-phe-khi-mang-thai" data-anchor="faq/health/co-nen-uong-ca-phe-khi-mang-thai">
+        <summary>
+          <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 10l4 4 4-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+          <span class="q">Có nên uống cà phê khi mang thai?</span>
+        </summary>
+        <div class="answer" bis_skin_checked="1">
+          <div bis_skin_checked="1">
+            <p>Thai phụ nên giới hạn 1–2 ly nhỏ/ngày và tham khảo ý kiến bác sĩ.</p>
+            <p class="note">. Tags: <code>suc khoe, thai phu</code></p>
+          </div>
+          <div class="imgbox" bis_skin_checked="1">
+            <img class="imgph" src="data:image/svg+xml;utf8,%0A%20%20%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20360%20270%22%3E%0A%20%20%20%20%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20x2%3D%221%22%20y1%3D%220%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23f3ede8%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23e9dfd7%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%0A%20%20%20%20%3Crect%20width%3D%22360%22%20height%3D%22270%22%20fill%3D%22url(%23g)%22%2F%3E%0A%20%20%20%20%3Cg%20fill%3D%22none%22%20stroke%3D%22%237a4b2b%22%20stroke-width%3D%226%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M70%20160h160a40%2040%200%200%201-40%2040H110a40%2040%200%200%201-40-40z%22%20fill%3D%22%23fff%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M230%20160h34a22%2022%200%201%201-6%2043%22%20%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M120%2080c-10%2010-5%2020%202%2026M160%2074c-10%2010-5%2020%202%2026M200%2068c-10%2010-5%2020%202%2026%22%2F%3E%0A%20%20%20%20%3C%2Fg%3E%0A%20%20%20%20%3Ctext%20x%3D%2220%22%20y%3D%2235%22%20font-family%3D%22system-ui%2CSegoe%20UI%2CRoboto%22%20font-size%3D%2218%22%20fill%3D%22%237a4b2b%22%3E%E1%BA%A2nh%20minh%20ho%E1%BA%A1%20(demo)%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E%0A" alt="Ảnh minh hoạ cà phê (demo)">
+          </div>
+        </div>
+      </details>
+    </article><article class="faq-item">
+      <details id="uong-ca-phe-co-giup-giam-can-khong" data-anchor="faq/health/uong-ca-phe-co-giup-giam-can-khong">
+        <summary>
+          <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 10l4 4 4-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+          <span class="q">Uống cà phê có giúp giảm cân không?</span>
+        </summary>
+        <div class="answer" bis_skin_checked="1">
+          <div bis_skin_checked="1">
+            <p>Caffeine tăng trao đổi chất/đốt mỡ; nên dùng cà phê đen, không đường để hỗ trợ mục tiêu cân nặng.</p>
+            <p class="note">. Tags: <code>suc khoe, giam can, caffeine</code></p>
+          </div>
+          <div class="imgbox" bis_skin_checked="1">
+            <img class="imgph" src="data:image/svg+xml;utf8,%0A%20%20%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20360%20270%22%3E%0A%20%20%20%20%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20x2%3D%221%22%20y1%3D%220%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23f3ede8%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23e9dfd7%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%0A%20%20%20%20%3Crect%20width%3D%22360%22%20height%3D%22270%22%20fill%3D%22url(%23g)%22%2F%3E%0A%20%20%20%20%3Cg%20fill%3D%22none%22%20stroke%3D%22%237a4b2b%22%20stroke-width%3D%226%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M70%20160h160a40%2040%200%200%201-40%2040H110a40%2040%200%200%201-40-40z%22%20fill%3D%22%23fff%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M230%20160h34a22%2022%200%201%201-6%2043%22%20%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M120%2080c-10%2010-5%2020%202%2026M160%2074c-10%2010-5%2020%202%2026M200%2068c-10%2010-5%2020%202%2026%22%2F%3E%0A%20%20%20%20%3C%2Fg%3E%0A%20%20%20%20%3Ctext%20x%3D%2220%22%20y%3D%2235%22%20font-family%3D%22system-ui%2CSegoe%20UI%2CRoboto%22%20font-size%3D%2218%22%20fill%3D%22%237a4b2b%22%3E%E1%BA%A2nh%20minh%20ho%E1%BA%A1%20(demo)%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E%0A" alt="Ảnh minh hoạ cà phê (demo)">
+          </div>
+        </div>
+      </details>
+    </article><article class="faq-item">
+      <details id="nguoi-co-phinh-mach-nao-co-nen-dung-ca-phe" data-anchor="faq/health/nguoi-co-phinh-mach-nao-co-nen-dung-ca-phe">
+        <summary>
+          <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 10l4 4 4-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+          <span class="q">Người có phình mạch não có nên dùng cà phê?</span>
+        </summary>
+        <div class="answer" bis_skin_checked="1">
+          <div bis_skin_checked="1">
+            <p>Nếu có phình mạch não hãy tham khảo bác sĩ; một số nghiên cứu khuyến cáo tránh kích thích mạnh.</p>
+            <p class="note">. Tags: <code>lam dep, nguy co, mach mau</code></p>
+          </div>
+          <div class="imgbox" bis_skin_checked="1">
+            <img class="imgph" src="data:image/svg+xml;utf8,%0A%20%20%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20360%20270%22%3E%0A%20%20%20%20%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20x2%3D%221%22%20y1%3D%220%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23f3ede8%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23e9dfd7%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%0A%20%20%20%20%3Crect%20width%3D%22360%22%20height%3D%22270%22%20fill%3D%22url(%23g)%22%2F%3E%0A%20%20%20%20%3Cg%20fill%3D%22none%22%20stroke%3D%22%237a4b2b%22%20stroke-width%3D%226%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M70%20160h160a40%2040%200%200%201-40%2040H110a40%2040%200%200%201-40-40z%22%20fill%3D%22%23fff%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M230%20160h34a22%2022%200%201%201-6%2043%22%20%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M120%2080c-10%2010-5%2020%202%2026M160%2074c-10%2010-5%2020%202%2026M200%2068c-10%2010-5%2020%202%2026%22%2F%3E%0A%20%20%20%20%3C%2Fg%3E%0A%20%20%20%20%3Ctext%20x%3D%2220%22%20y%3D%2235%22%20font-family%3D%22system-ui%2CSegoe%20UI%2CRoboto%22%20font-size%3D%2218%22%20fill%3D%22%237a4b2b%22%3E%E1%BA%A2nh%20minh%20ho%E1%BA%A1%20(demo)%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E%0A" alt="Ảnh minh hoạ cà phê (demo)">
+          </div>
+        </div>
+      </details>
+    </article></div></section><section id="panel-benefits" class="group" role="tabpanel" aria-labelledby="tab-benefits" aria-hidden="true"><div class="faq-list" id="list-benefits" bis_skin_checked="1"><article class="faq-item">
+      <details id="ca-phe-giup-tang-nang-luong-va-cai-thien-tri-oc-ra-sao" data-anchor="faq/benefits/ca-phe-giup-tang-nang-luong-va-cai-thien-tri-oc-ra-sao">
+        <summary>
+          <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 10l4 4 4-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+          <span class="q">Cà phê giúp tăng năng lượng và cải thiện trí óc ra sao?</span>
+        </summary>
+        <div class="answer" bis_skin_checked="1">
+          <div bis_skin_checked="1">
+            <p>Caffeine ức chế adenosine, tăng norepinephrine/dopamine → cải thiện năng lượng, tâm trạng, phản ứng.</p>
+            <p class="note">. Tags: <code>loi ich, nang luong, tap trung</code></p>
+          </div>
+          <div class="imgbox" bis_skin_checked="1">
+            <img class="imgph" src="data:image/svg+xml;utf8,%0A%20%20%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20360%20270%22%3E%0A%20%20%20%20%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20x2%3D%221%22%20y1%3D%220%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23f3ede8%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23e9dfd7%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%0A%20%20%20%20%3Crect%20width%3D%22360%22%20height%3D%22270%22%20fill%3D%22url(%23g)%22%2F%3E%0A%20%20%20%20%3Cg%20fill%3D%22none%22%20stroke%3D%22%237a4b2b%22%20stroke-width%3D%226%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M70%20160h160a40%2040%200%200%201-40%2040H110a40%2040%200%200%201-40-40z%22%20fill%3D%22%23fff%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M230%20160h34a22%2022%200%201%201-6%2043%22%20%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M120%2080c-10%2010-5%2020%202%2026M160%2074c-10%2010-5%2020%202%2026M200%2068c-10%2010-5%2020%202%2026%22%2F%3E%0A%20%20%20%20%3C%2Fg%3E%0A%20%20%20%20%3Ctext%20x%3D%2220%22%20y%3D%2235%22%20font-family%3D%22system-ui%2CSegoe%20UI%2CRoboto%22%20font-size%3D%2218%22%20fill%3D%22%237a4b2b%22%3E%E1%BA%A2nh%20minh%20ho%E1%BA%A1%20(demo)%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E%0A" alt="Ảnh minh hoạ cà phê (demo)">
+          </div>
+        </div>
+      </details>
+    </article><article class="faq-item">
+      <details id="ca-phe-co-tac-dung-ot-mo-khong" data-anchor="faq/benefits/ca-phe-co-tac-dung-ot-mo-khong">
+        <summary>
+          <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 10l4 4 4-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+          <span class="q">Cà phê có tác dụng đốt mỡ không?</span>
+        </summary>
+        <div class="answer" bis_skin_checked="1">
+          <div bis_skin_checked="1">
+            <p>Caffeine có thể tăng chuyển hoá 3–11% và tăng đốt mỡ (tuỳ cá thể và thói quen dùng).</p>
+            <p class="note">. Tags: <code>loi ich, dot mo, trao doi chat</code></p>
+          </div>
+          <div class="imgbox" bis_skin_checked="1">
+            <img class="imgph" src="data:image/svg+xml;utf8,%0A%20%20%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20360%20270%22%3E%0A%20%20%20%20%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20x2%3D%221%22%20y1%3D%220%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23f3ede8%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23e9dfd7%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%0A%20%20%20%20%3Crect%20width%3D%22360%22%20height%3D%22270%22%20fill%3D%22url(%23g)%22%2F%3E%0A%20%20%20%20%3Cg%20fill%3D%22none%22%20stroke%3D%22%237a4b2b%22%20stroke-width%3D%226%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M70%20160h160a40%2040%200%200%201-40%2040H110a40%2040%200%200%201-40-40z%22%20fill%3D%22%23fff%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M230%20160h34a22%2022%200%201%201-6%2043%22%20%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M120%2080c-10%2010-5%2020%202%2026M160%2074c-10%2010-5%2020%202%2026M200%2068c-10%2010-5%2020%202%2026%22%2F%3E%0A%20%20%20%20%3C%2Fg%3E%0A%20%20%20%20%3Ctext%20x%3D%2220%22%20y%3D%2235%22%20font-family%3D%22system-ui%2CSegoe%20UI%2CRoboto%22%20font-size%3D%2218%22%20fill%3D%22%237a4b2b%22%3E%E1%BA%A2nh%20minh%20ho%E1%BA%A1%20(demo)%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E%0A" alt="Ảnh minh hoạ cà phê (demo)">
+          </div>
+        </div>
+      </details>
+    </article><article class="faq-item">
+      <details id="mot-tach-ca-phe-cung-cap-duong-chat-gi" data-anchor="faq/benefits/mot-tach-ca-phe-cung-cap-duong-chat-gi">
+        <summary>
+          <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 10l4 4 4-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+          <span class="q">Một tách cà phê cung cấp dưỡng chất gì?</span>
+        </summary>
+        <div class="answer" bis_skin_checked="1">
+          <div bis_skin_checked="1">
+            <p>B2, B5, mangan/kali, magie/B3 với tỷ lệ nhỏ; giàu chất chống oxy hoá.</p>
+            <p class="note">. Tags: <code>loi ich, duong chat, vitamin, antioxidant</code></p>
+          </div>
+          <div class="imgbox" bis_skin_checked="1">
+            <img class="imgph" src="data:image/svg+xml;utf8,%0A%20%20%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20360%20270%22%3E%0A%20%20%20%20%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20x2%3D%221%22%20y1%3D%220%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23f3ede8%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23e9dfd7%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%0A%20%20%20%20%3Crect%20width%3D%22360%22%20height%3D%22270%22%20fill%3D%22url(%23g)%22%2F%3E%0A%20%20%20%20%3Cg%20fill%3D%22none%22%20stroke%3D%22%237a4b2b%22%20stroke-width%3D%226%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M70%20160h160a40%2040%200%200%201-40%2040H110a40%2040%200%200%201-40-40z%22%20fill%3D%22%23fff%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M230%20160h34a22%2022%200%201%201-6%2043%22%20%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M120%2080c-10%2010-5%2020%202%2026M160%2074c-10%2010-5%2020%202%2026M200%2068c-10%2010-5%2020%202%2026%22%2F%3E%0A%20%20%20%20%3C%2Fg%3E%0A%20%20%20%20%3Ctext%20x%3D%2220%22%20y%3D%2235%22%20font-family%3D%22system-ui%2CSegoe%20UI%2CRoboto%22%20font-size%3D%2218%22%20fill%3D%22%237a4b2b%22%3E%E1%BA%A2nh%20minh%20ho%E1%BA%A1%20(demo)%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E%0A" alt="Ảnh minh hoạ cà phê (demo)">
+          </div>
+        </div>
+      </details>
+    </article><article class="faq-item">
+      <details id="ca-phe-co-giam-nguy-co-tieu-uong-tuyp-2" data-anchor="faq/benefits/ca-phe-co-giam-nguy-co-tieu-uong-tuyp-2">
+        <summary>
+          <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 10l4 4 4-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+          <span class="q">Cà phê có giảm nguy cơ tiểu đường tuýp 2?</span>
+        </summary>
+        <div class="answer" bis_skin_checked="1">
+          <div bis_skin_checked="1">
+            <p>Nghiên cứu quan sát cho thấy người uống nhiều cà phê có nguy cơ T2D thấp hơn đáng kể.</p>
+            <p class="note">. Tags: <code>loi ich, tieu duong, t2d</code></p>
+          </div>
+          <div class="imgbox" bis_skin_checked="1">
+            <img class="imgph" src="data:image/svg+xml;utf8,%0A%20%20%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20360%20270%22%3E%0A%20%20%20%20%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20x2%3D%221%22%20y1%3D%220%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23f3ede8%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23e9dfd7%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%0A%20%20%20%20%3Crect%20width%3D%22360%22%20height%3D%22270%22%20fill%3D%22url(%23g)%22%2F%3E%0A%20%20%20%20%3Cg%20fill%3D%22none%22%20stroke%3D%22%237a4b2b%22%20stroke-width%3D%226%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M70%20160h160a40%2040%200%200%201-40%2040H110a40%2040%200%200%201-40-40z%22%20fill%3D%22%23fff%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M230%20160h34a22%2022%200%201%201-6%2043%22%20%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M120%2080c-10%2010-5%2020%202%2026M160%2074c-10%2010-5%2020%202%2026M200%2068c-10%2010-5%2020%202%2026%22%2F%3E%0A%20%20%20%20%3C%2Fg%3E%0A%20%20%20%20%3Ctext%20x%3D%2220%22%20y%3D%2235%22%20font-family%3D%22system-ui%2CSegoe%20UI%2CRoboto%22%20font-size%3D%2218%22%20fill%3D%22%237a4b2b%22%3E%E1%BA%A2nh%20minh%20ho%E1%BA%A1%20(demo)%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E%0A" alt="Ảnh minh hoạ cà phê (demo)">
+          </div>
+        </div>
+      </details>
+    </article><article class="faq-item">
+      <details id="ca-phe-giup-phong-alzheimer-va-parkinson" data-anchor="faq/benefits/ca-phe-giup-phong-alzheimer-va-parkinson">
+        <summary>
+          <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 10l4 4 4-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+          <span class="q">Cà phê giúp phòng Alzheimer và Parkinson?</span>
+        </summary>
+        <div class="answer" bis_skin_checked="1">
+          <div bis_skin_checked="1">
+            <p>Uống điều độ liên hệ với giảm nguy cơ Alzheimer/Parkinson trong nhiều nghiên cứu quan sát.</p>
+            <p class="note">. Tags: <code>loi ich, alzheimer, parkinson</code></p>
+          </div>
+          <div class="imgbox" bis_skin_checked="1">
+            <img class="imgph" src="data:image/svg+xml;utf8,%0A%20%20%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20360%20270%22%3E%0A%20%20%20%20%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20x2%3D%221%22%20y1%3D%220%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23f3ede8%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23e9dfd7%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%0A%20%20%20%20%3Crect%20width%3D%22360%22%20height%3D%22270%22%20fill%3D%22url(%23g)%22%2F%3E%0A%20%20%20%20%3Cg%20fill%3D%22none%22%20stroke%3D%22%237a4b2b%22%20stroke-width%3D%226%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M70%20160h160a40%2040%200%200%201-40%2040H110a40%2040%200%200%201-40-40z%22%20fill%3D%22%23fff%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M230%20160h34a22%2022%200%201%201-6%2043%22%20%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M120%2080c-10%2010-5%2020%202%2026M160%2074c-10%2010-5%2020%202%2026M200%2068c-10%2010-5%2020%202%2026%22%2F%3E%0A%20%20%20%20%3C%2Fg%3E%0A%20%20%20%20%3Ctext%20x%3D%2220%22%20y%3D%2235%22%20font-family%3D%22system-ui%2CSegoe%20UI%2CRoboto%22%20font-size%3D%2218%22%20fill%3D%22%237a4b2b%22%3E%E1%BA%A2nh%20minh%20ho%E1%BA%A1%20(demo)%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E%0A" alt="Ảnh minh hoạ cà phê (demo)">
+          </div>
+        </div>
+      </details>
+    </article><article class="faq-item">
+      <details id="ca-phe-co-loi-cho-gan" data-anchor="faq/benefits/ca-phe-co-loi-cho-gan">
+        <summary>
+          <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 10l4 4 4-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+          <span class="q">Cà phê có lợi cho gan?</span>
+        </summary>
+        <div class="answer" bis_skin_checked="1">
+          <div bis_skin_checked="1">
+            <p>Uống ~4 tách/ngày liên hệ với giảm nguy cơ xơ gan; cà phê bảo vệ gan trong nhiều nghiên cứu.</p>
+            <p class="note">. Tags: <code>loi ich, gan, xo gan</code></p>
+          </div>
+          <div class="imgbox" bis_skin_checked="1">
+            <img class="imgph" src="data:image/svg+xml;utf8,%0A%20%20%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20360%20270%22%3E%0A%20%20%20%20%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20x2%3D%221%22%20y1%3D%220%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23f3ede8%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23e9dfd7%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%0A%20%20%20%20%3Crect%20width%3D%22360%22%20height%3D%22270%22%20fill%3D%22url(%23g)%22%2F%3E%0A%20%20%20%20%3Cg%20fill%3D%22none%22%20stroke%3D%22%237a4b2b%22%20stroke-width%3D%226%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M70%20160h160a40%2040%200%200%201-40%2040H110a40%2040%200%200%201-40-40z%22%20fill%3D%22%23fff%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M230%20160h34a22%2022%200%201%201-6%2043%22%20%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M120%2080c-10%2010-5%2020%202%2026M160%2074c-10%2010-5%2020%202%2026M200%2068c-10%2010-5%2020%202%2026%22%2F%3E%0A%20%20%20%20%3C%2Fg%3E%0A%20%20%20%20%3Ctext%20x%3D%2220%22%20y%3D%2235%22%20font-family%3D%22system-ui%2CSegoe%20UI%2CRoboto%22%20font-size%3D%2218%22%20fill%3D%22%237a4b2b%22%3E%E1%BA%A2nh%20minh%20ho%E1%BA%A1%20(demo)%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E%0A" alt="Ảnh minh hoạ cà phê (demo)">
+          </div>
+        </div>
+      </details>
+    </article><article class="faq-item">
+      <details id="ca-phe-co-giup-chong-tram-cam" data-anchor="faq/benefits/ca-phe-co-giup-chong-tram-cam">
+        <summary>
+          <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 10l4 4 4-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+          <span class="q">Cà phê có giúp chống trầm cảm?</span>
+        </summary>
+        <div class="answer" bis_skin_checked="1">
+          <div bis_skin_checked="1">
+            <p>Một số nghiên cứu cho thấy giảm nguy cơ trầm cảm khi dùng cà phê điều độ (ví dụ ở phụ nữ).</p>
+            <p class="note">. Tags: <code>loi ich, tam ly, tram cam</code></p>
+          </div>
+          <div class="imgbox" bis_skin_checked="1">
+            <img class="imgph" src="data:image/svg+xml;utf8,%0A%20%20%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20360%20270%22%3E%0A%20%20%20%20%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20x2%3D%221%22%20y1%3D%220%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23f3ede8%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23e9dfd7%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%0A%20%20%20%20%3Crect%20width%3D%22360%22%20height%3D%22270%22%20fill%3D%22url(%23g)%22%2F%3E%0A%20%20%20%20%3Cg%20fill%3D%22none%22%20stroke%3D%22%237a4b2b%22%20stroke-width%3D%226%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M70%20160h160a40%2040%200%200%201-40%2040H110a40%2040%200%200%201-40-40z%22%20fill%3D%22%23fff%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M230%20160h34a22%2022%200%201%201-6%2043%22%20%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M120%2080c-10%2010-5%2020%202%2026M160%2074c-10%2010-5%2020%202%2026M200%2068c-10%2010-5%2020%202%2026%22%2F%3E%0A%20%20%20%20%3C%2Fg%3E%0A%20%20%20%20%3Ctext%20x%3D%2220%22%20y%3D%2235%22%20font-family%3D%22system-ui%2CSegoe%20UI%2CRoboto%22%20font-size%3D%2218%22%20fill%3D%22%237a4b2b%22%3E%E1%BA%A2nh%20minh%20ho%E1%BA%A1%20(demo)%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E%0A" alt="Ảnh minh hoạ cà phê (demo)">
+          </div>
+        </div>
+      </details>
+    </article><article class="faq-item">
+      <details id="ca-phe-giup-tang-hieu-suat-the-thao" data-anchor="faq/benefits/ca-phe-giup-tang-hieu-suat-the-thao">
+        <summary>
+          <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 10l4 4 4-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+          <span class="q">Cà phê giúp tăng hiệu suất thể thao?</span>
+        </summary>
+        <div class="answer" bis_skin_checked="1">
+          <div bis_skin_checked="1">
+            <p>Caffeine tăng adrenaline, huy động mỡ → có thể nâng hiệu suất luyện tập.</p>
+            <p class="note">. Tags: <code>loi ich, the thao, tap luyen</code></p>
+          </div>
+          <div class="imgbox" bis_skin_checked="1">
+            <img class="imgph" src="data:image/svg+xml;utf8,%0A%20%20%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20360%20270%22%3E%0A%20%20%20%20%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20x2%3D%221%22%20y1%3D%220%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23f3ede8%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23e9dfd7%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%0A%20%20%20%20%3Crect%20width%3D%22360%22%20height%3D%22270%22%20fill%3D%22url(%23g)%22%2F%3E%0A%20%20%20%20%3Cg%20fill%3D%22none%22%20stroke%3D%22%237a4b2b%22%20stroke-width%3D%226%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M70%20160h160a40%2040%200%200%201-40%2040H110a40%2040%200%200%201-40-40z%22%20fill%3D%22%23fff%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M230%20160h34a22%2022%200%201%201-6%2043%22%20%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M120%2080c-10%2010-5%2020%202%2026M160%2074c-10%2010-5%2020%202%2026M200%2068c-10%2010-5%2020%202%2026%22%2F%3E%0A%20%20%20%20%3C%2Fg%3E%0A%20%20%20%20%3Ctext%20x%3D%2220%22%20y%3D%2235%22%20font-family%3D%22system-ui%2CSegoe%20UI%2CRoboto%22%20font-size%3D%2218%22%20fill%3D%22%237a4b2b%22%3E%E1%BA%A2nh%20minh%20ho%E1%BA%A1%20(demo)%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E%0A" alt="Ảnh minh hoạ cà phê (demo)">
+          </div>
+        </div>
+      </details>
+    </article><article class="faq-item">
+      <details id="ca-phe-co-giup-song-tho-hon" data-anchor="faq/benefits/ca-phe-co-giup-song-tho-hon">
+        <summary>
+          <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 10l4 4 4-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+          <span class="q">Cà phê có giúp sống thọ hơn?</span>
+        </summary>
+        <div class="answer" bis_skin_checked="1">
+          <div bis_skin_checked="1">
+            <p>Do liên hệ giảm nguy cơ nhiều bệnh, cà phê điều độ thường gắn với tăng tuổi thọ trong quan sát.</p>
+            <p class="note">. Tags: <code>loi ich, tuoi tho</code></p>
+          </div>
+          <div class="imgbox" bis_skin_checked="1">
+            <img class="imgph" src="data:image/svg+xml;utf8,%0A%20%20%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20360%20270%22%3E%0A%20%20%20%20%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20x2%3D%221%22%20y1%3D%220%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23f3ede8%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23e9dfd7%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%0A%20%20%20%20%3Crect%20width%3D%22360%22%20height%3D%22270%22%20fill%3D%22url(%23g)%22%2F%3E%0A%20%20%20%20%3Cg%20fill%3D%22none%22%20stroke%3D%22%237a4b2b%22%20stroke-width%3D%226%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M70%20160h160a40%2040%200%200%201-40%2040H110a40%2040%200%200%201-40-40z%22%20fill%3D%22%23fff%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M230%20160h34a22%2022%200%201%201-6%2043%22%20%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M120%2080c-10%2010-5%2020%202%2026M160%2074c-10%2010-5%2020%202%2026M200%2068c-10%2010-5%2020%202%2026%22%2F%3E%0A%20%20%20%20%3C%2Fg%3E%0A%20%20%20%20%3Ctext%20x%3D%2220%22%20y%3D%2235%22%20font-family%3D%22system-ui%2CSegoe%20UI%2CRoboto%22%20font-size%3D%2218%22%20fill%3D%22%237a4b2b%22%3E%E1%BA%A2nh%20minh%20ho%E1%BA%A1%20(demo)%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E%0A" alt="Ảnh minh hoạ cà phê (demo)">
+          </div>
+        </div>
+      </details>
+    </article></div></section><section id="panel-beauty" class="group" role="tabpanel" aria-labelledby="tab-beauty" aria-hidden="true"><div class="faq-list" id="list-beauty" bis_skin_checked="1"><article class="faq-item">
+      <details id="ca-phe-co-lam-da-xau-i" data-anchor="faq/beauty/ca-phe-co-lam-da-xau-i">
+        <summary>
+          <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 10l4 4 4-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+          <span class="q">Cà phê có làm da xấu đi?</span>
+        </summary>
+        <div class="answer" bis_skin_checked="1">
+          <div bis_skin_checked="1">
+            <p>Dùng quá mức có thể khô da do lợi tiểu; uống đủ nước và hạn chế đường/sữa khi muốn giữ da đẹp.</p>
+            <p class="note">. Tags: <code>lam dep, da, duong nuoc</code></p>
+          </div>
+          <div class="imgbox" bis_skin_checked="1">
+            <img class="imgph" src="data:image/svg+xml;utf8,%0A%20%20%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20360%20270%22%3E%0A%20%20%20%20%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20x2%3D%221%22%20y1%3D%220%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23f3ede8%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23e9dfd7%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%0A%20%20%20%20%3Crect%20width%3D%22360%22%20height%3D%22270%22%20fill%3D%22url(%23g)%22%2F%3E%0A%20%20%20%20%3Cg%20fill%3D%22none%22%20stroke%3D%22%237a4b2b%22%20stroke-width%3D%226%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M70%20160h160a40%2040%200%200%201-40%2040H110a40%2040%200%200%201-40-40z%22%20fill%3D%22%23fff%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M230%20160h34a22%2022%200%201%201-6%2043%22%20%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M120%2080c-10%2010-5%2020%202%2026M160%2074c-10%2010-5%2020%202%2026M200%2068c-10%2010-5%2020%202%2026%22%2F%3E%0A%20%20%20%20%3C%2Fg%3E%0A%20%20%20%20%3Ctext%20x%3D%2220%22%20y%3D%2235%22%20font-family%3D%22system-ui%2CSegoe%20UI%2CRoboto%22%20font-size%3D%2218%22%20fill%3D%22%237a4b2b%22%3E%E1%BA%A2nh%20minh%20ho%E1%BA%A1%20(demo)%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E%0A" alt="Ảnh minh hoạ cà phê (demo)">
+          </div>
+        </div>
+      </details>
+    </article><article class="faq-item">
+      <details id="ba-ca-phe-dung-tay-te-bao-chetmat-na-da" data-anchor="faq/beauty/ba-ca-phe-dung-tay-te-bao-chetmat-na-da">
+        <summary>
+          <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 10l4 4 4-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+          <span class="q">Bã cà phê dùng tẩy tế bào chết/mặt nạ da?</span>
+        </summary>
+        <div class="answer" bis_skin_checked="1">
+          <div bis_skin_checked="1">
+            <p>Trộn bã với dầu ôliu/sữa chua, đắp 20–30 phút rồi rửa sạch; giúp da mịn và hồng hào hơn.</p>
+            <p class="note">. Tags: <code>ba, tay te bao chet, mat na, da</code></p>
+          </div>
+          <div class="imgbox" bis_skin_checked="1">
+            <img class="imgph" src="data:image/svg+xml;utf8,%0A%20%20%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20360%20270%22%3E%0A%20%20%20%20%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20x2%3D%221%22%20y1%3D%220%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23f3ede8%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23e9dfd7%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%0A%20%20%20%20%3Crect%20width%3D%22360%22%20height%3D%22270%22%20fill%3D%22url(%23g)%22%2F%3E%0A%20%20%20%20%3Cg%20fill%3D%22none%22%20stroke%3D%22%237a4b2b%22%20stroke-width%3D%226%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M70%20160h160a40%2040%200%200%201-40%2040H110a40%2040%200%200%201-40-40z%22%20fill%3D%22%23fff%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M230%20160h34a22%2022%200%201%201-6%2043%22%20%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M120%2080c-10%2010-5%2020%202%2026M160%2074c-10%2010-5%2020%202%2026M200%2068c-10%2010-5%2020%202%2026%22%2F%3E%0A%20%20%20%20%3C%2Fg%3E%0A%20%20%20%20%3Ctext%20x%3D%2220%22%20y%3D%2235%22%20font-family%3D%22system-ui%2CSegoe%20UI%2CRoboto%22%20font-size%3D%2218%22%20fill%3D%22%237a4b2b%22%3E%E1%BA%A2nh%20minh%20ho%E1%BA%A1%20(demo)%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E%0A" alt="Ảnh minh hoạ cà phê (demo)">
+          </div>
+        </div>
+      </details>
+    </article></div></section><section id="panel-grounds" class="group" role="tabpanel" aria-labelledby="tab-grounds" aria-hidden="true"><div class="faq-list" id="list-grounds" bis_skin_checked="1"><article class="faq-item">
+      <details id="ba-ca-phe-co-khu-mui-uoc-khong" data-anchor="faq/grounds/ba-ca-phe-co-khu-mui-uoc-khong">
+        <summary>
+          <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 10l4 4 4-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+          <span class="q">Bã cà phê có khử mùi được không?</span>
+        </summary>
+        <div class="answer" bis_skin_checked="1">
+          <div bis_skin_checked="1">
+            <p>Có — phơi khô và đặt tủ lạnh/giày/nhà vệ sinh; có thể chà tay khử mùi hành tỏi.</p>
+            <p class="note">. Tags: <code>ba, khu mui</code></p>
+          </div>
+          <div class="imgbox" bis_skin_checked="1">
+            <img class="imgph" src="data:image/svg+xml;utf8,%0A%20%20%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20360%20270%22%3E%0A%20%20%20%20%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20x2%3D%221%22%20y1%3D%220%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23f3ede8%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23e9dfd7%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%0A%20%20%20%20%3Crect%20width%3D%22360%22%20height%3D%22270%22%20fill%3D%22url(%23g)%22%2F%3E%0A%20%20%20%20%3Cg%20fill%3D%22none%22%20stroke%3D%22%237a4b2b%22%20stroke-width%3D%226%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M70%20160h160a40%2040%200%200%201-40%2040H110a40%2040%200%200%201-40-40z%22%20fill%3D%22%23fff%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M230%20160h34a22%2022%200%201%201-6%2043%22%20%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M120%2080c-10%2010-5%2020%202%2026M160%2074c-10%2010-5%2020%202%2026M200%2068c-10%2010-5%2020%202%2026%22%2F%3E%0A%20%20%20%20%3C%2Fg%3E%0A%20%20%20%20%3Ctext%20x%3D%2220%22%20y%3D%2235%22%20font-family%3D%22system-ui%2CSegoe%20UI%2CRoboto%22%20font-size%3D%2218%22%20fill%3D%22%237a4b2b%22%3E%E1%BA%A2nh%20minh%20ho%E1%BA%A1%20(demo)%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E%0A" alt="Ảnh minh hoạ cà phê (demo)">
+          </div>
+        </div>
+      </details>
+    </article><article class="faq-item">
+      <details id="ba-ca-phe-uoi-kiencon-trung-uoc-khong" data-anchor="faq/grounds/ba-ca-phe-uoi-kiencon-trung-uoc-khong">
+        <summary>
+          <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 10l4 4 4-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+          <span class="q">Bã cà phê đuổi kiến/côn trùng được không?</span>
+        </summary>
+        <div class="answer" bis_skin_checked="1">
+          <div bis_skin_checked="1">
+            <p>Rắc bã ở lối kiến vào nhà hoặc tổ kiến — nhiều người dùng vì kiến ngại bã cà phê.</p>
+            <p class="note">. Tags: <code>ba, kien, con trung</code></p>
+          </div>
+          <div class="imgbox" bis_skin_checked="1">
+            <img class="imgph" src="data:image/svg+xml;utf8,%0A%20%20%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20360%20270%22%3E%0A%20%20%20%20%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20x2%3D%221%22%20y1%3D%220%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23f3ede8%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23e9dfd7%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%0A%20%20%20%20%3Crect%20width%3D%22360%22%20height%3D%22270%22%20fill%3D%22url(%23g)%22%2F%3E%0A%20%20%20%20%3Cg%20fill%3D%22none%22%20stroke%3D%22%237a4b2b%22%20stroke-width%3D%226%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M70%20160h160a40%2040%200%200%201-40%2040H110a40%2040%200%200%201-40-40z%22%20fill%3D%22%23fff%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M230%20160h34a22%2022%200%201%201-6%2043%22%20%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M120%2080c-10%2010-5%2020%202%2026M160%2074c-10%2010-5%2020%202%2026M200%2068c-10%2010-5%2020%202%2026%22%2F%3E%0A%20%20%20%20%3C%2Fg%3E%0A%20%20%20%20%3Ctext%20x%3D%2220%22%20y%3D%2235%22%20font-family%3D%22system-ui%2CSegoe%20UI%2CRoboto%22%20font-size%3D%2218%22%20fill%3D%22%237a4b2b%22%3E%E1%BA%A2nh%20minh%20ho%E1%BA%A1%20(demo)%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E%0A" alt="Ảnh minh hoạ cà phê (demo)">
+          </div>
+        </div>
+      </details>
+    </article><article class="faq-item">
+      <details id="dung-ba-ca-phe-chai-long-cho-thu-cung" data-anchor="faq/grounds/dung-ba-ca-phe-chai-long-cho-thu-cung">
+        <summary>
+          <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 10l4 4 4-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+          <span class="q">Dùng bã cà phê chải lông cho thú cưng?</span>
+        </summary>
+        <div class="answer" bis_skin_checked="1">
+          <div bis_skin_checked="1">
+            <p>Trộn bã với nước rồi xoa lên lông để làm mềm và bóng; có người dùng để hỗ trợ trị bọ chét.</p>
+            <p class="note">. Tags: <code>ba, thu cung, toc long</code></p>
+          </div>
+          <div class="imgbox" bis_skin_checked="1">
+            <img class="imgph" src="data:image/svg+xml;utf8,%0A%20%20%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20360%20270%22%3E%0A%20%20%20%20%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20x2%3D%221%22%20y1%3D%220%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23f3ede8%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23e9dfd7%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%0A%20%20%20%20%3Crect%20width%3D%22360%22%20height%3D%22270%22%20fill%3D%22url(%23g)%22%2F%3E%0A%20%20%20%20%3Cg%20fill%3D%22none%22%20stroke%3D%22%237a4b2b%22%20stroke-width%3D%226%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M70%20160h160a40%2040%200%200%201-40%2040H110a40%2040%200%200%201-40-40z%22%20fill%3D%22%23fff%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M230%20160h34a22%2022%200%201%201-6%2043%22%20%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M120%2080c-10%2010-5%2020%202%2026M160%2074c-10%2010-5%2020%202%2026M200%2068c-10%2010-5%2020%202%2026%22%2F%3E%0A%20%20%20%20%3C%2Fg%3E%0A%20%20%20%20%3Ctext%20x%3D%2220%22%20y%3D%2235%22%20font-family%3D%22system-ui%2CSegoe%20UI%2CRoboto%22%20font-size%3D%2218%22%20fill%3D%22%237a4b2b%22%3E%E1%BA%A2nh%20minh%20ho%E1%BA%A1%20(demo)%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E%0A" alt="Ảnh minh hoạ cà phê (demo)">
+          </div>
+        </div>
+      </details>
+    </article><article class="faq-item">
+      <details id="ba-ca-phe-co-lam-sach-chai-lo-mieng-hep" data-anchor="faq/grounds/ba-ca-phe-co-lam-sach-chai-lo-mieng-hep">
+        <summary>
+          <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 10l4 4 4-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+          <span class="q">Bã cà phê có làm sạch chai lọ miệng hẹp?</span>
+        </summary>
+        <div class="answer" bis_skin_checked="1">
+          <div bis_skin_checked="1">
+            <p>Cho bã và nước vào chai, lắc mạnh để cọ rửa bên trong rồi tráng sạch.</p>
+            <p class="note">. Tags: <code>ba, lam sach, chai lo</code></p>
+          </div>
+          <div class="imgbox" bis_skin_checked="1">
+            <img class="imgph" src="data:image/svg+xml;utf8,%0A%20%20%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20360%20270%22%3E%0A%20%20%20%20%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20x2%3D%221%22%20y1%3D%220%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23f3ede8%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23e9dfd7%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%0A%20%20%20%20%3Crect%20width%3D%22360%22%20height%3D%22270%22%20fill%3D%22url(%23g)%22%2F%3E%0A%20%20%20%20%3Cg%20fill%3D%22none%22%20stroke%3D%22%237a4b2b%22%20stroke-width%3D%226%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M70%20160h160a40%2040%200%200%201-40%2040H110a40%2040%200%200%201-40-40z%22%20fill%3D%22%23fff%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M230%20160h34a22%2022%200%201%201-6%2043%22%20%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M120%2080c-10%2010-5%2020%202%2026M160%2074c-10%2010-5%2020%202%2026M200%2068c-10%2010-5%2020%202%2026%22%2F%3E%0A%20%20%20%20%3C%2Fg%3E%0A%20%20%20%20%3Ctext%20x%3D%2220%22%20y%3D%2235%22%20font-family%3D%22system-ui%2CSegoe%20UI%2CRoboto%22%20font-size%3D%2218%22%20fill%3D%22%237a4b2b%22%3E%E1%BA%A2nh%20minh%20ho%E1%BA%A1%20(demo)%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E%0A" alt="Ảnh minh hoạ cà phê (demo)">
+          </div>
+        </div>
+      </details>
+    </article><article class="faq-item">
+      <details id="ba-ca-phe-co-lam-phan-bon" data-anchor="faq/grounds/ba-ca-phe-co-lam-phan-bon">
+        <summary>
+          <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 10l4 4 4-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+          <span class="q">Bã cà phê có làm phân bón?</span>
+        </summary>
+        <div class="answer" bis_skin_checked="1">
+          <div bis_skin_checked="1">
+            <p>Trộn bã vào đất giúp đất tơi xốp và hơi chua, cây hấp thụ dinh dưỡng tốt hơn.</p>
+            <p class="note">. Tags: <code>ba, phan bon, vuon</code></p>
+          </div>
+          <div class="imgbox" bis_skin_checked="1">
+            <img class="imgph" src="data:image/svg+xml;utf8,%0A%20%20%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20360%20270%22%3E%0A%20%20%20%20%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20x2%3D%221%22%20y1%3D%220%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23f3ede8%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23e9dfd7%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%0A%20%20%20%20%3Crect%20width%3D%22360%22%20height%3D%22270%22%20fill%3D%22url(%23g)%22%2F%3E%0A%20%20%20%20%3Cg%20fill%3D%22none%22%20stroke%3D%22%237a4b2b%22%20stroke-width%3D%226%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M70%20160h160a40%2040%200%200%201-40%2040H110a40%2040%200%200%201-40-40z%22%20fill%3D%22%23fff%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M230%20160h34a22%2022%200%201%201-6%2043%22%20%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M120%2080c-10%2010-5%2020%202%2026M160%2074c-10%2010-5%2020%202%2026M200%2068c-10%2010-5%2020%202%2026%22%2F%3E%0A%20%20%20%20%3C%2Fg%3E%0A%20%20%20%20%3Ctext%20x%3D%2220%22%20y%3D%2235%22%20font-family%3D%22system-ui%2CSegoe%20UI%2CRoboto%22%20font-size%3D%2218%22%20fill%3D%22%237a4b2b%22%3E%E1%BA%A2nh%20minh%20ho%E1%BA%A1%20(demo)%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E%0A" alt="Ảnh minh hoạ cà phê (demo)">
+          </div>
+        </div>
+      </details>
+    </article><article class="faq-item">
+      <details id="ba-ca-phe-lam-toc-bong-muot" data-anchor="faq/grounds/ba-ca-phe-lam-toc-bong-muot">
+        <summary>
+          <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 10l4 4 4-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+          <span class="q">Bã cà phê làm tóc bóng mượt?</span>
+        </summary>
+        <div class="answer" bis_skin_checked="1">
+          <div bis_skin_checked="1">
+            <p>Xát bã lên tóc ướt vài phút rồi xả</p>
+            <p class="note">. Tags: <code>ba, toc, bong muot</code></p>
+          </div>
+          <div class="imgbox" bis_skin_checked="1">
+            <img class="imgph" src="data:image/svg+xml;utf8,%0A%20%20%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20360%20270%22%3E%0A%20%20%20%20%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20x2%3D%221%22%20y1%3D%220%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23f3ede8%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23e9dfd7%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%0A%20%20%20%20%3Crect%20width%3D%22360%22%20height%3D%22270%22%20fill%3D%22url(%23g)%22%2F%3E%0A%20%20%20%20%3Cg%20fill%3D%22none%22%20stroke%3D%22%237a4b2b%22%20stroke-width%3D%226%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M70%20160h160a40%2040%200%200%201-40%2040H110a40%2040%200%200%201-40-40z%22%20fill%3D%22%23fff%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M230%20160h34a22%2022%200%201%201-6%2043%22%20%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M120%2080c-10%2010-5%2020%202%2026M160%2074c-10%2010-5%2020%202%2026M200%2068c-10%2010-5%2020%202%2026%22%2F%3E%0A%20%20%20%20%3C%2Fg%3E%0A%20%20%20%20%3Ctext%20x%3D%2220%22%20y%3D%2235%22%20font-family%3D%22system-ui%2CSegoe%20UI%2CRoboto%22%20font-size%3D%2218%22%20fill%3D%22%237a4b2b%22%3E%E1%BA%A2nh%20minh%20ho%E1%BA%A1%20(demo)%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E%0A" alt="Ảnh minh hoạ cà phê (demo)">
+          </div>
+        </div>
+      </details>
+    </article><article class="faq-item">
+      <details id="co-the-dung-ba-ca-phe-lam-thuoc-nhuom" data-anchor="faq/grounds/co-the-dung-ba-ca-phe-lam-thuoc-nhuom">
+        <summary>
+          <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 10l4 4 4-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+          <span class="q">Có thể dùng bã cà phê làm thuốc nhuộm?</span>
+        </summary>
+        <div class="answer" bis_skin_checked="1">
+          <div bis_skin_checked="1">
+            <p>Đổ nước sôi vào bã để tạo màu nâu dùng nhuộm vải hoặc cho các dự án thủ công.</p>
+            <p class="note">. Tags: <code>ba, nhuom, thu cong</code></p>
+          </div>
+          <div class="imgbox" bis_skin_checked="1">
+            <img class="imgph" src="data:image/svg+xml;utf8,%0A%20%20%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20360%20270%22%3E%0A%20%20%20%20%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20x2%3D%221%22%20y1%3D%220%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23f3ede8%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23e9dfd7%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%0A%20%20%20%20%3Crect%20width%3D%22360%22%20height%3D%22270%22%20fill%3D%22url(%23g)%22%2F%3E%0A%20%20%20%20%3Cg%20fill%3D%22none%22%20stroke%3D%22%237a4b2b%22%20stroke-width%3D%226%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M70%20160h160a40%2040%200%200%201-40%2040H110a40%2040%200%200%201-40-40z%22%20fill%3D%22%23fff%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M230%20160h34a22%2022%200%201%201-6%2043%22%20%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M120%2080c-10%2010-5%2020%202%2026M160%2074c-10%2010-5%2020%202%2026M200%2068c-10%2010-5%2020%202%2026%22%2F%3E%0A%20%20%20%20%3C%2Fg%3E%0A%20%20%20%20%3Ctext%20x%3D%2220%22%20y%3D%2235%22%20font-family%3D%22system-ui%2CSegoe%20UI%2CRoboto%22%20font-size%3D%2218%22%20fill%3D%22%237a4b2b%22%3E%E1%BA%A2nh%20minh%20ho%E1%BA%A1%20(demo)%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E%0A" alt="Ảnh minh hoạ cà phê (demo)">
+          </div>
+        </div>
+      </details>
+    </article><article class="faq-item">
+      <details id="ba-ca-phe-giup-giam-tham-quang-mat" data-anchor="faq/grounds/ba-ca-phe-giup-giam-tham-quang-mat">
+        <summary>
+          <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 10l4 4 4-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+          <span class="q">Bã cà phê giúp giảm thâm quầng mắt?</span>
+        </summary>
+        <div class="answer" bis_skin_checked="1">
+          <div bis_skin_checked="1">
+            <p>Caffeine trong bã hỗ trợ tuần hoàn và chống viêm; dùng đều giúp giảm sưng/thâm quanh mắt.</p>
+            <p class="note">. Tags: <code>ba, mat tham, chong viem</code></p>
+          </div>
+          <div class="imgbox" bis_skin_checked="1">
+            <img class="imgph" src="data:image/svg+xml;utf8,%0A%20%20%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20360%20270%22%3E%0A%20%20%20%20%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20x2%3D%221%22%20y1%3D%220%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23f3ede8%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23e9dfd7%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%0A%20%20%20%20%3Crect%20width%3D%22360%22%20height%3D%22270%22%20fill%3D%22url(%23g)%22%2F%3E%0A%20%20%20%20%3Cg%20fill%3D%22none%22%20stroke%3D%22%237a4b2b%22%20stroke-width%3D%226%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M70%20160h160a40%2040%200%200%201-40%2040H110a40%2040%200%200%201-40-40z%22%20fill%3D%22%23fff%22%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M230%20160h34a22%2022%200%201%201-6%2043%22%20%2F%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M120%2080c-10%2010-5%2020%202%2026M160%2074c-10%2010-5%2020%202%2026M200%2068c-10%2010-5%2020%202%2026%22%2F%3E%0A%20%20%20%20%3C%2Fg%3E%0A%20%20%20%20%3Ctext%20x%3D%2220%22%20y%3D%2235%22%20font-family%3D%22system-ui%2CSegoe%20UI%2CRoboto%22%20font-size%3D%2218%22%20fill%3D%22%237a4b2b%22%3E%E1%BA%A2nh%20minh%20ho%E1%BA%A1%20(demo)%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E%0A" alt="Ảnh minh hoạ cà phê (demo)">
+          </div>
+        </div>
+      </details>
+    </article></div></section></div>
 </div>
 
 <script>
@@ -423,7 +1217,8 @@ openFromHash();
   s.textContent = JSON.stringify(schema);
   document.body.appendChild(s);
 })();
-</script>
-</body>
-</html>
+</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Hạt cà phê giữ được bao lâu và bảo quản thế nào?","acceptedAnswer":{"@type":"Answer","text":"Giữ trong hộp kín, nơi khô mát tránh ánh sáng; 6–12 tháng, ngon nhất 3–6 tháng sau rang."}},{"@type":"Question","name":"Cà phê xay sử dụng được bao lâu?","acceptedAnswer":{"@type":"Answer","text":"3–6 tháng nếu kín khí; ngon nhất 1–2 tháng sau khi xay; tránh không khí, ánh sáng, ẩm."}},{"@type":"Question","name":"Cà phê hoà tan có thể để lâu không?","acceptedAnswer":{"@type":"Answer","text":"Có, thường 1–2 năm; giữ trong bao bì gốc/hộp kín, nơi khô mát."}},{"@type":"Question","name":"Cà phê pha phin hoặc espresso còn thừa nên làm gì?","acceptedAnswer":{"@type":"Answer","text":"Lý tưởng uống ngay; nếu dư, cho vào hộp kín, dùng trong 1–2 tuần (tốt nhất là dùng sớm)."}},{"@type":"Question","name":"Cold brew giữ được bao lâu?","acceptedAnswer":{"@type":"Answer","text":"Bảo quản lạnh dùng trong ~1 tuần; có thể đông lạnh trong hộp kín để giữ lâu hơn."}},{"@type":"Question","name":"Có nên để cà phê trong tủ lạnh?","acceptedAnswer":{"@type":"Answer","text":"Không; độ ẩm làm giảm hương. Hãy dùng hộp kín, tránh ẩm/nhiệt/ánh sáng."}},{"@type":"Question","name":"Bảo quản cà phê sau khi mở gói thế nào?","acceptedAnswer":{"@type":"Answer","text":"Dùng hộp kín/hút chân không, để nơi khô mát; xay tới đâu dùng tới đó; mua lượng nhỏ."}},{"@type":"Question","name":"Nên mua hạt hay cà phê xay sẵn?","acceptedAnswer":{"@type":"Answer","text":"Hạt giữ hương lâu, nên xay trước khi pha; xay sẵn tiện nhưng nên dùng trong 1–2 tháng."}},{"@type":"Question","name":"Những ai nên hạn chế hoặc tránh uống cà phê?","acceptedAnswer":{"@type":"Answer","text":"Người đau dạ dày, viêm tụy, tăng nhãn áp, rối loạn giấc ngủ/lo âu, bệnh tim, IBS; trẻ em, phụ nữ đang hành kinh nên thận trọng."}},{"@type":"Question","name":"Uống cà phê có tác dụng phụ gì?","acceptedAnswer":{"@type":"Answer","text":"Có thể gây tiêu chảy, mất ngủ, tăng axit dạ dày; uống khi đói dễ kích thích ruột."}},{"@type":"Question","name":"Bao nhiêu caffeine mỗi ngày là an toàn?","acceptedAnswer":{"@type":"Answer","text":"Xấp xỉ tối đa ~400 mg/ngày ở người trưởng thành khoẻ mạnh (tuỳ nhạy cảm & bệnh nền)."}},{"@type":"Question","name":"Uống cà phê khi nào ảnh hưởng giấc ngủ?","acceptedAnswer":{"@type":"Answer","text":"Tránh dùng caffeine trong vòng 6 giờ trước khi ngủ để hạn chế ảnh hưởng tới giấc ngủ."}},{"@type":"Question","name":"Cà phê ảnh hưởng huyết áp và tim mạch ra sao?","acceptedAnswer":{"@type":"Answer","text":"Có thể tăng huyết áp/nhịp tim tạm thời; người bệnh tim nên hỏi bác sĩ và hạn chế lượng dùng."}},{"@type":"Question","name":"Uống nhiều cà phê có gây loãng xương?","acceptedAnswer":{"@type":"Answer","text":"Caffeine có thể tăng bài tiết canxi; dùng nhiều có nguy cơ mất xương — nên giới hạn và bổ sung canxi."}},{"@type":"Question","name":"Có nên uống cà phê khi mang thai?","acceptedAnswer":{"@type":"Answer","text":"Thai phụ nên giới hạn 1–2 ly nhỏ/ngày và tham khảo ý kiến bác sĩ."}},{"@type":"Question","name":"Uống cà phê có giúp giảm cân không?","acceptedAnswer":{"@type":"Answer","text":"Caffeine tăng trao đổi chất/đốt mỡ; nên dùng cà phê đen, không đường để hỗ trợ mục tiêu cân nặng."}},{"@type":"Question","name":"Cà phê giúp tăng năng lượng và cải thiện trí óc ra sao?","acceptedAnswer":{"@type":"Answer","text":"Caffeine ức chế adenosine, tăng norepinephrine/dopamine → cải thiện năng lượng, tâm trạng, phản ứng."}},{"@type":"Question","name":"Cà phê có tác dụng đốt mỡ không?","acceptedAnswer":{"@type":"Answer","text":"Caffeine có thể tăng chuyển hoá 3–11% và tăng đốt mỡ (tuỳ cá thể và thói quen dùng)."}},{"@type":"Question","name":"Một tách cà phê cung cấp dưỡng chất gì?","acceptedAnswer":{"@type":"Answer","text":"B2, B5, mangan/kali, magie/B3 với tỷ lệ nhỏ; giàu chất chống oxy hoá."}},{"@type":"Question","name":"Cà phê có giảm nguy cơ tiểu đường tuýp 2?","acceptedAnswer":{"@type":"Answer","text":"Nghiên cứu quan sát cho thấy người uống nhiều cà phê có nguy cơ T2D thấp hơn đáng kể."}},{"@type":"Question","name":"Cà phê giúp phòng Alzheimer và Parkinson?","acceptedAnswer":{"@type":"Answer","text":"Uống điều độ liên hệ với giảm nguy cơ Alzheimer/Parkinson trong nhiều nghiên cứu quan sát."}},{"@type":"Question","name":"Cà phê có lợi cho gan?","acceptedAnswer":{"@type":"Answer","text":"Uống ~4 tách/ngày liên hệ với giảm nguy cơ xơ gan; cà phê bảo vệ gan trong nhiều nghiên cứu."}},{"@type":"Question","name":"Cà phê có giúp chống trầm cảm?","acceptedAnswer":{"@type":"Answer","text":"Một số nghiên cứu cho thấy giảm nguy cơ trầm cảm khi dùng cà phê điều độ (ví dụ ở phụ nữ)."}},{"@type":"Question","name":"Cà phê giảm nguy cơ ung thư nào?","acceptedAnswer":{"@type":"Answer","text":"Liên hệ giảm nguy cơ ung thư gan và đại trực tràng trong nhiều nghiên cứu tổng hợp."}},{"@type":"Question","name":"Cà phê giúp tăng hiệu suất thể thao?","acceptedAnswer":{"@type":"Answer","text":"Caffeine tăng adrenaline, huy động mỡ → có thể nâng hiệu suất luyện tập."}},{"@type":"Question","name":"Cà phê có giúp sống thọ hơn?","acceptedAnswer":{"@type":"Answer","text":"Do liên hệ giảm nguy cơ nhiều bệnh, cà phê điều độ thường gắn với tăng tuổi thọ trong quan sát."}},{"@type":"Question","name":"Cà phê Arabica và Robusta khác nhau thế nào?","acceptedAnswer":{"@type":"Answer","text":"Arabica hương thanh, hậu ngọt; Robusta đậm đắng, nhiều caffeine; Arabica chiếm phần lớn sản lượng."}},{"@type":"Question","name":"Cà phê nguyên chất là gì?","acceptedAnswer":{"@type":"Answer","text":"Không pha tạp, không hoá chất; bột tơi nhẹ, mùi tự nhiên, bọt mỏng tan nhanh khi pha."}},{"@type":"Question","name":"Cà phê decaf là gì và làm thế nào?","acceptedAnswer":{"@type":"Answer","text":"Khử bớt caffeine từ hạt xanh bằng nước/dung môi; giữ phần lớn hương vị tự nhiên."}},{"@type":"Question","name":"Có những phương pháp pha cà phê nào?","acceptedAnswer":{"@type":"Answer","text":"Đun sôi (Turkish), ngâm (French press), áp suất (espresso), nhỏ giọt (drip/percolator)."}},{"@type":"Question","name":"Tỷ lệ pha chuẩn (phin / pour-over / espresso)?","acceptedAnswer":{"@type":"Answer","text":"Phin: 18–22g/180–200ml • Pour-over: 1:15–17 • Espresso: 18g → 30–40ml."}},{"@type":"Question","name":"Nhiệt độ nước lý tưởng để chiết xuất cà phê?","acceptedAnswer":{"@type":"Answer","text":"Khoảng 91–96°C; quá sôi dễ đắng, quá nguội làm nhạt và thiếu hương."}},{"@type":"Question","name":"Khác biệt giữa phin, pour-over và espresso?","acceptedAnswer":{"@type":"Answer","text":"Phin: đậm chậm; Pour-over: sáng thanh; Espresso: cô đặc — nền latte/cappuccino."}},{"@type":"Question","name":"Giảm vị đắng hoặc chua như thế nào khi pha?","acceptedAnswer":{"@type":"Answer","text":"Đắng: rang nhạt hơn, hạ nhiệt, rút ngắn thời gian. Chua: rang đậm hơn, tăng nhiệt, kéo dài thời gian."}},{"@type":"Question","name":"Uống cà phê đen có giúp giữ dáng?","acceptedAnswer":{"@type":"Answer","text":"Một tách đen ~2 calo & giàu chất chống oxy hoá; dùng trước tập giúp bền sức và đốt calo tốt hơn."}},{"@type":"Question","name":"Cà phê có giúp phấn chấn khi làm việc?","acceptedAnswer":{"@type":"Answer","text":"Có — hỗ trợ tâm trạng và tập trung nếu dùng hợp lý, tránh quá liều gây mất ngủ."}},{"@type":"Question","name":"Người có phình mạch não có nên dùng cà phê?","acceptedAnswer":{"@type":"Answer","text":"Nếu có phình mạch não hãy tham khảo bác sĩ; một số nghiên cứu khuyến cáo tránh kích thích mạnh."}},{"@type":"Question","name":"Cà phê có làm da xấu đi?","acceptedAnswer":{"@type":"Answer","text":"Dùng quá mức có thể khô da do lợi tiểu; uống đủ nước và hạn chế đường/sữa khi muốn giữ da đẹp."}},{"@type":"Question","name":"Bã cà phê có khử mùi được không?","acceptedAnswer":{"@type":"Answer","text":"Có — phơi khô và đặt tủ lạnh/giày/nhà vệ sinh; có thể chà tay khử mùi hành tỏi."}},{"@type":"Question","name":"Bã cà phê dùng tẩy tế bào chết/mặt nạ da?","acceptedAnswer":{"@type":"Answer","text":"Trộn bã với dầu ôliu/sữa chua, đắp 20–30 phút rồi rửa sạch; giúp da mịn và hồng hào hơn."}},{"@type":"Question","name":"Bã cà phê đuổi kiến/côn trùng được không?","acceptedAnswer":{"@type":"Answer","text":"Rắc bã ở lối kiến vào nhà hoặc tổ kiến — nhiều người dùng vì kiến ngại bã cà phê."}},{"@type":"Question","name":"Dùng bã cà phê chải lông cho thú cưng?","acceptedAnswer":{"@type":"Answer","text":"Trộn bã với nước rồi xoa lên lông để làm mềm và bóng; có người dùng để hỗ trợ trị bọ chét."}},{"@type":"Question","name":"Bã cà phê có làm sạch chai lọ miệng hẹp?","acceptedAnswer":{"@type":"Answer","text":"Cho bã và nước vào chai, lắc mạnh để cọ rửa bên trong rồi tráng sạch."}},{"@type":"Question","name":"Bã cà phê có làm phân bón?","acceptedAnswer":{"@type":"Answer","text":"Trộn bã vào đất giúp đất tơi xốp và hơi chua, cây hấp thụ dinh dưỡng tốt hơn."}},{"@type":"Question","name":"Trộn bã với hạt giống có ích gì?","acceptedAnswer":{"@type":"Answer","text":"Trộn bã phơi khô với hạt cà rốt/củ cải trước khi gieo để tăng tỉ lệ và năng suất thu hoạch."}},{"@type":"Question","name":"Bã cà phê làm tóc bóng mượt?","acceptedAnswer":{"@type":"Answer","text":"Xát bã lên tóc ướt vài phút rồi xả"}},{"@type":"Question","name":"Có thể dùng bã cà phê làm thuốc nhuộm?","acceptedAnswer":{"@type":"Answer","text":"Đổ nước sôi vào bã để tạo màu nâu dùng nhuộm vải hoặc cho các dự án thủ công."}},{"@type":"Question","name":"Bã cà phê giúp giảm thâm quầng mắt?","acceptedAnswer":{"@type":"Answer","text":"Caffeine trong bã hỗ trợ tuần hoàn và chống viêm; dùng đều giúp giảm sưng/thâm quanh mắt."}}]}</script>
 
+
+
+<div id="gigabrain-shadow-global" name="gigabrain" bis_skin_checked="1"></div></body></html>
