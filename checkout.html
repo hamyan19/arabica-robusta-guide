@@ -1,4 +1,6 @@
-<html lang="vi"><head>
+<!DOCTYPE html>
+<html lang="vi">
+<head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>ANARO — Checkout</title>
@@ -32,3 +34,1225 @@
     
     header{
       display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:10px 0;
+      border-bottom:1px solid var(--border);
+      margin-bottom:20px;
+    }
+    
+    h1{
+      margin:0;
+      font-size:22px;
+    }
+    
+    .grid{
+      display:grid;
+      grid-template-columns:1.2fr .8fr;
+      gap:24px;
+      margin-top:16px;
+    }
+    
+    .card{
+      background:#fff;
+      border:1px solid var(--border);
+      border-radius:12px;
+      padding:20px;
+      box-shadow:0 2px 8px rgba(0,0,0,0.04);
+    }
+    
+    .title{
+      margin:0 0 16px 0;
+      font-size:18px;
+      font-weight:600;
+      color:var(--brand);
+    }
+    
+    .form-group{
+      margin-bottom:16px;
+    }
+    
+    label{
+      font-size:14px;
+      font-weight:600;
+      color:var(--brand);
+      display:block;
+      margin-bottom:6px;
+    }
+    
+    .required{
+      color:var(--error);
+    }
+    
+    input[type="text"], 
+    input[type="email"], 
+    textarea{
+      padding:12px 16px;
+      border:2px solid #e1e5e9;
+      border-radius:8px;
+      width:100%;
+      font-size:16px; /* Prevent zoom on iOS */
+      transition:border-color 0.2s ease, box-shadow 0.2s ease;
+      background:#fff;
+    }
+    
+    input[type="text"]:focus, 
+    input[type="email"]:focus, 
+    textarea:focus{
+      outline:none;
+      border-color:var(--brand);
+      box-shadow:0 0 0 3px rgba(122,75,43,0.1);
+    }
+    
+    textarea{
+      min-height:100px;
+      resize:vertical;
+      font-family:inherit;
+    }
+    
+    .row2{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:16px;
+    }
+    
+    .gender{
+      display:grid;
+      grid-template-columns:1fr 1fr 1fr;
+      gap:8px;
+    }
+    
+    .opt{
+      display:flex;
+      gap:8px;
+      align-items:center;
+      padding:12px 16px;
+      border:2px solid #e1e5e9;
+      border-radius:8px;
+      background:#fff;
+      cursor:pointer;
+      transition:all 0.2s ease;
+      min-height:48px; /* Touch-friendly */
+    }
+    
+    .opt:hover{
+      border-color:var(--brand);
+      background:#f8f9fa;
+    }
+    
+    .opt input[type="radio"]{
+      margin:0;
+    }
+    
+    .opt input[type="radio"]:checked + span,
+    .opt:has(input[type="radio"]:checked){
+      border-color:var(--brand);
+      background:rgba(122,75,43,0.1);
+      font-weight:600;
+    }
+    
+    .line{
+      display:flex;
+      justify-content:space-between;
+      margin:8px 0;
+      padding:4px 0;
+    }
+    
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      padding:14px 20px;
+      border-radius:8px;
+      border:2px solid transparent;
+      background:#f1f3f4;
+      color:var(--text);
+      font-weight:600;
+      cursor:pointer;
+      text-decoration:none;
+      transition:all 0.2s ease;
+      min-height:48px; /* Touch-friendly */
+      font-size:16px;
+    }
+    
+    .btn:hover{
+      transform:translateY(-1px);
+      box-shadow:0 4px 12px rgba(0,0,0,0.15);
+    }
+    
+    .btn:disabled{
+      opacity:0.6;
+      cursor:not-allowed;
+      transform:none;
+      box-shadow:none;
+    }
+    
+    .cta{
+      background:var(--brand);
+      color:#fff;
+      border-color:var(--brand);
+    }
+    
+    .cta:hover:not(:disabled){
+      background:#654032;
+      border-color:#654032;
+    }
+    
+    .back-btn {
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:10px 16px;
+      border-radius:8px;
+      background:#d88c5d;
+      color:#fff;
+      font-weight:600;
+      text-decoration:none;
+      transition:all 0.2s ease;
+      min-height:44px;
+    }
+    
+    .back-btn:hover {
+      background:#8b4a2d;
+      transform:translateY(-1px);
+    }
+    
+    .srow{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      margin-top:16px;
+    }
+    
+    .ico{
+      width:20px;
+      height:20px;
+      display:inline-block;
+    }
+    
+    footer{
+      margin-top:32px;
+      color:var(--muted);
+      font-size:14px;
+      text-align:center;
+      padding:20px 0;
+      border-top:1px solid var(--border);
+    }
+    
+    .toast{
+      position:fixed;
+      left:50%;
+      top:20px;
+      transform:translateX(-50%);
+      background:var(--text);
+      color:#fff;
+      padding:12px 20px;
+      border-radius:8px;
+      z-index:9999;
+      font-weight:500;
+      box-shadow:0 4px 16px rgba(0,0,0,0.2);
+    }
+    
+    .toast.error{
+      background:var(--error);
+    }
+    
+    .toast.success{
+      background:var(--success);
+    }
+
+    /* Payment Methods */
+    .payment-methods{
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+    }
+    
+    .payment-option{
+      display:flex;
+      align-items:flex-start;
+      gap:12px;
+      padding:16px;
+      border:2px solid #e1e5e9;
+      border-radius:10px;
+      cursor:pointer;
+      transition:all 0.2s ease;
+      background:#fff;
+    }
+    
+    .payment-option:hover{
+      border-color:var(--brand);
+      background:#f8f9fa;
+    }
+    
+    .payment-option:has(input:checked){
+      border-color:var(--brand);
+      background:rgba(122,75,43,0.05);
+    }
+    
+    .payment-option input[type="radio"]{
+      margin:2px 0 0 0;
+      accent-color:var(--brand);
+    }
+    
+    .payment-content{
+      flex:1;
+    }
+    
+    .payment-content strong{
+      display:block;
+      font-size:15px;
+      margin-bottom:4px;
+    }
+    
+    .payment-content small{
+      color:var(--muted);
+      font-size:13px;
+    }
+
+    /* QR Code Section */
+    .qr-section{
+      margin-top:16px;
+      padding:20px;
+      background:#f8f9fa;
+      border-radius:10px;
+      border:1px dashed var(--brand);
+    }
+    
+    .qr-container{
+      display:flex;
+      gap:20px;
+      align-items:flex-start;
+    }
+    
+    .qr-code{
+      width:160px;
+      height:160px;
+      background:#fff;
+      border:2px solid var(--border);
+      border-radius:8px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      flex-shrink:0;
+    }
+    
+    .qr-placeholder{
+      text-align:center;
+      color:var(--muted);
+      font-size:12px;
+    }
+    
+    .qr-loading{
+      display:flex;
+      align-items:center;
+      gap:8px;
+    }
+    
+    .qr-loading::before{
+      content:'';
+      width:16px;
+      height:16px;
+      border:2px solid var(--border);
+      border-top:2px solid var(--brand);
+      border-radius:50%;
+      animation:spin 1s linear infinite;
+    }
+    
+    @keyframes spin{
+      to{transform:rotate(360deg)}
+    }
+    
+    .qr-info{
+      flex:1;
+    }
+    
+    .qr-info h4{
+      margin:0 0 12px 0;
+      font-size:15px;
+      color:var(--brand);
+    }
+    
+    .bank-info{
+      background:#fff;
+      padding:12px;
+      border-radius:6px;
+      font-size:13px;
+      margin-bottom:12px;
+    }
+    
+    .bank-info div{
+      margin:4px 0;
+    }
+    
+    .qr-timer{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      font-size:13px;
+      color:var(--muted);
+    }
+    
+    .btn-small{
+      padding:6px 12px;
+      font-size:12px;
+      border:1px solid var(--border);
+      background:#fff;
+      border-radius:6px;
+      cursor:pointer;
+      transition:all 0.2s ease;
+    }
+    
+    .btn-small:hover{
+      background:var(--brand);
+      color:#fff;
+      border-color:var(--brand);
+    }
+
+    /* Progress Indicator */
+    .progress-bar{
+      background:#e1e5e9;
+      height:4px;
+      border-radius:2px;
+      margin:16px 0;
+      overflow:hidden;
+    }
+    
+    .progress-fill{
+      background:var(--brand);
+      height:100%;
+      border-radius:2px;
+      transition:width 0.3s ease;
+      width:80%; /* Step 2 of 2 */
+    }
+
+    /* Order Summary Enhancements */
+    .order-badge{
+      display:inline-block;
+      background:var(--brand);
+      color:#fff;
+      padding:4px 8px;
+      border-radius:4px;
+      font-size:12px;
+      font-weight:600;
+      margin-left:8px;
+    }
+    .error-input{
+      border-color:var(--error) !important;
+      box-shadow:0 0 0 3px rgba(220,53,69,0.1) !important;
+    }
+    
+    .error-message{
+      color:var(--error);
+      font-size:13px;
+      margin-top:4px;
+      display:block;
+    }
+    
+    .loading{
+      position:relative;
+      overflow:hidden;
+    }
+    
+    .loading::after{
+      content:'';
+      position:absolute;
+      top:0;
+      left:-100%;
+      width:100%;
+      height:100%;
+      background:linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+      animation:loading 1.5s infinite;
+    }
+    
+    @keyframes loading{
+      0%{left:-100%}
+      100%{left:100%}
+    }
+
+    /* Popup modal */
+    .backdrop{
+      position:fixed;
+      inset:0;
+      background:rgba(0,0,0,0.5);
+      display:none;
+      align-items:center;
+      justify-content:center;
+      z-index:1000;
+      backdrop-filter:blur(4px);
+    }
+    
+    .modal{
+      width:min(520px,92vw);
+      background:#fff;
+      border:1px solid var(--border);
+      border-radius:16px;
+      box-shadow:0 20px 60px rgba(0,0,0,0.2);
+      padding:24px;
+      transform:scale(0.9);
+      transition:transform 0.2s ease;
+    }
+    
+    .backdrop.show .modal{
+      transform:scale(1);
+    }
+    
+    .modal h3{
+      margin:0 0 8px;
+      font-size:20px;
+      color:var(--brand);
+    }
+    
+    .modal p{
+      margin:8px 0 16px;
+      color:var(--muted);
+    }
+    
+    .modal .row{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+    }
+
+    /* Mobile Responsive */
+      @media (max-width: 768px) {
+      .wrap{
+        padding:16px 12px;
+      }
+      
+      header{
+        flex-direction:column;
+        gap:12px;
+        align-items:stretch;
+      }
+      
+      header h1{
+        font-size:20px;
+        text-align:center;
+      }
+      
+      .grid{
+        grid-template-columns:1fr; /* Single column on mobile */
+        gap:20px;
+      }
+      
+      .card{
+        padding:16px;
+      }
+      
+      .title{
+        font-size:16px;
+      }
+      
+      .row2{
+        grid-template-columns:1fr; /* Stack on mobile */
+        gap:12px;
+      }
+      
+      .gender{
+        grid-template-columns:1fr; /* Stack gender options */
+      }
+      
+      .btn{
+        padding:16px 20px; /* Larger touch targets */
+        font-size:16px;
+      }
+      
+      .srow{
+        flex-direction:column;
+      }
+      
+      .srow .btn{
+        justify-content:center;
+      }
+      
+      .modal{
+        margin:16px;
+        padding:20px;
+      }
+      
+      .modal .row{
+        flex-direction:column;
+      }
+      
+      .modal .btn{
+        justify-content:center;
+      }
+      
+      /* QR Code responsive */
+      .qr-container{
+        flex-direction:column;
+        align-items:center;
+        text-align:center;
+      }
+      
+      .qr-code{
+        width:200px;
+        height:200px;
+        margin-bottom:16px;
+      }
+      
+      .qr-timer{
+        flex-direction:column;
+        gap:8px;
+        text-align:center;
+      }
+      
+      /* Order summary on mobile - make it more compact */
+      .card:last-child .line{
+        margin:6px 0;
+        font-size:15px;
+      }
+      
+      #co-items{
+        font-size:14px;
+        line-height:1.5;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .wrap{
+        padding:12px 8px;
+      }
+      
+      .card{
+        padding:12px;
+        border-radius:8px;
+      }
+      
+      input[type="text"], 
+      input[type="email"], 
+      textarea{
+        padding:14px 12px; /* Larger for easier tapping */
+      }
+      
+      .btn{
+        padding:18px 16px;
+        font-size:16px;
+      }
+      
+      .modal{
+        margin:8px;
+        padding:16px;
+        border-radius:12px;
+      }
+    }
+
+    /* Empty state */
+    .empty-state {
+      text-align: center;
+      padding: 40px 20px;
+      color: var(--muted);
+    }
+    
+    .empty-state h3 {
+      margin: 0 0 8px;
+      color: var(--brand);
+    }
+    
+    .empty-state p {
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <h1>☕ ANARO COFFEE — Thanh toán</h1>
+      <a href="#" onclick="history.back()" class="back-btn">← Quay lại</a>
+    </header>
+
+    <div id="main-content">
+      <div class="empty-state" id="empty-state" style="display:none;">
+        <h3>🛒 Giỏ hàng trống</h3>
+        <p>Bạn chưa có sản phẩm nào trong giỏ hàng.</p>
+        <a href="#" onclick="history.back()" class="btn cta">← Tiếp tục mua sắm</a>
+      </div>
+
+      <div class="grid" id="checkout-form">
+        <!-- LEFT: Customer Info -->
+        <section class="card">
+          <h2 class="title">Thông tin người nhận</h2>
+          
+          <div class="row2">
+            <div class="form-group">
+              <label for="recipient">Tên người nhận <span class="required">*</span></label>
+              <input id="recipient" type="text" placeholder="VD: Nguyễn Văn A" required>
+              <span class="error-message" id="recipient-error"></span>
+            </div>
+            
+            <div class="form-group">
+              <label>Giới tính (xưng hô)</label>
+              <div class="gender">
+                <label class="opt">
+                  <input type="radio" name="gender" value="Anh" checked>
+                  <span>Anh</span>
+                </label>
+                <label class="opt">
+                  <input type="radio" name="gender" value="Chị">
+                  <span>Chị</span>
+                </label>
+                <label class="opt">
+                  <input type="radio" name="gender" value="Khác">
+                  <span>Khác</span>
+                </label>
+              </div>
+            </div>
+          </div>
+          
+          <div class="row2">
+            <div class="form-group">
+              <label for="email">Email <span class="required">*</span></label>
+              <input id="email" type="email" placeholder="you@example.com" required>
+              <span class="error-message" id="email-error"></span>
+            </div>
+            
+            <div class="form-group">
+              <label for="phone">Số điện thoại <span class="required">*</span></label>
+              <input id="phone" type="text" placeholder="09xx xxx xxx" required>
+              <span class="error-message" id="phone-error"></span>
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label for="note">Ghi chú</label>
+            <textarea id="note" placeholder="Ghi chú thêm (khung giờ nhận, địa chỉ chi tiết, v.v.)"></textarea>
+          </div>
+
+          <h3 class="title" style="margin-top:24px">Liên hệ / Xác nhận đơn</h3>
+          <div class="srow">
+            <a id="linkZalo" class="btn" target="_blank" rel="noopener" href="https://zalo.me/84918337071" aria-label="Zalo">
+              <span class="ico" aria-hidden="true">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><rect width="24" height="24" rx="5" ry="5" fill="#0068FF"></rect><text x="6.7" y="16.5" font-family="Segoe UI, Roboto, Helvetica, Arial" font-size="10" fill="#fff" font-weight="700">Z</text></svg>
+              </span>
+              <span>Zalo</span>
+            </a>
+            <a id="linkMsg" class="btn" target="_blank" rel="noopener" href="https://m.me/anarocoffee" aria-label="Messenger">
+              <span class="ico" aria-hidden="true">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="10" fill="#0099FF"></circle><path d="M6.5 14.2l4.1-3.1 3.1 3.1 3.3-3.1" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+              </span>
+              <span>Messenger</span>
+            </a>
+            <a id="linkFan" class="btn" target="_blank" rel="noopener" href="https://www.facebook.com/anarocoffee/" aria-label="Fanpage Facebook">
+              <span class="ico" aria-hidden="true">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><rect width="24" height="24" rx="5" ry="5" fill="#1877F2"></rect><path d="M14 8h2V6h-2a3 3 0 0 0-3 3v2H9v2h2v5h2v-5h2l1-2h-3V9a1 1 0 0 1 1-1z" fill="#fff"></path></svg>
+              </span>
+              <span>Fanpage</span>
+            </a>
+          </div>
+        </section>
+
+        <!-- RIGHT: Order Summary -->
+        <section class="card">
+          <h2 class="title">
+            Đơn hàng 
+            <span class="order-badge" id="order-code">Đang tạo...</span>
+          </h2>
+          
+          <div class="progress-bar">
+            <div class="progress-fill"></div>
+          </div>
+          
+          <div class="line"><strong>Tiền hàng</strong><span id="co-subtotal">0đ</span></div>
+          <div class="line"><span>Cân nặng</span><span id="co-weight">0 kg</span></div>
+          <div class="line"><span>Phí ship</span><span id="co-ship">0đ</span></div>
+          <div class="line" style="border-top:2px solid var(--border);padding-top:8px;margin-top:8px;">
+            <strong style="font-size:18px;">Tổng</strong>
+            <strong id="co-total" style="font-size:18px;color:var(--brand);">0đ</strong>
+          </div>
+          <div class="muted" id="co-items" style="margin-top:12px;padding:12px;background:#f8f9fa;border-radius:6px;font-size:14px;">
+            Không có sản phẩm nào
+          </div>
+          
+          <!-- Payment Methods -->
+          <h3 class="title" style="margin-top:20px;">Phương thức thanh toán</h3>
+          <div class="payment-methods">
+            <label class="payment-option">
+              <input type="radio" name="payment" value="confirm" checked>
+              <div class="payment-content">
+                <strong>📞 Xác nhận qua điện thoại</strong>
+                <small>Đặt hàng trước, thanh toán khi nhận</small>
+              </div>
+            </label>
+            <label class="payment-option">
+              <input type="radio" name="payment" value="qr">
+              <div class="payment-content">
+                <strong>📱 Chuyển khoản QR</strong>
+                <small>Thanh toán ngay, giao hàng ưu tiên</small>
+              </div>
+            </label>
+          </div>
+
+          <!-- QR Code Section (hidden by default) -->
+          <div id="qr-section" class="qr-section" style="display:none;">
+            <div class="qr-container">
+              <div class="qr-code" id="qr-code">
+                <div class="qr-placeholder">
+                  <div class="qr-loading">Đang tạo mã QR...</div>
+                </div>
+              </div>
+              <div class="qr-info">
+                <h4>Thông tin chuyển khoản</h4>
+                <div class="bank-info">
+                  <div><strong>Ngân hàng:</strong> Vietcombank</div>
+                  <div><strong>Số TK:</strong> 0123456789</div>
+                  <div><strong>Tên TK:</strong> ANARO COFFEE</div>
+                  <div><strong>Số tiền:</strong> <span id="qr-amount">0đ</span></div>
+                  <div><strong>Nội dung:</strong> <span id="qr-content">ANR20250815001</span></div>
+                </div>
+                <div class="qr-timer">
+                  <div>Mã QR hết hạn sau: <span id="timer">10:00</span></div>
+                  <button id="refresh-qr" class="btn-small">🔄 Làm mới</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div style="margin-top:20px">
+            <button id="placeOrder" class="btn cta" style="width:100%;">
+              <span id="order-text">Đặt hàng</span>
+              <span id="order-loading" style="display:none;">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M12 2V6M12 18V22M4.93 4.93L7.76 7.76M16.24 16.24L19.07 19.07M2 12H6M18 12H22M4.93 19.07L7.76 16.24M16.24 7.76L19.07 4.93" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+                Đang gửi...
+              </span>
+            </button>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <footer>ANARO COFFEE · © 2025</footer>
+  </div>
+
+  <!-- Success popup -->
+  <div id="backdrop" class="backdrop" role="dialog" aria-modal="true" aria-labelledby="okTitle">
+    <div class="modal">
+      <h3 id="okTitle">🎉 Đặt hàng thành công!</h3>
+      <p id="okSub">
+        Mã đơn hàng: <strong id="success-order-code">ANR-20250815-001</strong><br>
+        Cảm ơn bạn! Chúng tôi sẽ liên hệ xác nhận sớm nhất.
+      </p>
+      <div class="row">
+        <a class="btn" href="#" onclick="history.back()">← Tiếp tục mua</a>
+        <a id="okZalo" class="btn" target="_blank" rel="noopener" href="https://zalo.me/84918337071">Zalo</a>
+        <a id="okMsg" class="btn" target="_blank" rel="noopener" href="https://m.me/anarocoffee">Messenger</a>
+        <a id="okFan" class="btn" target="_blank" rel="noopener" href="https://www.facebook.com/anarocoffee/">Fanpage</a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // ====== Config ======
+    const FORM_EMAIL = "anmy1909@gmail.com";
+    const FORM_ENDPOINT = "https://formsubmit.co/ajax/" + encodeURIComponent(FORM_EMAIL);
+
+    // Social links
+    const SOCIAL_LINKS = {
+      zalo: "https://zalo.me/84918337071",
+      messenger: "https://m.me/anarocoffee",
+      fanpage: "https://www.facebook.com/anarocoffee/"
+    };
+
+    // ====== Cart Data Handling ======
+    function getCartFromLocalStorage() {
+      try {
+        const cartData = localStorage.getItem('cart');
+        if (!cartData) return null;
+        const cart = JSON.parse(cartData);
+        return cart.length > 0 ? cart : null;
+      } catch (e) {
+        console.error('Error reading cart from localStorage:', e);
+        return null;
+      }
+    }
+
+    function getCartFromURL() {
+      try {
+        // Check hash for cart data (format: #cart=base64data)
+        const match = location.hash.match(/[#&]cart=([^&]+)/);
+        if (!match) return null;
+        
+        const json = decodeURIComponent(escape(atob(match[1])));
+        return JSON.parse(json);
+      } catch (e) {
+        console.error('Error reading cart from URL:', e);
+        return null;
+      }
+    }
+
+    function calculateCartTotals(cartItems) {
+      let subtotal = 0;
+      let weightKg = 0;
+      
+      cartItems.forEach(item => {
+        const price = item.price || 0;
+        const qty = item.qty || 1;
+        const weight = item.weight || 0.25; // default 250g
+        
+        subtotal += price * qty;
+        weightKg += weight * qty;
+      });
+      
+      // Calculate shipping (example: 29k for first kg, 10k for each additional kg)
+      const shipping = weightKg <= 1 ? 29000 : 29000 + Math.ceil(weightKg - 1) * 10000;
+      const total = subtotal + shipping;
+      
+      return { subtotal, weightKg, shipping, total };
+    }
+
+    // ====== Validation ======
+    function validateName(name) {
+      if (!name || name.length < 2) return "Tên phải có ít nhất 2 ký tự";
+      if (name.length > 50) return "Tên không được quá 50 ký tự";
+      return null;
+    }
+
+    function validateEmail(email) {
+      if (!email) return "Email là bắt buộc";
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(email)) return "Email không hợp lệ";
+      return null;
+    }
+
+    function validatePhone(phone) {
+      if (!phone) return "Số điện thoại là bắt buộc";
+      const phoneRegex = /^(0|\+84)[3|5|7|8|9][0-9]{8}$/;
+      const cleanPhone = phone.replace(/[\s\-\.]/g, '');
+      if (!phoneRegex.test(cleanPhone)) return "Số điện thoại không hợp lệ";
+      return null;
+    }
+
+    function showFieldError(fieldId, message) {
+      const field = document.getElementById(fieldId);
+      const errorSpan = document.getElementById(fieldId + '-error');
+      
+      if (message) {
+        field.classList.add('error-input');
+        if (errorSpan) errorSpan.textContent = message;
+      } else {
+        field.classList.remove('error-input');
+        if (errorSpan) errorSpan.textContent = '';
+      }
+    }
+
+    function validateForm() {
+      const name = document.getElementById('recipient').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const phone = document.getElementById('phone').value.trim();
+
+      let isValid = true;
+
+      const nameError = validateName(name);
+      showFieldError('recipient', nameError);
+      if (nameError) isValid = false;
+
+      const emailError = validateEmail(email);
+      showFieldError('email', emailError);
+      if (emailError) isValid = false;
+
+      const phoneError = validatePhone(phone);
+      showFieldError('phone', phoneError);
+      if (phoneError) isValid = false;
+
+      return isValid;
+    }
+
+    function setupRealtimeValidation() {
+      const fields = [
+        { id: 'recipient', validator: validateName },
+        { id: 'email', validator: validateEmail },
+        { id: 'phone', validator: validatePhone }
+      ];
+
+      fields.forEach(({ id, validator }) => {
+        const field = document.getElementById(id);
+        field.addEventListener('blur', () => {
+          const value = field.value.trim();
+          const error = validator(value);
+          showFieldError(id, error);
+        });
+
+        field.addEventListener('input', () => {
+          if (field.classList.contains('error-input')) {
+            showFieldError(id, null);
+          }
+        });
+      });
+    }
+
+    // ====== Order Code Generator ======
+    function generateOrderCode() {
+      const now = new Date();
+      const dateStr = now.getFullYear() + 
+                     String(now.getMonth() + 1).padStart(2, '0') + 
+                     String(now.getDate()).padStart(2, '0');
+      
+      const counter = Math.floor(Math.random() * 900) + 100; // Random 3-digit number
+      return `ANR-${dateStr}-${counter}`;
+    }
+
+    // ====== QR Code Management ======
+    let qrTimer = null;
+    let qrTimeLeft = 600;
+
+    function generateVietQR(amount, orderCode) {
+      const bankCode = "970436";
+      const accountNo = "0123456789";
+      const qrData = `${bankCode}|${accountNo}|${amount}|${orderCode}|ANARO COFFEE`;
+      return `https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=${encodeURIComponent(qrData)}`;
+    }
+
+    function showQRCode(orderCode, amount) {
+      const qrSection = document.getElementById('qr-section');
+      const qrCodeDiv = document.getElementById('qr-code');
+      
+      const qrUrl = generateVietQR(amount, orderCode);
+      qrCodeDiv.innerHTML = `<img src="${qrUrl}" alt="QR Code thanh toán" style="width:100%;height:100%;object-fit:contain;">`;
+      
+      document.getElementById('qr-amount').textContent = fmt(amount);
+      document.getElementById('qr-content').textContent = orderCode;
+      
+      qrSection.style.display = 'block';
+      startQRTimer();
+    }
+
+    function startQRTimer() {
+      qrTimeLeft = 600;
+      updateTimerDisplay();
+      
+      qrTimer = setInterval(() => {
+        qrTimeLeft--;
+        updateTimerDisplay();
+        
+        if (qrTimeLeft <= 0) {
+          clearInterval(qrTimer);
+          document.getElementById('qr-code').innerHTML = '<div class="qr-placeholder"><div>⏰ Mã QR đã hết hạn</div></div>';
+        }
+      }, 1000);
+    }
+
+    function updateTimerDisplay() {
+      const minutes = Math.floor(qrTimeLeft / 60);
+      const seconds = qrTimeLeft % 60;
+      document.getElementById('timer').textContent = 
+        `${minutes}:${String(seconds).padStart(2, '0')}`;
+    }
+
+    function hideQRCode() {
+      document.getElementById('qr-section').style.display = 'none';
+      if (qrTimer) {
+        clearInterval(qrTimer);
+        qrTimer = null;
+      }
+    }
+
+    // ====== UI Helpers ======
+    const fmt = n => (n||0).toLocaleString('vi-VN') + "đ";
+    
+    function showToast(msg, type = 'info'){
+      const t = document.createElement('div');
+      t.className = `toast ${type}`;
+      t.textContent = msg;
+      document.body.appendChild(t);
+      setTimeout(() => t.remove(), 3000);
+    }
+
+    function showPopup(){
+      const bd = document.getElementById('backdrop');
+      bd.style.display = 'flex';
+      setTimeout(() => bd.classList.add('show'), 10);
+    }
+
+    function hidePopup(){
+      const bd = document.getElementById('backdrop');
+      bd.classList.remove('show');
+      setTimeout(() => bd.style.display = 'none', 200);
+    }
+
+    // ====== Payment Methods ======
+    function setupPaymentMethods() {
+      const paymentInputs = document.querySelectorAll('input[name="payment"]');
+      
+      paymentInputs.forEach(input => {
+        input.addEventListener('change', (e) => {
+          const method = e.target.value;
+          
+          if (method === 'qr') {
+            const orderCode = document.getElementById('order-code').textContent;
+            const total = window.cartTotals ? window.cartTotals.total : 0;
+            showQRCode(orderCode, total);
+            document.getElementById('order-text').textContent = 'Xác nhận thanh toán';
+          } else {
+            hideQRCode();
+            document.getElementById('order-text').textContent = 'Đặt hàng';
+          }
+        });
+      });
+      
+      document.getElementById('refresh-qr').addEventListener('click', () => {
+        const orderCode = document.getElementById('order-code').textContent;
+        const total = window.cartTotals ? window.cartTotals.total : 0;
+        showQRCode(orderCode, total);
+      });
+    }
+
+    // ====== Order Summary ======
+    function renderOrderSummary(cartItems, totals) {
+      document.getElementById('co-subtotal').textContent = fmt(totals.subtotal);
+      document.getElementById('co-weight').textContent = totals.weightKg.toFixed(2) + " kg";
+      document.getElementById('co-ship').textContent = fmt(totals.shipping);
+      document.getElementById('co-total').textContent = fmt(totals.total);
+      
+      const itemsHtml = cartItems.map(item => 
+        `• ${item.name} — ${item.size || '250g'} — ${item.grind || 'Nguyên hạt'} × ${item.qty || 1}`
+      ).join('<br>');
+      
+      document.getElementById('co-items').innerHTML = itemsHtml;
+    }
+
+    // ====== Form Submission ======
+    function getRecipient(){
+      const name = document.getElementById('recipient').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const phone = document.getElementById('phone').value.trim();
+      const note = document.getElementById('note').value.trim();
+      const g = document.querySelector('input[name="gender"]:checked');
+      const gender = g ? g.value : "Anh";
+      return { name, email, phone, note, gender };
+    }
+
+    async function sendOrderByEmail(orderData){
+      const r = orderData.recipient || {};
+      const itemsStr = (orderData.items||[]).map(i=>
+        `${i.name} — ${i.size||'250g'} — ${i.grind||'Nguyên hạt'} × ${i.qty||1}`
+      ).join("; ");
+      
+      const body = {
+        _subject: "Đơn hàng mới từ ANARO COFFEE",
+        _template: "table",
+        "Người nhận": `${r.gender||""} ${r.name||""}`.trim(),
+        "Email": r.email||"",
+        "SĐT": r.phone||"",
+        "Ghi chú": r.note||"",
+        "Mã đơn": orderData.orderCode||"",
+        "Tiền hàng": fmt(orderData.subtotal||0),
+        "Phí ship": fmt(orderData.shipping||0),
+        "Tổng": fmt(orderData.total||0),
+        "Cân nặng": `${(orderData.weightKg||0).toFixed(2)} kg`,
+        "Chi tiết": itemsStr,
+        "Phương thức": orderData.paymentMethod === 'qr' ? 'Chuyển khoản QR' : 'Xác nhận điện thoại'
+      };
+
+      const res = await fetch(FORM_ENDPOINT, {
+        method: "POST",
+        headers: { 
+          "Content-Type": "application/json", 
+          "Accept": "application/json" 
+        },
+        body: JSON.stringify(body)
+      });
+      
+      if(!res.ok){ 
+        throw new Error(`HTTP ${res.status}: ${await res.text()}`); 
+      }
+      return res.json().catch(() => ({}));
+    }
+
+    // ====== Initialize ======
+    function init() {
+      // Bind social links
+      document.getElementById('linkZalo').href = SOCIAL_LINKS.zalo;
+      document.getElementById('linkMsg').href = SOCIAL_LINKS.messenger;
+      document.getElementById('linkFan').href = SOCIAL_LINKS.fanpage;
+      document.getElementById('okZalo').href = SOCIAL_LINKS.zalo;
+      document.getElementById('okMsg').href = SOCIAL_LINKS.messenger;
+      document.getElementById('okFan').href = SOCIAL_LINKS.fanpage;
+
+      // Try to get cart data
+      let cartItems = getCartFromURL() || getCartFromLocalStorage();
+      
+      if (!cartItems || cartItems.length === 0) {
+        // Show empty state
+        document.getElementById('empty-state').style.display = 'block';
+        document.getElementById('checkout-form').style.display = 'none';
+        return;
+      }
+
+      // Calculate totals
+      const totals = calculateCartTotals(cartItems);
+      window.cartTotals = totals; // Store globally for QR code
+
+      // Generate order code
+      const orderCode = generateOrderCode();
+      document.getElementById('order-code').textContent = orderCode;
+
+      // Render order summary
+      renderOrderSummary(cartItems, totals);
+
+      // Setup form validation and payment methods
+      setupRealtimeValidation();
+      setupPaymentMethods();
+
+      // Setup order submission
+      document.getElementById('placeOrder').addEventListener('click', async (e) => {
+        e.preventDefault();
+        
+        if (!validateForm()) {
+          showToast("Vui lòng kiểm tra và điền đầy đủ thông tin", "error");
+          return;
+        }
+
+        const btn = e.target;
+        const orderTextSpan = document.getElementById('order-text');
+        const loadingSpan = document.getElementById('order-loading');
+        
+        try {
+          btn.disabled = true;
+          orderTextSpan.style.display = 'none';
+          loadingSpan.style.display = 'flex';
+
+          const orderData = {
+            orderCode: orderCode,
+            recipient: getRecipient(),
+            items: cartItems,
+            subtotal: totals.subtotal,
+            shipping: totals.shipping,
+            total: totals.total,
+            weightKg: totals.weightKg,
+            paymentMethod: document.querySelector('input[name="payment"]:checked').value,
+            timestamp: new Date().toISOString()
+          };
+
+          await sendOrderByEmail(orderData);
+          
+          document.getElementById('success-order-code').textContent = orderCode;
+          showToast("Đặt hàng thành công!", "success");
+          showPopup();
+          
+          // Clear cart after successful order
+          localStorage.removeItem('cart');
+          
+        } catch (err) {
+          console.error('Order submission error:', err);
+          showToast("Gửi đơn thất bại. Vui lòng thử lại hoặc liên hệ qua Zalo.", "error");
+        } finally {
+          btn.disabled = false;
+          orderTextSpan.style.display = 'inline';
+          loadingSpan.style.display = 'none';
+        }
+      });
+
+      // Popup close handler
+      document.getElementById('backdrop').addEventListener('click', (e) => {
+        if (e.target.id === 'backdrop') hidePopup();
+      });
+    }
+
+    // Start the application
+    document.addEventListener('DOMContentLoaded', init);
+  </script>
+</body>
+</html>
