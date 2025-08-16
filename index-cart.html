@@ -705,5 +705,618 @@
     syncBadge();
   </script>
 
+<!-- Font Awesome CDN -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous">
 
+<!-- FOOTER CSS STYLES -->
+<style>
+/* ========================================
+   ANARO COFFEE FOOTER STYLES - FIXED
+   ======================================== */
+
+/* Footer Container - Fixed colors */
+.footer {
+    background: linear-gradient(135deg, #6b3f25 0%, #8b5a3c 50%, #a47148 100%);
+    color: #f8f4f0; /* Màu chữ sáng để dễ đọc trên nền đậm */
+    position: relative;
+    overflow: hidden;
+    margin-top: 4rem;
+    box-shadow: 
+        0 -15px 35px rgba(107, 63, 37, 0.25),
+        inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+/* Decorative overlay */
+.footer::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, 
+        rgba(248, 240, 230, 0.05) 0%, 
+        transparent 50%, 
+        rgba(0, 0, 0, 0.05) 100%);
+    pointer-events: none;
+}
+
+/* Top border gradient */
+.footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, 
+        transparent, 
+        rgba(248, 235, 221, 0.8), 
+        rgba(255, 255, 255, 0.9),
+        rgba(248, 235, 221, 0.8), 
+        transparent);
+    box-shadow: 0 2px 8px rgba(107, 63, 37, 0.3);
+}
+
+/* Footer main container - Fixed overflow */
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 3rem 2rem 1rem;
+    width: 100%; /* Đảm bảo không tràn */
+    box-sizing: border-box;
+}
+
+/* Footer content grid */
+.footer-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    margin-bottom: 2rem;
+}
+
+/* ========================================
+   COMPANY INFO SECTION - Fixed colors
+   ======================================== */
+
+.footer-info h3 {
+    color: #f8ebdd; /* Màu sáng hơn cho title */
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.footer-info p {
+    color: #e8dcc8; /* Màu sáng cho text */
+    line-height: 1.8;
+    margin-bottom: 2rem;
+    font-size: 1rem;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+/* Contact information grid */
+.contact-info {
+    display: grid;
+    gap: 1rem;
+}
+
+/* Contact items - Fixed colors */
+.contact-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    color: #f0e6d2; /* Màu sáng cho text */
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    padding: 0.8rem;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.1); /* Nền sáng mờ */
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Hover effect - Fixed colors */
+.contact-item:hover {
+    color: #ffffff; /* Trắng khi hover */
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateX(8px) translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+    border-color: rgba(255, 255, 255, 0.4);
+}
+
+/* Icons */
+.contact-item .icon {
+    font-size: 1.2rem;
+    width: 24px;
+    text-align: center;
+    filter: brightness(1.2);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.contact-item:hover .icon {
+    filter: brightness(1.4);
+    transform: scale(1.1);
+}
+
+/* ========================================
+   SOCIAL MEDIA SECTION - Fixed colors
+   ======================================== */
+
+.social-section {
+    text-align: center;
+}
+
+.social-section h4 {
+    color: #f8ebdd; /* Màu sáng cho title */
+    margin-bottom: 1.5rem;
+    font-size: 1.3rem;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Social links container */
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+/* Social links - Enhanced */
+.social-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 15px;
+    text-decoration: none;
+    font-size: 1.5rem;
+    color: white;
+    transition: all 0.3s ease;
+    box-shadow: 
+        0 4px 15px rgba(0, 0, 0, 0.2),
+        0 2px 8px rgba(0, 0, 0, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+}
+
+/* Shine effect */
+.social-link::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.5s;
+}
+
+.social-link:hover::before {
+    left: 100%;
+}
+
+/* Hover effects */
+.social-link:hover {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 
+        0 8px 25px rgba(0, 0, 0, 0.3),
+        0 4px 15px rgba(0, 0, 0, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+/* Social platform colors */
+.social-link.facebook {
+    background: linear-gradient(135deg, #1877f2, #42a5f5);
+}
+
+.social-link.facebook:hover {
+    box-shadow: 0 8px 25px rgba(24, 119, 242, 0.5);
+}
+
+.social-link.instagram {
+    background: linear-gradient(135deg, #e4405f, #f77737, #fccc63);
+}
+
+.social-link.instagram:hover {
+    box-shadow: 0 8px 25px rgba(228, 64, 95, 0.5);
+}
+
+.social-link.tiktok {
+    background: linear-gradient(135deg, #000000, #ff0050);
+}
+
+.social-link.tiktok:hover {
+    box-shadow: 0 8px 25px rgba(255, 0, 80, 0.5);
+}
+
+/* ========================================
+   GOOGLE MAP SECTION - Fixed
+   ======================================== */
+
+.map-container {
+    position: relative;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 
+        0 8px 25px rgba(0, 0, 0, 0.2),
+        0 4px 15px rgba(0, 0, 0, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    background: linear-gradient(135deg, #f8f4f0, #ede1d0);
+    height: 180px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Map overlay */
+.map-overlay {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    background: linear-gradient(135deg, rgba(107, 63, 37, 0.95), rgba(139, 90, 60, 0.9));
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 25px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    z-index: 2;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* Map placeholder - Fixed colors */
+.map-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #f8f4f0, #ede1d0, #e0d4c0);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+/* Grid pattern */
+.map-placeholder::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="%23c4a57b" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+    opacity: 0.3;
+}
+
+.map-placeholder:hover {
+    background: linear-gradient(135deg, #ffffff, #f5ebe0, #e8dcc0);
+    transform: scale(1.02);
+    box-shadow: inset 0 2px 8px rgba(107, 63, 37, 0.1);
+}
+
+.map-placeholder > div {
+    text-align: center;
+    z-index: 1;
+    position: relative;
+}
+
+.map-placeholder > div > div {
+    color: #6b3f25; /* Màu nâu đậm cho contrast tốt */
+    font-weight: 600;
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
+}
+
+.map-placeholder small {
+    color: #8b5a3c; /* Màu nâu medium */
+    font-size: 0.9rem;
+    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.6);
+}
+
+/* ========================================
+   FOOTER BOTTOM - Fixed colors
+   ======================================== */
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 2rem;
+    margin-top: 2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    color: #e8dcc8; /* Màu sáng */
+    font-size: 0.9rem;
+}
+
+.footer-bottom p {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+/* Animated heart */
+.heart {
+    color: #ff6b6b;
+    animation: heartbeat 2s ease-in-out infinite;
+}
+
+@keyframes heartbeat {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+/* ========================================
+   RESPONSIVE DESIGN
+   ======================================== */
+
+@media (max-width: 768px) {
+    .footer-container {
+        padding: 2rem 1rem 1rem;
+    }
+
+    .footer-content {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .footer-info h3 {
+        font-size: 1.5rem;
+        justify-content: center;
+    }
+
+    .footer-info {
+        text-align: center;
+    }
+
+    .contact-info {
+        align-items: center;
+    }
+
+    .contact-item {
+        justify-content: center;
+    }
+
+    .social-links {
+        gap: 1rem;
+    }
+
+    .social-link {
+        width: 45px;
+        height: 45px;
+        font-size: 1.3rem;
+    }
+
+    .map-container {
+        height: 150px;
+    }
+}
+
+@media (max-width: 480px) {
+    .footer-container {
+        padding: 1.5rem 1rem 1rem;
+    }
+
+    .contact-item {
+        font-size: 0.9rem;
+        padding: 0.6rem;
+    }
+
+    .footer-bottom p {
+        flex-direction: column;
+        gap: 0.3rem;
+    }
+
+    .social-links {
+        gap: 0.8rem;
+    }
+
+    .social-link {
+        width: 40px;
+        height: 40px;
+        font-size: 1.2rem;
+    }
+}
+
+/* ========================================
+   ANIMATION
+   ======================================== */
+
+.footer {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 1s ease-out forwards;
+}
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Spin animation for loading */
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+</style>
+
+<!-- FOOTER HTML STRUCTURE -->
+<footer class="footer">
+    <div class="footer-container">
+        <div class="footer-content">
+            
+            <!-- COMPANY INFORMATION -->
+            <div class="footer-info">
+                <h3>☕ ANARO Coffee</h3>
+                <p>Thương hiệu cà phê chất lượng cao, mang đến trải nghiệm tuyệt vời từ những hạt cà phê được tuyển chọn kỹ lưỡng từ các vùng trồng nổi tiếng Việt Nam.</p>
+                
+                <!-- Contact Information -->
+                <div class="contact-info">
+                    <!-- Địa chỉ -->
+                    <div class="contact-item" onclick="openGoogleMaps()">
+                        <span class="icon">📍</span>
+                        <span>58 Đa Phước Bình Chánh TP.HCM</span>
+                    </div>
+                    
+                    <!-- Số điện thoại -->
+                    <div class="contact-item" onclick="makePhoneCall()">
+                        <span class="icon">📞</span>
+                        <span>0918337071</span>
+                    </div>
+                    
+                    <!-- Email -->
+                    <div class="contact-item" onclick="sendEmail()">
+                        <span class="icon">✉️</span>
+                        <span>anmy1909@gmail.com</span>
+                    </div>
+                    
+                    <!-- Giờ mở cửa -->
+                    <div class="contact-item">
+                        <span class="icon">🕐</span>
+                        <span>Mở cửa: 8:00 - 22:00 hàng ngày</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SOCIAL MEDIA & MAP -->
+            <div class="social-section">
+                <h4>Kết nối với ANARO Coffee</h4>
+                
+                <!-- Social Media Links -->
+                <div class="social-links">
+                    <!-- Facebook -->
+                    <a href="https://facebook.com/anarocoffee" 
+                       class="social-link facebook" 
+                       title="Theo dõi ANARO Coffee trên Facebook" 
+                       target="_blank"
+                       onclick="trackSocialClick('facebook')">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    
+                    <!-- Instagram -->
+                    <a href="https://instagram.com/anarocoffee" 
+                       class="social-link instagram" 
+                       title="Theo dõi ANARO Coffee trên Instagram" 
+                       target="_blank"
+                       onclick="trackSocialClick('instagram')">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    
+                    <!-- TikTok -->
+                    <a href="https://tiktok.com/@anarocoffee" 
+                       class="social-link tiktok" 
+                       title="Theo dõi ANARO Coffee trên TikTok" 
+                       target="_blank"
+                       onclick="trackSocialClick('tiktok')">
+                        <i class="fab fa-tiktok"></i>
+                    </a>
+                </div>
+
+                <!-- Google Map -->
+                <div class="map-container">
+                    <div class="map-overlay">ANARO Coffee Store</div>
+                    <div class="map-placeholder" 
+                         onclick="openGoogleMaps()" 
+                         title="Click để xem bản đồ">
+                        <div>
+                            <div>
+                                <span>📍</span>
+                                Nhấn để xem bản đồ
+                            </div>
+                            <small>58 Đa Phước, Bình Chánh, TP.HCM</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- COPYRIGHT SECTION -->
+        <div class="footer-bottom">
+            <p>
+                © 2025 ANARO Coffee. All rights reserved. | 
+                Thiết kế với <span class="heart">❤️</span> tại Việt Nam
+            </p>
+        </div>
+    </div>
+</footer>
+
+<!-- FOOTER JAVASCRIPT -->
+<script>
+// Google Maps
+function openGoogleMaps() {
+    const address = encodeURIComponent("58 Đa Phước, Bình Chánh, TP.HCM, Vietnam");
+    const googleMapsUrl = `https://www.google.com/maps/search/?api=1&query=${address}`;
+    window.open(googleMapsUrl, '_blank', 'noopener,noreferrer');
+    console.log('Google Maps clicked - ANARO Coffee location');
+}
+
+// Phone call
+function makePhoneCall() {
+    const phoneNumber = '0918337071';
+    window.location.href = `tel:${phoneNumber}`;
+    console.log(`Phone call initiated: ${phoneNumber}`);
+}
+
+// Email
+function sendEmail() {
+    const email = 'anmy1909@gmail.com';
+    const subject = encodeURIComponent('Liên hệ từ website ANARO Coffee');
+    const body = encodeURIComponent('Chào ANARO Coffee,\n\nTôi muốn liên hệ về...\n\nTrân trọng,');
+    window.location.href = `mailto:${email}?subject=${subject}&body=${body}`;
+    console.log(`Email composed to: ${email}`);
+}
+
+// Social media tracking
+function trackSocialClick(platform) {
+    console.log(`Social media clicked: ${platform}`);
+}
+
+// Enhanced interactions
+document.addEventListener('DOMContentLoaded', function() {
+    // Social links hover effects
+    const socialLinks = document.querySelectorAll('.social-link');
+    socialLinks.forEach(link => {
+        link.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-5px) scale(1.1)';
+        });
+        
+        link.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0) scale(1)';
+        });
+    });
+
+    // Map loading effect
+    const mapPlaceholder = document.querySelector('.map-placeholder');
+    if (mapPlaceholder) {
+        mapPlaceholder.addEventListener('click', function() {
+            const originalContent = this.innerHTML;
+            
+            this.innerHTML = `
+                <div>
+                    <div>
+                        <span style="animation: spin 1s linear infinite; display: inline-block;">🔄</span>
+                        Đang mở bản đồ...
+                    </div>
+                    <small>Vui lòng chờ</small>
+                </div>
+            `;
+            
+            setTimeout(() => {
+                this.innerHTML = originalContent;
+            }, 2000);
+        });
+    }
+});
+</script>
 <div id="gigabrain-shadow-global" name="gigabrain" bis_skin_checked="1"></div></body></html>
