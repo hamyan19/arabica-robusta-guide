@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kiến Thức Cà Phê - Blog ANARO Coffee</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #2a221d;
+            background-color: #f6efe9;
+        }
+
+        /* Header - giống trang blog chính */
+        .header {
+            background: white;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            position: sticky; top: 0; z-index: 1000;
+        }
+        .nav-container {
+            max-width: 1200px; margin: 0 auto;
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 1rem 2rem;
+        }
+        .logo { display: flex; align-items: center; gap: 0.5rem; font-size: 1.5rem; font-weight: bold; color: #6b3f25; text-decoration: none; }
+        .nav-menu { display: flex; list-style: none; gap: 2rem; }
+        .nav-menu a { text-decoration: none; color: #2a221d; font-weight: 500; transition: color 0.3s; }
+        .nav-menu a:hover, .nav-menu a.active { color: #6b3f25; }
+
+        /* Category Header */
+        .category-header { background: linear-gradient(135deg, #6b3f25 0%, #a47148 100%); color: white; padding: 4rem 0 3rem; text-align: center; }
+        .category-header-content { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+        .category-title { font-size: 2.5rem; font-weight: 700; margin-bottom: 1rem; }
+        .category-description { font-size: 1.2rem; margin-bottom: 1.5rem; opacity: 0.9; max-width: 600px; margin-left: auto; margin-right: auto; }
+        .category-meta { display: flex; align-items: center; justify-content: center; gap: 2rem; font-size: 1rem; }
+        .post-count { display: flex; align-items: center; gap: 0.5rem; }
+        .breadcrumb { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1.5rem; opacity: 0.8; }
+        .breadcrumb a { color: white; text-decoration: none; transition: opacity 0.3s; }
+        .breadcrumb a:hover { opacity: 0.8; }
+
+        /* Posts Container */
+        .posts-container { max-width: 1200px; margin: 0 auto; padding: 3rem 2rem; }
+
+        /* Filter Tabs */
+        .category-filters { background: white; border-radius: 16px; box-shadow: 0 8px 25px rgba(0,0,0,0.1); padding: 2rem; margin-bottom: 3rem; }
+        .filter-tabs { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; }
+        .filter-tab { padding: 0.8rem 1.5rem; border: 2px solid #e9d7c5; background: white; color: #6b3f25; border-radius: 50px; cursor: pointer; transition: all 0.3s; font-weight: 500; text-decoration: none; }
+        .filter-tab:hover, .filter-tab.active { background: #6b3f25; color: white; border-color: #6b3f25; }
+
+        /* Posts Grid */
+        .posts-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-bottom: 3rem; }
+        .post-card { background: white; border-radius: 16px; overflow: hidden; box-shadow: 0 8px 25px rgba(0,0,0,0.1); transition: all 0.3s; cursor: pointer; }
+        .post-card:hover { transform: translateY(-3px); box-shadow: 0 12px 30px rgba(0,0,0,0.15); }
+        .card-image { width: 100%; height: 200px; object-fit: cover; }
+        .card-content { padding: 1.5rem; }
+        .card-category { display: inline-block; background: #6b3f25; color: white; padding: 0.3rem 0.8rem; border-radius: 20px; font-size: 0.8rem; font-weight: 500; margin-bottom: 1rem; }
+        .card-title { font-size: 1.3rem; font-weight: 600; margin-bottom: 0.8rem; color: #2a221d; line-height: 1.4; }
+        .card-excerpt { color: #666; margin-bottom: 1rem; line-height: 1.6; }
+        .card-meta { display: flex; align-items: center; justify-content: space-between; color: #999; font-size: 0.9rem; }
+        .meta-info { display: flex; align-items: center; gap: 1rem; }
+        .read-time { display: flex; align-items: center; gap: 0.3rem; }
+
+        /* Loading */
+        .loading { display: none; text-align: center; padding: 3rem 0; }
+        .loading.show { display: block; }
+        .spinner { width: 40px; height: 40px; border: 4px solid #e9d7c5; border-left: 4px solid #6b3f25; border-radius: 50%; animation: spin 1s linear infinite; margin: 0 auto 1rem; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+        /* Empty State */
+        .empty-state { text-align: center; padding: 3rem 0; display: none; }
+        .empty-state.show { display: block; }
+        .empty-state i { font-size: 4rem; color: #a47148; margin-bottom: 1rem; }
+        .empty-state h3 { font-size: 1.5rem; color: #6b3f25; margin-bottom: 0.5rem; }
+        .empty-state p { color: #666; }
+
+        /* Pagination */
+        .pagination { display: flex; justify-content: center; align-items: center; gap: 1rem; margin: 3rem 0; }
+        .pagination button { padding: 0.8rem 1.2rem; border: 2px solid #e9d7c5; background: white; color: #6b3f25; border-radius: 8px; cursor: pointer; transition: all 0.3s; font-weight: 500; }
+        .pagination button:hover, .pagination button.active { background: #6b3f25; color: white; border-color: #6b3f25; }
+        .pagination button:disabled { opacity: 0.5; cursor: not-allowed; }
+
+        /* Footer - giống trang blog chính */
+        .footer { background: #2a221d; color: white; padding: 3rem 0 1rem; margin-top: 4rem; }
+        .footer-content { max-width: 1200px; margin: 0 auto; padding: 0 2rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; }
+        .footer-section h3 { color: #a47148; margin-bottom: 1rem; }
+        .footer-section p, .footer-section a { color: #ccc; text-decoration: none; line-height: 1.8; }
+        .footer-section a:hover { color: white; }
+        .social-links { display: flex; gap: 1rem; margin-top: 1rem; }
+        .social-links a { display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; background: #6b3f25; border-radius: 50%; transition: background 0.3s; }
+        .social-links a:hover { background: #a47148; }
+        .footer-bottom { text-align: center; padding-top: 2rem; margin-top: 2rem; border-top: 1px solid #444; color: #999; }
+
+        /* Back to Top Button */
+        .back-to-top { position: fixed; bottom: 2rem; right: 2rem; background: #6b3f25; color: white; width: 50px; height: 50px; border-radius: 50%; border: none; cursor: pointer; box-shadow: 0 4px 15px rgba(0,0,0,0.2); opacity: 0; visibility: hidden; transition: all 0.3s; z-index: 999; }
+        .back-to-top.show { opacity: 1; visibility: visible; }
+        .back-to-top:hover { background: #a47148; transform: translateY(-2px); }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .nav-menu { display: none; }
+            .nav-container { padding: 1rem; }
+            .category-title { font-size: 2rem; }
+            .category-description { font-size: 1rem; }
+            .category-meta { flex-direction: column; gap: 1rem; }
+            .posts-container { padding: 2rem 1rem; }
+            .posts-grid { grid-template-columns: 1fr; }
+            .filter-tabs { justify-content: flex-start; overflow-x: auto; padding-bottom: 0.5rem; }
+            .filter-tab { white-space: nowrap; flex-shrink: 0; }
+            .pagination { flex-wrap: wrap; gap: 0.5rem; }
+            .pagination button { padding: 0.6rem 1rem; font-size: 0.9rem; }
+            .back-to-top { bottom: 1rem; right: 1rem; width: 45px; height: 45px; }
+        }
+        /* Tablet Responsive */
+        @media (min-width: 768px) and (max-width: 1024px) { .posts-grid { grid-template-columns: repeat(2, 1fr); } }
+        /* Desktop Responsive */
+        @media (min-width: 1024px) { .posts-grid { grid-template-columns: repeat(3, 1fr); } }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav-container">
+            <a href="/" class="logo">
+                <i class="fas fa-coffee"></i>
+                ANARO COFFEE COLLECTION
+            </a>
+            <ul class="nav-menu">
+                <li><a href="/">Trang chủ</a></li>
+                <li><a href="/blog" class="active">Blog cà phê</a></li>
+                <li><a href="/contact">Liên hệ</a></li>
+                <li><a href="/products">Mua hàng</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Category Header -->
+    <section class="category-header">
+        <div class="category-header-content">
+            <div class="breadcrumb">
+                <a href="/"><i class="fas fa-home"></i></a>
+                <span>/</span>
+                <a href="/blog">Blog</a>
+                <span>/</span>
+                <span>Kiến thức cà phê</span>
+            </div>
+            <h1 class="category-title">Kiến Thức Cà Phê</h1>
+            <p class="category-description">
+                Khám phá thế giới cà phê với những kiến thức chuyên sâu về nguồn gốc, 
+                quy trình chế biến và những bí mật đằng sau từng tách cà phê thơm ngon.
+            </p>
+            <div class="category-meta">
+                <div class="post-count">
+                    <i class="fas fa-newspaper"></i>
+                    <span id="postCountText">12 bài viết</span>
+                </div>
+                <div class="last-updated">
+                    <i class="fas fa-clock"></i>
+                    <span>Cập nhật: 15/08/2025</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Posts Container -->
+    <div class="posts-container">
+        <!-- Category Filters -->
+        <div class="category-filters">
+            <div class="filter-tabs" id="categoryTabs">
+                <a href="/blog" class="filter-tab">Tất cả bài viết</a>
+                <a href="/blog/category/kienthuccafe.html" class="filter-tab active">Kiến thức cà phê</a>
+                <a href="/blog/category/cachphache.html" class="filter-tab">Cách pha chế</a>
+                <a href="/blog/category/review.html" class="filter-tab">Review sản phẩm</a>
+                <a href="/blog/category/tips.html" class="filter-tab">Tips & Tricks</a>
+            </div>
+        </div>
+
+        <!-- Loading -->
+        <div class="loading" id="loading">
+            <div class="spinner"></div>
+            <p>Đang tải bài viết...</p>
+        </div>
+
+        <!-- Posts Grid -->
+        <div class="posts-grid" id="postsGrid">
+            <!-- Posts will be loaded here -->
+        </div>
+
+        <!-- Empty State -->
+        <div class="empty-state" id="emptyState">
+            <i class="fas fa-search"></i>
+            <h3>Không tìm thấy bài viết nào</h3>
+            <p>Hãy thử tìm kiếm với từ khóa khác hoặc chọn danh mục khác.</p>
+        </div>
+    </div>
+
+    <!-- Pagination -->
+    <div class="pagination" id="pagination">
+        <!-- Pagination will be generated by JavaScript -->
+    </div>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>ANARO COFFEE COLLECTION</h3>
+                <p>Chuyên cung cấp cà phê chất lượng cao từ những vùng trồng nổi tiếng Việt Nam. Từng hạt cà phê được chọn lọc kỹ càng để mang đến trải nghiệm tuyệt vời nhất.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>Sản phẩm</h3>
+                <p><a href="#">Arabica Cầu Đất</a></p>
+                <p><a href="#">Arabica Đà Lạt</a></p>
+                <p><a href="#">Blend Số 3</a></p>
+                <p><a href="#">Blend Số 9</a></p>
+            </div>
+            <div class="footer-section">
+                <h3>Hỗ trợ</h3>
+                <p><a href="#">Câu hỏi thường gặp</a></p>
+                <p><a href="#">Hướng dẫn pha chế</a></p>
+                <p><a href="#">Chính sách đổi trả</a></p>
+                <p><a href="#">Liên hệ</a></p>
+            </div>
+            <div class="footer-section">
+                <h3>Liên hệ</h3>
+                <p><i class="fas fa-phone"></i> 0123 456 789</p>
+                <p><i class="fas fa-envelope"></i> info@anarocoffee.com</p>
+                <p><i class="fas fa-map-marker-alt"></i> Hồ Chí Minh, Việt Nam</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 ANARO Coffee Collection. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Sample data cho category "Kiến thức cà phê"
+        const categoryPosts = [
+            {
+                id: 1,
+                title: "Tìm hiểu về cà phê Arabica và Robusta - Sự khác biệt cơ bản",
+                excerpt: "Arabica và Robusta là hai loài cà phê phổ biến nhất thế giới. Mỗi loài có đặc tính riêng biệt về hương vị, điều kiện trồng và giá thành. Hãy cùng khám phá sự khác biệt để hiểu rõ hơn về tách cà phê bạn đang thưởng thức...",
+                category: "kienthuccafe",
+                categoryName: "Kiến thức cà phê",
+                image: "https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=400&h=200&fit=crop&crop=center",
+                date: "23/07/2025",
+                author: "Fair Trade Expert",
+                readTime: "6 phút đọc"
+            },
+            {
+                id: 12,
+                title: "Cupping - Nghệ thuật nếm và đánh giá cà phê chuyên nghiệp",
+                excerpt: "Cupping là phương pháp chuẩn để đánh giá chất lượng cà phê. Quy trình cupping bao gồm nghiền, pha, ngửi hương và nếm theo các bước chuẩn quốc tế. Kỹ năng cupping giúp phân biệt được các note hương vị và đánh giá chất lượng cà phê chính xác...",
+                category: "kienthuccafe",
+                categoryName: "Kiến thức cà phê",
+                image: "https://images.unsplash.com/photo-1497515114629-f71d768fd07c?w=400&h=200&fit=crop&crop=center",
+                date: "20/07/2025",
+                author: "Cupping Expert",
+                readTime: "8 phút đọc"
+            }
+        ];
+
+        // Biến toàn cục
+        let currentPage = 1;
+        const postsPerPage = 6;
+        let totalPosts = categoryPosts.length;
+
+        // Khởi tạo trang
+        document.addEventListener('DOMContentLoaded', function() {
+            initializePage();
+            setupScrollEffects();
+            setupBackToTop();
+        });
+
+        function initializePage() {
+            updatePostCount();
+            loadPosts();
+            updatePagination();
+        }
+
+        // Cập nhật số lượng bài viết
+        function updatePostCount() {
+            const postCountText = document.getElementById('postCountText');
+            postCountText.textContent = `${totalPosts} bài viết`;
+        }
+
+        // Tải bài viết
+        function loadPosts() {
+            const loading = document.getElementById('loading');
+            const postsGrid = document.getElementById('postsGrid');
+            const emptyState = document.getElementById('emptyState');
+
+            loading.classList.add('show');
+            postsGrid.innerHTML = '';
+            emptyState.classList.remove('show');
+
+            setTimeout(() => {
+                const startIndex = (currentPage - 1) * postsPerPage;
+                const endIndex = startIndex + postsPerPage;
+                const postsToShow = categoryPosts.slice(startIndex, endIndex);
+
+                if (postsToShow.length === 0) {
+                    emptyState.classList.add('show');
+                } else {
+                    postsGrid.innerHTML = postsToShow.map(post => createPostCard(post)).join('');
+
+                    // Animation
+                    const cards = postsGrid.querySelectorAll('.post-card');
+                    cards.forEach((card, index) => {
+                        card.style.opacity = '0';
+                        card.style.transform = 'translateY(20px)';
+                        setTimeout(() => {
+                            card.style.transition = 'all 0.5s ease';
+                            card.style.opacity = '1';
+                            card.style.transform = 'translateY(0)';
+                        }, index * 100);
+                    });
+                }
+
+                loading.classList.remove('show');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }, 800);
+        }
+
+        // Card HTML
+        function createPostCard(post) {
+            return `
+                <article class="post-card" onclick="openPost(${post.id})">
+                    <img src="${post.image}" alt="${post.title}" class="card-image">
+                    <div class="card-content">
+                        <span class="card-category">${post.categoryName}</span>
+                        <h3 class="card-title">${post.title}</h3>
+                        <p class="card-excerpt">${post.excerpt}</p>
+                        <div class="card-meta">
+                            <div class="meta-info">
+                                <span><i class="fas fa-calendar"></i> ${post.date}</span>
+                                <span><i class="fas fa-user"></i> ${post.author}</span>
+                            </div>
+                            <div class="read-time">
+                                <i class="fas fa-clock"></i>
+                                <span>${post.readTime}</span>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            `;
+        }
+
+        // Điều hướng bài viết (placeholder)
+        function openPost(postId) {
+            console.log('Opening post:', postId);
+            alert(`Chuyển đến bài viết chi tiết (ID: ${postId}). Tính năng này sẽ được phát triển ở phase tiếp theo.`);
+        }
+
+        // Phân trang
+        function updatePagination() {
+            const totalPages = Math.ceil(totalPosts / postsPerPage);
+            const pagination = document.getElementById('pagination');
+
+            if (totalPages <= 1) {
+                pagination.style.display = 'none';
+                return;
+            }
+
+            pagination.style.display = 'flex';
+
+            let html = `
+                <button onclick="previousPage()" ${currentPage === 1 ? 'disabled' : ''}>
+                    <i class="fas fa-chevron-left"></i> Trước
+                </button>
+            `;
+
+            const startPage = Math.max(1, currentPage - 2);
+            const endPage = Math.min(totalPages, startPage + 4);
+
+            if (startPage > 1) {
+                html += `<button onclick="changePage(1)">1</button>`;
+                if (startPage > 2) html += `<span>...</span>`;
+            }
+
+            for (let i = startPage; i <= endPage; i++) {
+                html += `<button onclick="changePage(${i})" ${i === currentPage ? 'class="active"' : ''}>${i}</button>`;
+            }
+
+            if (endPage < totalPages) {
+                if (endPage < totalPages - 1) html += `<span>...</span>`;
+                html += `<button onclick="changePage(${totalPages})">${totalPages}</button>`;
+            }
+
+            html += `
+                <button onclick="nextPage()" ${currentPage === totalPages ? 'disabled' : ''}>
+                    Sau <i class="fas fa-chevron-right"></i>
+                </button>
+            `;
+
+            pagination.innerHTML = html;
+        }
+
+        function previousPage() {
+            if (currentPage > 1) {
+                currentPage--;
+                loadPosts();
+                updatePagination();
+            }
+        }
+        function nextPage() {
+            const totalPages = Math.ceil(totalPosts / postsPerPage);
+            if (currentPage < totalPages) {
+                currentPage++;
+                loadPosts();
+                updatePagination();
+            }
+        }
+        function changePage(page) {
+            const totalPages = Math.ceil(totalPosts / postsPerPage);
+            if (page >= 1 && page <= totalPages) {
+                currentPage = page;
+                loadPosts();
+                updatePagination();
+            }
+        }
+
+        // Hiệu ứng scroll cho header
+        function setupScrollEffects() {
+            let lastScrollTop = 0;
+            const header = document.querySelector('.header');
+
+            window.addEventListener('scroll', function() {
+                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+                if (scrollTop > lastScrollTop && scrollTop > 100) {
+                    header.style.transform = 'translateY(-100%)';
+                } else {
+                    header.style.transform = 'translateY(0)';
+                }
+                lastScrollTop = scrollTop;
+            });
+        }
+
+        // Back to Top
+        function setupBackToTop() {
+            const backToTopBtn = document.getElementById('backToTop');
+
+            window.addEventListener('scroll', function() {
+                if (window.pageYOffset > 300) backToTopBtn.classList.add('show');
+                else backToTopBtn.classList.remove('show');
+            });
+
+            backToTopBtn.addEventListener('click', function() {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        }
+
+        // Smooth scrolling cho anchor nội bộ
+        document.addEventListener('click', function(e) {
+            if (e.target.matches('a[href^="#"]')) {
+                e.preventDefault();
+                const target = document.querySelector(e.target.getAttribute('href'));
+                if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        });
+
+        // Lazy loading (khung sẵn)
+        if ('IntersectionObserver' in window) {
+            const imageObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        img.src = img.dataset.src || img.src;
+                        img.classList.remove('lazy');
+                        observer.unobserve(img);
+                    }
+                });
+            });
+            // sẽ gắn observer khi render post nếu dùng ảnh lazy
+        }
+
+        // Keyboard navigation cho pagination
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowLeft') previousPage();
+            else if (e.key === 'ArrowRight') nextPage();
+        });
+
+        // SEO/Analytics (placeholder)
+        function trackPageView() {
+            if (typeof gtag !== 'undefined') {
+                gtag('config', 'GA_TRACKING_ID', {
+                    page_title: 'Kiến Thức Cà Phê - Category',
+                    page_location: window.location.href
+                });
+            }
+        }
+        document.addEventListener('DOMContentLoaded', trackPageView);
+    </script>
+</body>
+</html>
