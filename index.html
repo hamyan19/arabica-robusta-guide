@@ -1745,548 +1745,795 @@
   </div>
 
   <!-- FOOTER -->
-  <footer class="footer">
-    <div class="footer-container">
-      
+ <!-- ANARO COFFEE FOOTER COMPONENT -->
+<!-- 
+    Tính năng:
+    - Responsive design (Mobile-first approach)
+    - Social media links với icons rõ ràng
+    - Google Maps integration
+    - Click-to-call & click-to-email
+    - Smooth animations & hover effects
+    - SEO friendly & Accessible
+-->
 
+<!-- Font Awesome CDN - Multiple fallbacks + Unicode symbols -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous">
 
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ANARO Coffee Footer</title>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+<!-- CSS với bộ màu đậm hơn 20% và Unicode fallbacks -->
+<style>
+/* CSS fallback với Unicode symbols */
+.social-unicode {
+    font-family: "Segoe UI Emoji", "Apple Color Emoji", "Noto Color Emoji", sans-serif;
+    font-size: 1.4rem;
+    font-weight: normal;
+}
 
-    :root {
-      --primary: #6b3f25;
-      --secondary: #a47148;
-      --bg: #f6efe9;
-      --text: #2a221d;
-      --light: #F8EBDD;
-      --border: #e9d7c5;
-      --white: #ffffff;
-      --shadow: rgba(0, 0, 0, 0.1);
-    }
+.facebook-icon::before { content: "📘"; }
+.instagram-icon::before { content: "📷"; }  
+.tiktok-icon::before { content: "🎵"; }
+.map-icon::before { content: "📍"; }
+</style>
 
-    body {
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
-      background: linear-gradient(180deg, #fff, var(--bg) 50%, #f0e2d6);
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-    }
+<!-- FOOTER CSS STYLES -->
+<style>
+/* ========================================
+   ANARO COFFEE FOOTER STYLES
+   ======================================== */
 
-    /* Demo content để thấy footer */
-    .demo-content {
-      flex: 1;
-      padding: 40px 20px;
-      text-align: center;
-      color: var(--text);
-    }
+/* Footer Container - Latte Color Theme (Đậm 20%) */
+.footer {
+    background: linear-gradient(135deg, #b8936b 0%, #a6875f 50%, #9a7c58 100%);
+    color: #3d2d20; /* Màu chữ nâu đậm hơn để dễ đọc */
+    position: relative;
+    overflow: hidden;
+    margin-top: 4rem;
+    box-shadow: 
+        0 -15px 35px rgba(107, 63, 37, 0.25),
+        inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
 
-    .demo-content h1 {
-      color: var(--primary);
-      margin-bottom: 20px;
-      font-size: 2.5rem;
-    }
+/* Multiple shadow layers cho depth */
+.footer::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, 
+        rgba(248, 240, 230, 0.08) 0%, 
+        transparent 50%, 
+        rgba(107, 63, 37, 0.08) 100%);
+    pointer-events: none;
+}
 
-    .demo-content p {
-      font-size: 1.2rem;
-      opacity: 0.8;
-    }
+/* Đường viền gradient phía trên - màu latte đậm */
+.footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, 
+        transparent, 
+        rgba(107, 63, 37, 0.8), 
+        rgba(248, 240, 230, 0.9),
+        rgba(107, 63, 37, 0.8), 
+        transparent);
+    box-shadow: 0 2px 8px rgba(107, 63, 37, 0.3);
+}
 
-    /* FOOTER STYLES */
-    .footer {
-      background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-      color: var(--white);
-      padding: 60px 0 30px;
-      margin-top: auto;
-      position: relative;
-      overflow: hidden;
-    }
+/* Footer main container */
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 3rem 2rem 1rem;
+}
 
-    .footer::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="coffee" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="10" cy="10" r="1" fill="rgba(255,255,255,0.05)"/></pattern></defs><rect width="100" height="100" fill="url(%23coffee)"/></svg>');
-      pointer-events: none;
-    }
+/* Footer content grid - Desktop: 2 cột, Mobile: 1 cột */
+.footer-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    margin-bottom: 2rem;
+}
 
+/* ========================================
+   COMPANY INFO SECTION (Cột trái)
+   ======================================== */
+
+.footer-info h3 {
+    color: #553018; /* Màu nâu đậm hơn cho title */
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-shadow: 0 1px 3px rgba(107, 63, 37, 0.4);
+}
+
+.footer-info p {
+    color: #4a332a; /* Màu nâu medium đậm cho text */
+    line-height: 1.8;
+    margin-bottom: 2rem;
+    font-size: 1rem;
+    text-shadow: 0 1px 2px rgba(248, 240, 230, 0.25);
+}
+
+/* Contact information grid */
+.contact-info {
+    display: grid;
+    gap: 1rem;
+}
+
+/* Mỗi item liên hệ */
+.contact-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    color: #4a332a; /* Màu nâu đậm cho text */
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    padding: 0.8rem;
+    border-radius: 12px;
+    background: rgba(248, 240, 230, 0.25);
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(107, 63, 37, 0.3);
+    box-shadow: 0 2px 8px rgba(107, 63, 37, 0.15);
+}
+
+/* Hover effect cho contact items */
+.contact-item:hover {
+    color: #553018; /* Nâu đậm hơn khi hover */
+    background: rgba(248, 240, 230, 0.5);
+    transform: translateX(8px) translateY(-2px);
+    box-shadow: 0 6px 20px rgba(107, 63, 37, 0.25);
+    border-color: rgba(107, 63, 37, 0.5);
+}
+
+/* Icons cho contact info */
+.contact-item .icon {
+    font-size: 1.2rem;
+    width: 24px;
+    text-align: center;
+    filter: sepia(0.4) saturate(1.3);
+    text-shadow: 0 1px 2px rgba(107, 63, 37, 0.4);
+}
+
+.contact-item:hover .icon {
+    filter: sepia(0) saturate(1.6);
+    transform: scale(1.1);
+}
+
+/* ========================================
+   SOCIAL MEDIA SECTION (Cột phải)
+   ======================================== */
+
+.social-section {
+    text-align: center;
+}
+
+.social-section h4 {
+    color: #553018; /* Màu nâu đậm hơn */
+    margin-bottom: 1.5rem;
+    font-size: 1.3rem;
+    text-shadow: 0 1px 3px rgba(107, 63, 37, 0.4);
+}
+
+/* Social links container */
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+/* Base style cho social links - Enhanced với latte theme */
+.social-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 15px;
+    text-decoration: none;
+    font-size: 1.5rem;
+    color: white;
+    transition: all 0.3s ease;
+    box-shadow: 
+        0 4px 15px rgba(139, 90, 60, 0.3),
+        0 2px 8px rgba(0, 0, 0, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+}
+
+/* Hiệu ứng shine khi hover - soft hơn */
+.social-link::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,248,240,0.3), transparent);
+    transition: left 0.5s;
+}
+
+.social-link:hover::before {
+    left: 100%;
+}
+
+/* Base hover effect - soft elevation */
+.social-link:hover {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 
+        0 8px 25px rgba(139, 90, 60, 0.4),
+        0 4px 15px rgba(0, 0, 0, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+/* Facebook brand colors */
+.social-link.facebook {
+    background: linear-gradient(135deg, #1877f2, #42a5f5);
+}
+
+.social-link.facebook:hover {
+    box-shadow: 0 8px 25px rgba(24, 119, 242, 0.5);
+}
+
+/* Instagram brand colors */
+.social-link.instagram {
+    background: linear-gradient(135deg, #e4405f, #f77737, #fccc63);
+}
+
+.social-link.instagram:hover {
+    box-shadow: 0 8px 25px rgba(228, 64, 95, 0.5);
+}
+
+/* TikTok brand colors */
+.social-link.tiktok {
+    background: linear-gradient(135deg, #000000, #ff0050);
+}
+
+.social-link.tiktok:hover {
+    box-shadow: 0 8px 25px rgba(255, 0, 80, 0.5);
+}
+
+/* ========================================
+   GOOGLE MAP SECTION
+   ======================================== */
+
+.map-container {
+    position: relative;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 
+        0 8px 25px rgba(107, 63, 37, 0.4),
+        0 4px 15px rgba(0, 0, 0, 0.15),
+        inset 0 1px 0 rgba(248, 240, 230, 0.15);
+    background: linear-gradient(135deg, #ccb89c, #c0ad93);
+    height: 180px;
+    border: 1px solid rgba(107, 63, 37, 0.3);
+}
+
+/* Overlay label trên map */
+.map-overlay {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    background: linear-gradient(135deg, rgba(107, 63, 37, 0.95), rgba(139, 90, 60, 0.9));
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 25px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    z-index: 2;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 2px 8px rgba(107, 63, 37, 0.3);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* Map placeholder - click để mở Google Maps */
+.map-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #f0e6d2, #e8dcc0, #ddc89a);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+/* Grid pattern cho map placeholder - màu latte */
+.map-placeholder::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="%23c4a57b" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+    opacity: 0.4;
+}
+
+.map-placeholder:hover {
+    background: linear-gradient(135deg, #f5ebe0, #eee2d0, #e1d4a5);
+    transform: scale(1.02);
+    box-shadow: inset 0 2px 8px rgba(139, 90, 60, 0.2);
+}
+
+.map-placeholder > div {
+    text-align: center;
+    z-index: 1;
+    position: relative;
+}
+
+.map-placeholder > div > div {
+    color: #553018; /* Màu nâu đậm hơn cho text */
+    font-weight: 600;
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    text-shadow: 0 1px 2px rgba(248, 240, 230, 0.4);
+}
+
+.map-placeholder small {
+    color: #6f4830; /* Màu nâu medium đậm cho subtitle */
+    font-size: 0.9rem;
+    text-shadow: 0 1px 2px rgba(248, 240, 230, 0.25);
+}
+
+/* ========================================
+   FOOTER BOTTOM (Copyright)
+   ======================================== */
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 2rem;
+    margin-top: 2rem;
+    border-top: 1px solid #444;
+    color: #999;
+    font-size: 0.9rem;
+}
+
+.footer-bottom p {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+/* Animated heart icon */
+.heart {
+    color: #e74c3c;
+    animation: heartbeat 2s ease-in-out infinite;
+}
+
+@keyframes heartbeat {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+/* ========================================
+   RESPONSIVE DESIGN
+   ======================================== */
+
+/* Tablet & Mobile */
+@media (max-width: 768px) {
     .footer-container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 20px;
-      position: relative;
-      z-index: 2;
+        padding: 2rem 1rem 1rem;
     }
 
+    /* Chuyển sang 1 cột */
     .footer-content {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 40px;
-      margin-bottom: 40px;
+        grid-template-columns: 1fr;
+        gap: 2rem;
     }
 
-    /* Info Section */
     .footer-info h3 {
-      font-size: 2rem;
-      margin-bottom: 20px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .footer-info p {
-      font-size: 1.1rem;
-      line-height: 1.6;
-      opacity: 0.9;
-      margin-bottom: 25px;
-    }
-
-    .contact-info {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-
-    .contact-item {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      font-size: 1rem;
-      opacity: 0.9;
-    }
-
-    .contact-item .icon {
-      width: 20px;
-      height: 20px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    /* Social Media */
-    .social-section h4 {
-      font-size: 1.3rem;
-      margin-bottom: 20px;
-      text-align: center;
+        font-size: 1.5rem;
     }
 
     .social-links {
-      display: flex;
-      justify-content: center;
-      gap: 15px;
-      margin-bottom: 30px;
+        gap: 1rem;
     }
 
     .social-link {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 50px;
-      height: 50px;
-      border-radius: 15px;
-      text-decoration: none;
-      color: var(--white);
-      font-weight: bold;
-      font-size: 1.5rem;
-      transition: all 0.3s ease;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .social-link::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-      transition: left 0.5s ease;
-    }
-
-    .social-link:hover::before {
-      left: 100%;
-    }
-
-    .social-link.facebook {
-      background: linear-gradient(135deg, #1877F2, #42a5f5);
-    }
-
-    .social-link.instagram {
-      background: linear-gradient(135deg, #E4405F, #FCAF45, #833AB4);
-    }
-
-    .social-link.tiktok {
-      background: linear-gradient(135deg, #000000, #25F4EE, #FE2C55);
-    }
-
-    .social-link:hover {
-      transform: translateY(-3px) scale(1.05);
-      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
-    }
-
-    /* Map Section */
-    .map-container {
-      background: var(--white);
-      border-radius: 15px;
-      overflow: hidden;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-      height: 250px;
-      position: relative;
-    }
-
-    .map-placeholder {
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(45deg, #f0f0f0, #e0e0e0);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--text);
-      font-size: 1.1rem;
-      position: relative;
-      cursor: pointer;
-      transition: all 0.3s ease;
-    }
-
-    .map-placeholder:hover {
-      background: linear-gradient(45deg, #e8e8e8, #d8d8d8);
-    }
-
-    .map-placeholder::before {
-      content: '📍';
-      font-size: 3rem;
-      margin-bottom: 10px;
-      display: block;
-    }
-
-    .map-overlay {
-      position: absolute;
-      top: 15px;
-      left: 15px;
-      background: rgba(107, 63, 37, 0.9);
-      color: var(--white);
-      padding: 8px 12px;
-      border-radius: 8px;
-      font-size: 0.9rem;
-      font-weight: 600;
-    }
-
-    /* Footer Bottom */
-    .footer-bottom {
-      border-top: 1px solid rgba(255,255,255,0.2);
-      padding-top: 25px;
-      text-align: center;
-    }
-
-    .footer-bottom p {
-      opacity: 0.8;
-      font-size: 0.95rem;
-    }
-
-    /* Responsive */
-    @media (max-width: 768px) {
-      .footer {
-        padding: 40px 0 20px;
-      }
-
-      .footer-content {
-        grid-template-columns: 1fr;
-        gap: 30px;
-        text-align: center;
-      }
-
-      .footer-info h3 {
-        font-size: 1.8rem;
-        justify-content: center;
-      }
-
-      .contact-info {
-        align-items: center;
-      }
-
-      .contact-item {
-        justify-content: center;
-      }
-
-      .social-links {
-        gap: 20px;
-      }
-
-      .social-link {
-        width: 55px;
-        height: 55px;
-      }
-
-      .map-container {
-        height: 200px;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .footer-container {
-        padding: 0 15px;
-      }
-
-      .footer-info h3 {
-        font-size: 1.6rem;
-      }
-
-      .footer-info p {
-        font-size: 1rem;
-      }
-
-      .social-link {
         width: 45px;
         height: 45px;
         font-size: 1.3rem;
-      }
     }
 
-    /* Animation */
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      to {
+    .map-container {
+        height: 150px;
+    }
+
+    .contact-info {
+        gap: 0.8rem;
+    }
+
+    .contact-item {
+        font-size: 0.9rem;
+    }
+}
+
+/* Small Mobile */
+@media (max-width: 480px) {
+    .footer-container {
+        padding: 1.5rem 1rem 1rem;
+    }
+
+    /* Stack contact items vertically */
+    .contact-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+        text-align: left;
+    }
+
+    .footer-bottom p {
+        flex-direction: column;
+        gap: 0.3rem;
+    }
+
+    .social-links {
+        gap: 0.8rem;
+    }
+
+    .social-link {
+        width: 40px;
+        height: 40px;
+        font-size: 1.2rem;
+    }
+}
+
+/* ========================================
+   ENTRANCE ANIMATION
+   ======================================== */
+
+.footer {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 1s ease-out forwards;
+}
+
+@keyframes fadeInUp {
+    to {
         opacity: 1;
         transform: translateY(0);
-      }
     }
+}
+</style>
 
-    .footer-content > * {
-      animation: fadeInUp 0.6s ease forwards;
-    }
-
-    .footer-content > *:nth-child(2) {
-      animation-delay: 0.2s;
-    }
-
-    .footer-bottom {
-      animation: fadeInUp 0.6s ease 0.4s forwards;
-      opacity: 0;
-    }
-  </style>
-
-
-  <!-- Demo content -->
-
-
-  <!-- FOOTER -->
-  <footer class="footer">
+<!-- FOOTER HTML STRUCTURE -->
+<footer class="footer">
     <div class="footer-container">
-      <div class="footer-content">
-        <!-- Company Info -->
-        <div class="footer-info">
-          <h3>
-            ☕ ANARO Coffee
-          </h3>
-          <p>Thương hiệu cà phê chất lượng cao, mang đến trải nghiệm tuyệt vời từ những hạt cà phê được tuyển chọn kỹ lưỡng từ các vùng trồng nổi tiếng Việt Nam.</p>
-          
-          <div class="contact-info">
-            <div class="contact-item">
-              <span class="icon">📍</span>
-              <span>58 Đa Phước Bình Chánh TP.HCM</span>
+        <div class="footer-content">
+            
+            <!-- ===== COMPANY INFORMATION ===== -->
+            <div class="footer-info">
+                <h3>☕ ANARO Coffee</h3>
+                <p>Thương hiệu cà phê chất lượng cao, mang đến trải nghiệm tuyệt vời từ những hạt cà phê được tuyển chọn kỹ lưỡng từ các vùng trồng nổi tiếng Việt Nam.</p>
+                
+                <!-- Contact Information -->
+                <div class="contact-info">
+                    <!-- Địa chỉ -->
+                    <div class="contact-item" onclick="openGoogleMaps()">
+                        <span class="icon">📍</span>
+                        <span>58 Đa Phước Bình Chánh TP.HCM</span>
+                    </div>
+                    
+                    <!-- Số điện thoại - Click to call -->
+                    <div class="contact-item" onclick="makePhoneCall()">
+                        <span class="icon">📞</span>
+                        <span>0918337071</span>
+                    </div>
+                    
+                    <!-- Email - Click to email -->
+                    <div class="contact-item" onclick="sendEmail()">
+                        <span class="icon">✉️</span>
+                        <span>anmy1909@gmail.com</span>
+                    </div>
+                    
+                    <!-- Giờ mở cửa -->
+                    <div class="contact-item">
+                        <span class="icon">🕐</span>
+                        <span>Mở cửa: 8:00 - 22:00 hàng ngày</span>
+                    </div>
+                </div>
             </div>
-            <div class="contact-item">
-              <span class="icon">📞</span>
-              <span>0918337071</span>
+
+            <!-- ===== SOCIAL MEDIA & MAP ===== -->
+            <div class="social-section">
+                <h4>Kết nối với ANARO Coffee</h4>
+                
+                <!-- Social Media Links với Unicode fallbacks -->
+                <div class="social-links">
+                    <!-- Facebook -->
+                    <a href="https://facebook.com/anarocoffee" 
+                       class="social-link facebook" 
+                       title="Theo dõi ANARO Coffee trên Facebook" 
+                       aria-label="Facebook"
+                       target="_blank"
+                       rel="noopener noreferrer"
+                       onclick="trackSocialClick('facebook')">
+                        <span class="social-unicode facebook-icon"></span>
+                    </a>
+                    
+                    <!-- Instagram -->
+                    <a href="https://instagram.com/anarocoffee" 
+                       class="social-link instagram" 
+                       title="Theo dõi ANARO Coffee trên Instagram" 
+                       aria-label="Instagram"
+                       target="_blank"
+                       rel="noopener noreferrer"
+                       onclick="trackSocialClick('instagram')">
+                        <span class="social-unicode instagram-icon"></span>
+                    </a>
+                    
+                    <!-- TikTok -->
+                    <a href="https://tiktok.com/@anarocoffee" 
+                       class="social-link tiktok" 
+                       title="Theo dõi ANARO Coffee trên TikTok" 
+                       aria-label="TikTok"
+                       target="_blank"
+                       rel="noopener noreferrer"
+                       onclick="trackSocialClick('tiktok')">
+                        <span class="social-unicode tiktok-icon"></span>
+                    </a>
+                </div>
+
+                <!-- Google Map Integration -->
+                <div class="map-container">
+                    <div class="map-overlay">ANARO Coffee Store</div>
+                    <div class="map-placeholder" 
+                         onclick="openGoogleMaps()" 
+                         aria-label="Xem bản đồ đến ANARO Coffee"
+                         title="Click để xem bản đồ">
+                        <div>
+                            <div>
+                                <span class="social-unicode map-icon"></span>
+                                Nhấn để xem bản đồ
+                            </div>
+                            <small>58 Đa Phước, Bình Chánh, TP.HCM</small>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="contact-item">
-              <span class="icon">✉️</span>
-              <span>hello@anarocoffee.vn</span>
-            </div>
-            <div class="contact-item">
-              <span class="icon">🕐</span>
-              <span>Mở cửa: 8:00 - 22:00 hàng ngày</span>
-            </div>
-          </div>
         </div>
 
-        <!-- Social Media & Map -->
-        <div class="social-section">
-          <h4>Kết nối với ANARO Coffee</h4>
-          <div class="social-links">
-            <a href="https://facebook.com/anarocoffee" class="social-link facebook" title="Facebook" aria-label="Facebook">
-              f
-            </a>
-            <a href="https://instagram.com/anarocoffee" class="social-link instagram" title="Instagram" aria-label="Instagram">
-              📷
-            </a>
-            <a href="https://tiktok.com/@anarocoffee" class="social-link tiktok" title="TikTok" aria-label="TikTok">
-              🎵
-            </a>
-          </div>
-
-          <!-- Google Map -->
-          <div class="map-container">
-            <div class="map-overlay">ANARO Coffee Store</div>
-            <div class="map-placeholder" onclick="openMap()" aria-label="Xem bản đồ ANARO Coffee">
-              <div>
-                <div>📍 Nhấn để xem bản đồ</div>
-                <small>58 Đa Phước, Bình Chánh, TP.HCM</small>
-              </div>
-            </div>
-          </div>
+        <!-- ===== COPYRIGHT SECTION ===== -->
+        <div class="footer-bottom">
+            <p>
+                © 2025 ANARO Coffee. All rights reserved. | 
+                Thiết kế với <span class="heart">❤️</span> tại Việt Nam
+            </p>
         </div>
-      </div>
-
-      <div class="footer-bottom">
-        <p>© 2025 ANARO Coffee. All rights reserved. | Thiết kế với ❤️ tại Việt Nam</p>
-      </div>
     </div>
-  </footer>
+</footer>
 
-  <script>
-    // Function để mở Google Maps
-    function openMap() {
-      // Thay đổi địa chỉ này thành địa chỉ thực tế của bạn
-      const address = encodeURIComponent("123 Đường Cà Phê, Quận 1, TP.HCM");
-      const googleMapsUrl = `https://share.google/TJKO3E9PvZDXFbNwy}`;
-      
-      // Mở trong tab mới
-      window.open(googleMapsUrl, '_blank', 'noopener,noreferrer');
-    }
+<!-- FOOTER JAVASCRIPT FUNCTIONALITY -->
+<script>
+/* ========================================
+   ANARO COFFEE FOOTER JAVASCRIPT
+   ======================================== */
 
-    // Smooth scroll animation khi load
-    window.addEventListener('load', () => {
-      const footer = document.querySelector('.footer');
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.style.opacity = '1';
-          }
+// ===== GOOGLE MAPS INTEGRATION =====
+function openGoogleMaps() {
+    // Địa chỉ cửa hàng - URL encode để tránh lỗi
+    const address = encodeURIComponent("58 Đa Phước, Bình Chánh, TP.HCM, Vietnam");
+    const googleMapsUrl = `https://www.google.com/maps/search/?api=1&query=${address}`;
+    
+    // Mở Google Maps trong tab mới
+    window.open(googleMapsUrl, '_blank', 'noopener,noreferrer');
+    
+    // Log để tracking (có thể thay bằng Google Analytics)
+    console.log('Google Maps clicked - ANARO Coffee location');
+}
+
+// ===== PHONE CALL FUNCTIONALITY =====
+function makePhoneCall() {
+    const phoneNumber = '0918337071';
+    
+    // Mở ứng dụng gọi điện (mobile) hoặc Skype (desktop)
+    window.location.href = `tel:${phoneNumber}`;
+    
+    console.log(`Phone call initiated: ${phoneNumber}`);
+}
+
+// ===== EMAIL FUNCTIONALITY =====
+function sendEmail() {
+    const email = 'anmy1909@gmail.com';
+    const subject = encodeURIComponent('Liên hệ từ website ANARO Coffee');
+    const body = encodeURIComponent('Chào ANARO Coffee,\n\nTôi muốn liên hệ về...\n\nTrân trọng,');
+    
+    // Mở ứng dụng email với nội dung được chuẩn bị sẵn
+    window.location.href = `mailto:${email}?subject=${subject}&body=${body}`;
+    
+    console.log(`Email composed to: ${email}`);
+}
+
+// ===== SOCIAL MEDIA CLICK TRACKING =====
+function trackSocialClick(platform) {
+    console.log(`Social media clicked: ${platform}`);
+    
+    // Có thể tích hợp Google Analytics hoặc Facebook Pixel ở đây
+    // Example: gtag('event', 'click', { 
+    //     event_category: 'Social Media', 
+    //     event_label: platform,
+    //     value: 1
+    // });
+    
+    // Hoặc Facebook Pixel
+    // fbq('track', 'Lead', { content_name: `${platform}_social_click` });
+}
+
+// ===== ENHANCED INTERACTIONS =====
+// ===== SIMPLIFIED ICON SYSTEM (No Font Awesome dependency) =====
+document.addEventListener('DOMContentLoaded', function() {
+    
+    // Enhanced hover effects cho social links
+    const socialLinks = document.querySelectorAll('.social-link');
+    socialLinks.forEach(link => {
+        link.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-5px) scale(1.1)';
         });
-      });
-      
-      observer.observe(footer);
-    });
-
-    // Thêm hiệu ứng hover cho social links
-    document.querySelectorAll('.social-link').forEach(link => {
-      link.addEventListener('mouseenter', function() {
-        this.style.transform = 'translateY(-3px) scale(1.05)';
-      });
-      
-      link.addEventListener('mouseleave', function() {
-        this.style.transform = 'translateY(0) scale(1)';
-      });
-    });
-
-    // Thêm click tracking (optional)
-    document.querySelectorAll('.social-link').forEach(link => {
-      link.addEventListener('click', function(e) {
-        const platform = this.classList[1]; // facebook, instagram, tiktok
-        console.log(`Clicked on ${platform} social link`);
         
-        // Có thể thêm Google Analytics tracking ở đây
-        // gtag('event', 'click', { event_category: 'Social', event_label: platform });
-      });
-    });
-  </script>
-
-
-    </div>
-  </footer>
-
-  <script>
-    // Facebook
-    function openFacebook() {
-      window.open('https://facebook.com/anarocoffee', '_blank', 'noopener,noreferrer');
-    }
-
-    // Instagram  
-    function openInstagram() {
-      window.open('https://instagram.com/anarocoffee', '_blank', 'noopener,noreferrer');
-    }
-
-    // TikTok
-    function openTikTok() {
-      window.open('https://tiktok.com/@anarocoffee', '_blank', 'noopener,noreferrer');
-    }
-
-    // Google Shopping
-    function openGoogleShopping() {
-      const searchQuery = encodeURIComponent('ANARO Coffee');
-      window.open(`https://shopping.google.com/search?q=${searchQuery}`, '_blank', 'noopener,noreferrer');
-    }
-
-    // Google Maps
-    function openGoogleMaps() {
-      // Thay đổi địa chỉ này thành địa chỉ thực tế
-      const address = encodeURIComponent('ANARO Coffee Vietnam');
-      window.open(`https://www.google.com/maps/search/?api=1&query=${address}`, '_blank', 'noopener,noreferrer');
-    }
-
-    // Click tracking
-    document.querySelectorAll('.footer-box').forEach(box => {
-      box.addEventListener('click', function() {
-        const platform = this.classList[1].replace('-box', '');
-        console.log(`Clicked on ${platform}`);
-      });
-    });
-  </script>
-
-
-
-  <script>
-    // Function để mở Google Maps
-    function openMap() {
-      // Thay đổi địa chỉ này thành địa chỉ thực tế của bạn
-      const address = encodeURIComponent("123 Đường Cà Phê, Quận 1, TP.HCM");
-      const googleMapsUrl = `https://www.google.com/maps/search/?api=1&query=${address}`;
-      
-      // Mở trong tab mới
-      window.open(googleMapsUrl, '_blank', 'noopener,noreferrer');
-    }
-
-    // Smooth scroll animation khi load
-    window.addEventListener('load', () => {
-      const footer = document.querySelector('.footer');
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.style.opacity = '1';
-          }
+        link.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0) scale(1)';
         });
-      });
-      
-      observer.observe(footer);
     });
 
-    // Thêm hiệu ứng hover cho social links
-    document.querySelectorAll('.social-link').forEach(link => {
-      link.addEventListener('mouseenter', function() {
-        this.style.transform = 'translateY(-3px) scale(1.05)';
-      });
-      
-      link.addEventListener('mouseleave', function() {
-        this.style.transform = 'translateY(0) scale(1)';
-      });
-    });
+    // Map placeholder loading effect với Unicode
+    const mapPlaceholder = document.querySelector('.map-placeholder');
+    if (mapPlaceholder) {
+        mapPlaceholder.addEventListener('click', function() {
+            const originalContent = this.innerHTML;
+            
+            // Hiển thị loading state với Unicode spinner
+            this.innerHTML = `
+                <div>
+                    <div>
+                        <span style="animation: spin 1s linear infinite; display: inline-block;">🔄</span>
+                        Đang mở bản đồ...
+                    </div>
+                    <small>Vui lòng chờ</small>
+                </div>
+            `;
+            
+            // Add CSS for spinner animation
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes spin {
+                    0% { transform: rotate(0deg); }
+                    100% { transform: rotate(360deg); }
+                }
+            `;
+            document.head.appendChild(style);
+            
+            // Reset về trạng thái ban đầu sau 2 giây
+            setTimeout(() => {
+                this.innerHTML = originalContent;
+                document.head.removeChild(style);
+            }, 2000);
+        });
+    }
 
-    // Thêm click tracking (optional)
-    document.querySelectorAll('.social-link').forEach(link => {
-      link.addEventListener('click', function(e) {
-        const platform = this.classList[1]; // facebook, instagram, tiktok
-        console.log(`Clicked on ${platform} social link`);
-        
-        // Có thể thêm Google Analytics tracking ở đây
-        // gtag('event', 'click', { event_category: 'Social', event_label: platform });
-      });
-    });
-  </script>
+    // Intersection Observer cho animation khi scroll
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
 
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.animationPlayState = 'running';
+            }
+        });
+    }, observerOptions);
+
+    // Observe footer để trigger animation
+    const footer = document.querySelector('.footer');
+    if (footer) {
+        observer.observe(footer);
+    }
+});
+
+// ===== UTILITY FUNCTIONS =====
+
+// Copy text to clipboard (có thể dùng cho copy địa chỉ, số điện thoại)
+function copyToClipboard(text, successMessage) {
+    if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(text).then(() => {
+            showTooltip(successMessage || 'Đã copy!');
+        });
+    } else {
+        // Fallback cho browsers cũ
+        const textArea = document.createElement('textarea');
+        textArea.value = text;
+        document.body.appendChild(textArea);
+        textArea.select();
+        try {
+            document.execCommand('copy');
+            showTooltip(successMessage || 'Đã copy!');
+        } catch (err) {
+            console.error('Không thể copy:', err);
+        }
+        document.body.removeChild(textArea);
+    }
+}
+
+// Show tooltip notification
+function showTooltip(message) {
+    // Tạo tooltip element
+    const tooltip = document.createElement('div');
+    tooltip.textContent = message;
+    tooltip.style.cssText = `
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background: #6b3f25;
+        color: white;
+        padding: 0.8rem 1.2rem;
+        border-radius: 8px;
+        font-size: 0.9rem;
+        font-weight: 500;
+        z-index: 9999;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        opacity: 0;
+        transform: translateY(20px);
+        transition: all 0.3s ease;
+    `;
+    
+    document.body.appendChild(tooltip);
+    
+    // Show animation
+    setTimeout(() => {
+        tooltip.style.opacity = '1';
+        tooltip.style.transform = 'translateY(0)';
+    }, 10);
+    
+    // Auto remove sau 3 giây
+    setTimeout(() => {
+        tooltip.style.opacity = '0';
+        tooltip.style.transform = 'translateY(20px)';
+        setTimeout(() => {
+            document.body.removeChild(tooltip);
+        }, 300);
+    }, 3000);
+}
+
+/* ========================================
+   END OF FOOTER JAVASCRIPT
+   ======================================== */
+</script>
+
+<!-- 
+CÁCH SỬ DỤNG:
+1. Copy toàn bộ code này vào cuối trang web (trước thẻ </body>)
+2. Đảm bảo có Font Awesome CDN
+3. Tùy chỉnh thông tin liên hệ nếu cần
+4. Có thể thêm Google Analytics tracking vào các function
+
+TÍNH NĂNG:
+✅ Responsive design hoàn hảo
+✅ Click-to-call, click-to-email
+✅ Social media với icons rõ ràng
+✅ Google Maps integration
+✅ Smooth animations
+✅ Accessibility support
+✅ SEO optimized
+✅ Loading states
+✅ Error handling
+-->
 
 
 </body></html>
