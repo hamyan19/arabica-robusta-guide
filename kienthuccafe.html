@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kiến Thức Cà Phê - Blog ANARO Coffee</title>
+    <title>Blog ANARO Coffee - Kiến Thức Cà Phê</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -19,7 +19,7 @@
             background-color: #f6efe9;
         }
 
-        /* Header - giống trang blog chính */
+        /* Header */
         .header {
             background: white;
             box-shadow: 0 2px 20px rgba(0,0,0,0.1);
@@ -65,81 +65,62 @@
             color: #6b3f25;
         }
 
-        /* Category Header */
-        .category-header {
+        /* Hero Section */
+        .hero {
             background: linear-gradient(135deg, #6b3f25 0%, #a47148 100%);
             color: white;
-            padding: 4rem 0 3rem;
             text-align: center;
+            padding: 4rem 2rem;
         }
 
-        .category-header-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        .category-title {
-            font-size: 2.5rem;
-            font-weight: 700;
+        .hero h1 {
+            font-size: 3rem;
             margin-bottom: 1rem;
+            font-weight: 700;
         }
 
-        .category-description {
+        .hero p {
             font-size: 1.2rem;
-            margin-bottom: 1.5rem;
+            margin-bottom: 2rem;
             opacity: 0.9;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
         }
 
-        .category-meta {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 2rem;
-            font-size: 1rem;
-        }
-
-        .post-count {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .breadcrumb {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            margin-bottom: 1.5rem;
-            opacity: 0.8;
-        }
-
-        .breadcrumb a {
-            color: white;
-            text-decoration: none;
-            transition: opacity 0.3s;
-        }
-
-        .breadcrumb a:hover {
-            opacity: 0.8;
-        }
-
-        /* Posts Container */
-        .posts-container {
-            max-width: 1200px;
+        .search-container {
+            max-width: 500px;
             margin: 0 auto;
-            padding: 3rem 2rem;
+            position: relative;
         }
 
-        /* Filter Tabs */
-        .category-filters {
+        .search-box {
+            width: 100%;
+            padding: 1rem 1.5rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+        }
+
+        .search-btn {
+            position: absolute;
+            right: 5px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: #6b3f25;
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            cursor: pointer;
+        }
+
+        /* Categories Filter */
+        .categories-filter {
             background: white;
+            padding: 2rem;
+            margin: 2rem auto;
+            max-width: 1200px;
             border-radius: 16px;
             box-shadow: 0 8px 25px rgba(0,0,0,0.1);
-            padding: 2rem;
-            margin-bottom: 3rem;
         }
 
         .filter-tabs {
@@ -168,26 +149,39 @@
             border-color: #6b3f25;
         }
 
-        /* Posts Grid */
-        .posts-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-bottom: 3rem;
+        /* Featured Posts */
+        .featured-section {
+            max-width: 1200px;
+            margin: 3rem auto;
+            padding: 0 2rem;
         }
 
-        .post-card {
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #6b3f25;
+            margin-bottom: 3rem;
+            font-weight: 700;
+        }
+
+        .featured-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .featured-card {
             background: white;
             border-radius: 16px;
             overflow: hidden;
             box-shadow: 0 8px 25px rgba(0,0,0,0.1);
-            transition: all 0.3s;
-            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
         }
 
-        .post-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+        .featured-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
         }
 
         .card-image {
@@ -245,57 +239,30 @@
             gap: 0.3rem;
         }
 
-        /* Loading */
-        .loading {
-            display: none;
-            text-align: center;
-            padding: 3rem 0;
+        /* Blog Posts Grid */
+        .blog-posts {
+            max-width: 1200px;
+            margin: 3rem auto;
+            padding: 0 2rem;
         }
 
-        .loading.show {
-            display: block;
+        .posts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
         }
 
-        .spinner {
-            width: 40px;
-            height: 40px;
-            border: 4px solid #e9d7c5;
-            border-left: 4px solid #6b3f25;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-            margin: 0 auto 1rem;
+        .post-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            transition: all 0.3s;
         }
 
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        /* Empty State */
-        .empty-state {
-            text-align: center;
-            padding: 3rem 0;
-            display: none;
-        }
-
-        .empty-state.show {
-            display: block;
-        }
-
-        .empty-state i {
-            font-size: 4rem;
-            color: #a47148;
-            margin-bottom: 1rem;
-        }
-
-        .empty-state h3 {
-            font-size: 1.5rem;
-            color: #6b3f25;
-            margin-bottom: 0.5rem;
-        }
-
-        .empty-state p {
-            color: #666;
+        .post-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.15);
         }
 
         /* Pagination */
@@ -330,7 +297,7 @@
             cursor: not-allowed;
         }
 
-        /* Footer - giống trang blog chính */
+        /* Footer */
         .footer {
             background: #2a221d;
             color: white;
@@ -392,64 +359,18 @@
             color: #999;
         }
 
-        /* Back to Top Button */
-        .back-to-top {
-            position: fixed;
-            bottom: 2rem;
-            right: 2rem;
-            background: #6b3f25;
-            color: white;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            border: none;
-            cursor: pointer;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s;
-            z-index: 999;
-        }
-
-        .back-to-top.show {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .back-to-top:hover {
-            background: #a47148;
-            transform: translateY(-2px);
-        }
-
         /* Mobile Responsive */
         @media (max-width: 768px) {
             .nav-menu {
                 display: none;
             }
 
-            .nav-container {
-                padding: 1rem;
-            }
-
-            .category-title {
+            .hero h1 {
                 font-size: 2rem;
             }
 
-            .category-description {
+            .hero p {
                 font-size: 1rem;
-            }
-
-            .category-meta {
-                flex-direction: column;
-                gap: 1rem;
-            }
-
-            .posts-container {
-                padding: 2rem 1rem;
-            }
-
-            .posts-grid {
-                grid-template-columns: 1fr;
             }
 
             .filter-tabs {
@@ -463,36 +384,47 @@
                 flex-shrink: 0;
             }
 
-            .pagination {
-                flex-wrap: wrap;
-                gap: 0.5rem;
+            .featured-grid {
+                grid-template-columns: 1fr;
             }
 
-            .pagination button {
-                padding: 0.6rem 1rem;
-                font-size: 0.9rem;
+            .posts-grid {
+                grid-template-columns: 1fr;
             }
 
-            .back-to-top {
-                bottom: 1rem;
-                right: 1rem;
-                width: 45px;
-                height: 45px;
+            .nav-container {
+                padding: 1rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
             }
         }
 
-        /* Tablet Responsive */
-        @media (min-width: 768px) and (max-width: 1024px) {
-            .posts-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
+        /* Loading animation */
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 2rem;
         }
 
-        /* Desktop Responsive */
-        @media (min-width: 1024px) {
-            .posts-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
+        .loading.show {
+            display: block;
+        }
+
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid #e9d7c5;
+            border-left: 4px solid #6b3f25;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 1rem;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
     </style>
 </head>
@@ -506,84 +438,117 @@
             </a>
             <ul class="nav-menu">
                 <li><a href="/">Trang chủ</a></li>
-                <li><a href="/blog" class="active">Blog cà phê</a></li>
+                <li><a href="blog.html" class="active">Blog cà phê</a></li>
                 <li><a href="/contact">Liên hệ</a></li>
                 <li><a href="/products">Mua hàng</a></li>
             </ul>
         </nav>
     </header>
 
-    <!-- Category Header -->
-   <section class="category-header">
-        <div class="category-header-content">
-            <div class="breadcrumb">
-                <a href="../blog.html"><i class="fas fa-home"></i></a>
-                <span>/</span>
-                <a href="../blog.html">Blog</a>
-                <span>/</span>
-                <span>Kiến thức cà phê</span>
-            </div>
-            
-            <h1 class="category-title">Kiến Thức Cà Phê</h1>
-            <p class="category-description">
-                Khám phá thế giới cà phê với những kiến thức chuyên sâu về nguồn gốc, 
-                quy trình chế biến và những bí mật đằng sau từng tách cà phê thơm ngon.
-            </p>
-            
-            <div class="category-meta">
-                <div class="post-count">
-                    <i class="fas fa-newspaper"></i>
-                    <span id="postCountText">12 bài viết</span>
-                </div>
-                <div class="last-updated">
-                    <i class="fas fa-clock"></i>
-                    <span>Cập nhật: 15/08/2025</span>
-                </div>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div>
+            <h1>Blog ANARO Coffee</h1>
+            <p>Khám phá thế giới cà phê qua những câu chuyện, kiến thức và bí quyết pha chế</p>
+            <div class="search-container">
+                <input type="text" class="search-box" placeholder="Tìm kiếm bài viết..." id="searchInput">
+                <button class="search-btn" onclick="searchPosts()">
+                    <i class="fas fa-search"></i>
+                </button>
             </div>
         </div>
     </section>
 
-    <!-- Posts Container -->
-  <div class="posts-container">
-        <!-- Category Filters -->
-        <div class="category-filters">
-            <div class="filter-tabs" id="categoryTabs">
-                <a href="../blog.html" class="filter-tab">Tất cả bài viết</a>
-                <a href="kienthuccafe.html" class="filter-tab active">Kiến thức cà phê</a>
-                <a href="cachphache.html" class="filter-tab">Cách pha chế</a>
-                <a href="review.html" class="filter-tab">Review sản phẩm</a>
-                <a href="tips.html" class="filter-tab">Tips & Tricks</a>
-            </div>
+    <!-- Categories Filter -->
+    <section class="categories-filter">
+        <div class="filter-tabs">
+            <div class="filter-tab active" data-category="all">Tất cả bài viết</div>
+            <a href="kienthuccafe.html" class="filter-tab" data-category="kienthuccafe">Kiến thức cà phê</a>
+            <a href="cachphache.html" class="filter-tab" data-category="brewing">Cách pha chế</a>
+            <a href="review.html" class="filter-tab" data-category="review">Review sản phẩm</a>
+            <a href="tips.html" class="filter-tab" data-category="tips">Tips & Tricks</a>
         </div>
+    </section>
 
-        <!-- Loading -->
+    <!-- Featured Posts -->
+    <section class="featured-section">
+        <h2 class="section-title">Bài viết nổi bật</h2>
+        <div class="featured-grid" id="featuredPosts">
+            <article class="featured-card" onclick="openPost(1)">
+                <img src="https://images.unsplash.com/photo-1447933601403-0c6688de566e?w=400&h=200&fit=crop&crop=center" alt="Cà phê Arabica" class="card-image">
+                <div class="card-content">
+                    <span class="card-category">Kiến thức cà phê</span>
+                    <h3 class="card-title">Tìm hiểu về cà phê Arabica và Robusta - Sự khác biệt cơ bản</h3>
+                    <p class="card-excerpt">Arabica và Robusta là hai loại cà phê phổ biến nhất thế giới. Hãy cùng khám phá những đặc điểm riêng biệt và cách phân biệt chúng...</p>
+                    <div class="card-meta">
+                        <div class="meta-info">
+                            <span><i class="fas fa-calendar"></i> 15/08/2025</span>
+                            <span><i class="fas fa-user"></i> ANARO Team</span>
+                        </div>
+                        <div class="read-time">
+                            <i class="fas fa-clock"></i>
+                            <span>5 phút đọc</span>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <article class="featured-card" onclick="openPost(3)">
+                <img src="https://images.unsplash.com/photo-1459755486867-b55449bb39ff?w=400&h=200&fit=crop&crop=center" alt="Pha cà phê" class="card-image">
+                <div class="card-content">
+                    <span class="card-category">Cách pha chế</span>
+                    <h3 class="card-title">7 cách pha cà phê ngon tại nhà không cần máy pha chuyên nghiệp</h3>
+                    <p class="card-excerpt">Bạn không cần đầu tư máy pha đắt tiền để có được tách cà phê hoàn hảo. Cùng học những phương pháp pha cà phê đơn giản nhưng hiệu quả...</p>
+                    <div class="card-meta">
+                        <div class="meta-info">
+                            <span><i class="fas fa-calendar"></i> 12/08/2025</span>
+                            <span><i class="fas fa-user"></i> Barista ANARO</span>
+                        </div>
+                        <div class="read-time">
+                            <i class="fas fa-clock"></i>
+                            <span>8 phút đọc</span>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <article class="featured-card" onclick="openPost(4)">
+                <img src="https://images.unsplash.com/photo-1542181961-9590d0c79dab?w=400&h=200&fit=crop&crop=center" alt="Review cà phê" class="card-image">
+                <div class="card-content">
+                    <span class="card-category">Review sản phẩm</span>
+                    <h3 class="card-title">Review chi tiết Blend Số 3 - Hương vị cà phê sữa đá truyền thống</h3>
+                    <p class="card-excerpt">Blend Số 3 từ ANARO Coffee với tỷ lệ Arabica Đà Lạt 50% và Robusta 50% mang đến hương vị đậm đà, phù hợp cho cà phê sữa đá...</p>
+                    <div class="card-meta">
+                        <div class="meta-info">
+                            <span><i class="fas fa-calendar"></i> 10/08/2025</span>
+                            <span><i class="fas fa-user"></i> Coffee Expert</span>
+                        </div>
+                        <div class="read-time">
+                            <i class="fas fa-clock"></i>
+                            <span>6 phút đọc</span>
+                        </div>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <!-- Blog Posts -->
+    <section class="blog-posts">
+        <h2 class="section-title">Bài viết mới nhất</h2>
         <div class="loading" id="loading">
             <div class="spinner"></div>
             <p>Đang tải bài viết...</p>
         </div>
-
-        <!-- Posts Grid -->
         <div class="posts-grid" id="postsGrid">
             <!-- Posts will be loaded here -->
         </div>
-
-        <!-- Empty State -->
-        <div class="empty-state" id="emptyState">
-            <i class="fas fa-search"></i>
-            <h3>Không tìm thấy bài viết nào</h3>
-            <p>Hãy thử tìm kiếm với từ khóa khác hoặc chọn danh mục khác.</p>
-        </div>
-    </div>
+    </section>
 
     <!-- Pagination -->
     <div class="pagination" id="pagination">
         <!-- Pagination will be generated by JavaScript -->
     </div>
-
-    <!-- Back to Top Button -->
-    <button class="back-to-top" id="backToTop">
-        <i class="fas fa-chevron-up"></i>
-    </button>
 
     <!-- Footer -->
     <footer class="footer">
@@ -622,6 +587,80 @@
             <p>&copy; 2025 ANARO Coffee Collection. All rights reserved.</p>
         </div>
     </footer>
+
+    <script>
+        // Sample blog posts data
+        const blogPosts = [
+            {
+                id: 1,
+                title: "Tìm hiểu về cà phê Arabica và Robusta - Sự khác biệt cơ bản",
+                excerpt: "Arabica và Robusta là hai loại cà phê phổ biến nhất thế giới. Hãy cùng khám phá những đặc điểm riêng biệt và cách phân biệt chúng...",
+                category: "kienthuccafe",
+                categoryName: "Kiến thức cà phê",
+                image: "https://images.unsplash.com/photo-1447933601403-0c6688de566e?w=400&h=200&fit=crop&crop=center",
+                date: "15/08/2025",
+                author: "ANARO Team",
+                readTime: "5 phút đọc"
+            },
+            {
+                id: 2,
+                title: "Bí quyết bảo quản cà phê để giữ nguyên hương vị tươi mới",
+                excerpt: "Cà phê ngon không chỉ đến từ chất lượng hạt mà còn phụ thuộc vào cách bảo quản. Khám phá những tips hữu ích để cà phê luôn thơm ngon như mới rang...",
+                category: "tips",
+                categoryName: "Tips & Tricks",
+                image: "https://images.unsplash.com/photo-1559056199-641a0ac8b55e?w=400&h=200&fit=crop&crop=center",
+                date: "08/08/2025",
+                author: "ANARO Team",
+                readTime: "4 phút đọc"
+            },
+            {
+                id: 3,
+                title: "7 cách pha cà phê ngon tại nhà không cần máy pha chuyên nghiệp",
+                excerpt: "Bạn không cần đầu tư máy pha đắt tiền để có được tách cà phê hoàn hảo. Cùng học những phương pháp pha cà phê đơn giản nhưng hiệu quả...",
+                category: "brewing",
+                categoryName: "Cách pha chế",
+                image: "https://images.unsplash.com/photo-1459755486867-b55449bb39ff?w=400&h=200&fit=crop&crop=center",
+                date: "12/08/2025",
+                author: "Barista ANARO",
+                readTime: "8 phút đọc"
+            },
+            {
+                id: 4,
+                title: "Review chi tiết Blend Số 3 - Hương vị cà phê sữa đá truyền thống",
+                excerpt: "Blend Số 3 từ ANARO Coffee với tỷ lệ Arabica Đà Lạt 50% và Robusta 50% mang đến hương vị đậm đà, phù hợp cho cà phê sữa đá...",
+                category: "review",
+                categoryName: "Review sản phẩm",
+                image: "https://images.unsplash.com/photo-1542181961-9590d0c79dab?w=400&h=200&fit=crop&crop=center",
+                date: "10/08/2025",
+                author: "Coffee Expert",
+                readTime: "6 phút đọc"
+            },
+            {
+                id: 5,
+                title: "Lịch sử và nguồn gốc của cà phê Robusta Việt Nam",
+                excerpt: "Robusta Việt Nam không chỉ nổi tiếng về sản lượng mà còn có chất lượng được thế giới công nhận. Cùng tìm hiểu hành trình phát triển của loại cà phê này...",
+                category: "kienthuccafe",
+                categoryName: "Kiến thức cà phê",
+                image: "https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=400&h=200&fit=crop&crop=center",
+                date: "05/08/2025",
+                author: "Coffee Historian",
+                readTime: "7 phút đọc"
+            },
+            {
+                id: 6,
+                title: "Cách pha Cold Brew hoàn hảo cho mùa hè",
+                excerpt: "Cold Brew là phương pháp pha cà phê lạnh được yêu thích trong mùa hè. Học cách pha Cold Brew thơm ngon, mịn màng với những bí quyết từ chuyên gia...",
+                category: "brewing",
+                categoryName: "Cách pha chế",
+                image: "https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=400&h=200&fit=crop&crop=center",
+                date: "03/08/2025",
+                author: "Barista Pro",
+                readTime: "6 phút đọc"
+            },
+            {
+                id: 7,
+                title: "So sánh chi tiết Arabica Cầu Đất và Arabica Đà Lạt",
+                excerpt: "Cùng là Arabica Việt Nam nhưng Cầu
 
     <script>
         // Sample data cho category "Kiến thức cà phê"
@@ -1031,5 +1070,6 @@
                 title: "Fair Trade cà phê: Thương mại công bằng cho người nông dân",
                 excerpt: "Fair Trade đảm bảo người nông dân nhận được giá công bằng cho sản phẩm của họ. Hệ thống này không chỉ cải thiện thu nhập mà còn đầu tư vào cộng đồng và môi trường. Tuy nhiên, cà phê Fair Trade có thật sự tốt hơn về chất lượng?",
                 category: "
+
 
 
